@@ -9,5 +9,6 @@ export interface Column {
 export interface Task {
   id: ID;
   title: string;
+  isCompleted: boolean;
   createdAt: Date;
 }

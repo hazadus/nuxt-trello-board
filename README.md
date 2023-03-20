@@ -4,6 +4,15 @@
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
 - Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Frameworks and modules used
+- [Nuxt](https://nuxt.com/)
+- [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
+- [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple)
+- VueUse
+- nanoid
+- [Nuxt Icon Module](https://nuxt.com/modules/icon)
+  - [Icons](https://icones.js.org/)
+
 ## Setup
 
 Make sure to install the dependencies:
@@ -12,8 +21,15 @@ Make sure to install the dependencies:
 # npm
 npm install --save-dev @nuxtjs/tailwindcss
 npm i vuedraggable@next nanoid @vueuse/nuxt
+npm install --save-dev nuxt-icon
 npm install
 ```
+
+## VSCode plugins
+
+- Volar
+- Disable built-in TypeScript plugin for this workspace
+- Tailwind CSS
 
 ## Development Server
 

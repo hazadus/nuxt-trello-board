@@ -1,47 +1,64 @@
 <script setup lang="ts">
-import { Column } from '~~/types';
+import type { Column } from '@/types';
 import { nanoid } from "nanoid";
 
 const columns = ref<Column[]>([
   {
     id: nanoid(),
-    title: "Нужно сделать",
+    title: "Нужно сделать 🚀",
     tasks: [
       {
         id: nanoid(),
         title: "Поспать",
+        isCompleted: true,
         createdAt: new Date(),
       },
       {
         id: nanoid(),
         title: "Поработать",
+        isCompleted: false,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(),
+        title: "Пройти курс TypeScript with Vue.js 3",
+        isCompleted: false,
         createdAt: new Date(),
       },
       {
         id: nanoid(),
         title: "Поесть",
+        isCompleted: false,
         createdAt: new Date(),
       },
       {
         id: nanoid(),
         title: "Повторить!",
+        isCompleted: false,
         createdAt: new Date(),
       },
     ],
   },
   {
     id: nanoid(),
-    title: "Завтра",
+    title: "Завтра ☀️",
+    tasks: [
+      {
+        id: nanoid(),
+        title: "Работу работать",
+        isCompleted: false,
+        createdAt: new Date(),
+      },
+    ],
+  },
+  {
+    id: nanoid(),
+    title: "Разобрать 📥",
     tasks: [],
   },
   {
     id: nanoid(),
-    title: "Разобрать",
-    tasks: [],
-  },
-  {
-    id: nanoid(),
-    title: "Выполнено",
+    title: "Выполнено 🏆",
     tasks: [],
   },
 ]);
@@ -49,14 +66,18 @@ const columns = ref<Column[]>([
 
 <template>
   <div class="flex gap-4 overflow-x-auto items-start">
-    <div v-for="column in columns" :key="column.id" class="column bg-gray-200 p-5 rounded min-w-[250px]">
-      <header>
+    <div v-for="column in columns" :key="column.id" class="column bg-gray-200 p-5 rounded shadow min-w-[300px]">
+      <header class="font-bold mb-4">
         {{ column.title }}
       </header>
 
-      <div v-for="task in column.tasks" :key="task.id">
-        {{ task.title }}
-      </div>
+      <BoardTaskCard v-for="task in column.tasks" :key="task.id" :task="task" />
+
+      <footer>
+        <button class="p-2 text-gray-500">
+          <Icon name="material-symbols:add-card" /> Добавить карточку
+        </button>
+      </footer>
     </div>
   </div>
 </template>
