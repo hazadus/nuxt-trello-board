@@ -8,7 +8,7 @@
 - [Nuxt](https://nuxt.com/)
 - [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
 - [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple)
-- VueUse
+- [VueUse](https://nuxt.com/modules/vueuse)
 - nanoid
 - [Nuxt Icon Module](https://nuxt.com/modules/icon)
   - [Icons](https://icones.js.org/)

@@ -11,10 +11,27 @@ defineProps<{
     <div class="p-2">
       <input type="checkbox" />
     </div>
-    <div>
-      <span :class="task.isCompleted ? 'line-through' : ''">
+    <div class="flex-grow">
+      <span class="text-sm" :class="task.isCompleted ? 'line-through' : ''">
         {{ task.title }}
       </span>
     </div>
+    <div class="p-2">
+      <button class="btn-favorite" :class="task.isFavorite ? 'text-yellow-400' : 'text-gray-200'">
+        <Icon name="material-symbols:star" />
+      </button>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.task:hover {
+  transform: scale(1.02);
+  transition: all 0.2s;
+}
+
+.btn-favorite:hover {
+  transform: scale(1.5);
+  transition: all 0.2s;
+}
+</style>

@@ -10,5 +10,6 @@ export interface Task {
   id: ID;
   title: string;
   isCompleted: boolean;
+  isFavorite: boolean;
   createdAt: Date;
 }
