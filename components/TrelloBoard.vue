@@ -73,10 +73,13 @@ const columns = ref<Column[]>([
 
 <template>
   <div>
-    <draggable v-model="columns" group="columns" item-key="id" class="flex gap-4 overflow-x-auto items-start">
+    <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
+    <draggable v-model="columns" group="columns" item-key="id" :animation="200" handle=".drag-handle"
+      class="flex gap-4 overflow-x-auto items-start">
       <template #item="{ element: column }: { element: Column }">
         <div class="column bg-gray-200 p-5 rounded shadow min-w-[300px]">
           <header class="font-bold mb-4">
+            <DragHandle />
             {{ column.title }}
           </header>
 
