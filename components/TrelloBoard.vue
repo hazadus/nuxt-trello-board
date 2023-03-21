@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import draggable from "vuedraggable";
-import type { Column } from '@/types';
+import type { Column, Task } from '@/types';
 import { nanoid } from "nanoid";
 
 const columns = ref<Column[]>([
@@ -89,7 +89,12 @@ const columns = ref<Column[]>([
             {{ column.title }}
           </header>
 
-          <BoardTaskCard v-for="task in column.tasks" :key="task.id" :task="task" />
+          <!-- Dtaggable tasks (without handles) -->
+          <draggable v-model="column.tasks" group="tasks" item-key="id" :animation="200">
+            <template #item="{ element: task }: { element: Task }">
+              <BoardTaskCard :task="task" />
+            </template>
+          </draggable>
 
           <footer>
             <button class="p-2 text-gray-500">

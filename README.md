@@ -1,6 +1,7 @@
 # Trello Board with Nuxt 3
 
-## References 
+## References
+- [Что такое kanban-доска?](https://www.atlassian.com/ru/agile/kanban/boards)
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
 - Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
@@ -46,6 +47,12 @@ Build the application for production:
 
 ```bash
 npm run build
+```
+
+Run with Docker Compose using Node:
+
+```bash
+docker compose up
 ```
 
 Locally preview production build:
