@@ -1,4 +1,5 @@
 # Trello Board with Nuxt 3
+Paused on 51:50!
 
 ## References 
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
@@ -9,7 +10,7 @@
 - [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
 - [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple)
 - [VueUse](https://nuxt.com/modules/vueuse)
-- nanoid
+- [nanoid](https://www.npmjs.com/package/nanoid)
 - [Nuxt Icon Module](https://nuxt.com/modules/icon)
   - [Icons](https://icones.js.org/)
 

@@ -1,0 +1,9 @@
+# https://blog.alexanderwolf.tech/how-to-dockerize-your-sveltekit-app/
+version: '3.9'
+
+services:
+  web:
+    container_name: "nuxt-board-web"
+    build: .
+    ports:
+      - "80:3000"
