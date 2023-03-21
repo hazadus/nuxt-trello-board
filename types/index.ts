@@ -9,7 +9,9 @@ export interface Column {
 export interface Task {
   id: ID;
   title: string;
+  details?: string | null;
   isCompleted: boolean;
   isFavorite: boolean;
   createdAt: Date;
+  completedAt?: Date | null;
 }

@@ -1,5 +1,4 @@
 # Trello Board with Nuxt 3
-Paused on 51:50!
 
 ## References 
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)

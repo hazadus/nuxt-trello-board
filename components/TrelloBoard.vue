@@ -14,6 +14,7 @@ const columns = ref<Column[]>([
         isCompleted: true,
         isFavorite: false,
         createdAt: new Date(),
+        completedAt: null,
       },
       {
         id: nanoid(),
@@ -21,6 +22,7 @@ const columns = ref<Column[]>([
         isCompleted: false,
         isFavorite: false,
         createdAt: new Date(),
+        completedAt: null,
       },
       {
         id: nanoid(),
@@ -28,6 +30,7 @@ const columns = ref<Column[]>([
         isCompleted: false,
         isFavorite: true,
         createdAt: new Date(),
+        completedAt: new Date(),
       },
       {
         id: nanoid(),
@@ -35,6 +38,7 @@ const columns = ref<Column[]>([
         isCompleted: false,
         isFavorite: false,
         createdAt: new Date(),
+        completedAt: null,
       },
       {
         id: nanoid(),
@@ -42,6 +46,7 @@ const columns = ref<Column[]>([
         isCompleted: false,
         isFavorite: false,
         createdAt: new Date(),
+        completedAt: null,
       },
     ],
   },
@@ -55,6 +60,7 @@ const columns = ref<Column[]>([
         isCompleted: false,
         isFavorite: false,
         createdAt: new Date(),
+        completedAt: null,
       },
     ],
   },
