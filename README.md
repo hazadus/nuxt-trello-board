@@ -24,19 +24,21 @@
 
 ## ToDos
 
-- 💡 "Add new column" button.
-- 💡 Handle task card cloning: change `id`, `createdAt` for cloned cards. See Sortable.js docs on how to do it.
-- 💡 Add Stores (local storage).
+- 📌 "Add new column" button.
+- 📌 Handle task card cloning: change `id`, `createdAt` for cloned cards. See Sortable.js docs on how to do it.
+- 📌 Add Stores (local storage).
 
 ## Ideas
 
-- "Favorites" column (computed)
-- Tags for tasks
-- Comments for tasks
-- Image attachments
-- File attachments
+- 💡 "Favorites" column (computed)
+- 💡 "Soft" delete
+- 💡 Tags for tasks
+- 💡 Comments for tasks
+- 💡 Image attachments
+- 💡 File attachments
 
 ## Done
+- 🚀 Edit column title
 - 🚀 Exclude checkboxes, star buttons from `tab` traverse (in Firefox, at least).
 
 

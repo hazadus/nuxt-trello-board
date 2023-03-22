@@ -89,7 +89,9 @@ const alt = useKeyModifier("Alt");
         <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
           <header class="font-bold mb-4">
             <DragHandle />
-            {{ column.title }}
+            <input
+              class="bg-transparent focus:bg-white rounded px-1 w-4/5 focus:outline focus:outline-gray-400 focus:outline-1"
+              @keyup.enter="($event.target as HTMLInputElement).blur()" type="text" v-model="column.title" />
           </header>
 
           <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
