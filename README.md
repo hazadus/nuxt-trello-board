@@ -20,14 +20,19 @@
 - Downgraded Node version to 18 because of this error ([reference](https://medium.com/@georgeenathomas/3-step-process-to-downgrade-node-version-using-homebrew-bc0b0a72ae27)).
 - `Dockerfile.dev` made for dev mode, `Dockerfile` is somewhat "prod" version.
 - Nuxt differences with plain Vue3:
-  - You don't have to import components, stuff like `ref()`, etc.
+  - You don't have to import components, functions from VueUse, stuff like `ref()`, etc.
 
 ## ToDos
 
+- Exclude checkboxes, star buttons from `tab` traverse (in Firefox, at least).
+- "Add new column" button.
 - Handle task card cloning: change `id`, `createdAt` for cloned cards. See Sortable.js docs on how to do it.
+- Add Stores (local storage).
 
 ## Ideas
 
+- "Favorites" column (computed)
+- Tags for tasks
 - Comments for tasks
 - Image attachments
 - File attachments
@@ -53,6 +58,7 @@ npm install
 ## Development Server
 
 Start the development server on http://localhost:3000
+
 Tailwind Config viewer http://localhost:3000/_tailwind/
 
 ```bash

@@ -86,7 +86,7 @@ const alt = useKeyModifier("Alt");
     <draggable v-model="columns" group="columns" item-key="id" :animation="200" handle=".drag-handle"
       class="flex gap-4 overflow-x-auto items-start">
       <template #item="{ element: column }: { element: Column }">
-        <div class="column bg-gray-200 p-5 rounded shadow w-[340px]">
+        <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
           <header class="font-bold mb-4">
             <DragHandle />
             {{ column.title }}
@@ -96,15 +96,16 @@ const alt = useKeyModifier("Alt");
           <draggable v-model="column.tasks" :group="{ name: 'tasks', pull: alt ? 'clone' : true }" item-key="id"
             :animation="200">
             <template #item="{ element: task }: { element: Task }">
-              <div>
-                <BoardTaskCard :task="task" />
-              </div>
+              <BoardTaskCard :task="task" @toggle-completed="task.isCompleted = $event"
+                @toggle-favorite="task.isFavorite = $event" />
             </template>
           </draggable>
 
           <footer>
             <NewTask @add="column.tasks.push($event)" />
           </footer>
+
+          <pre v-if="false" class="text-xs overflow-x-auto mt-3">{{ column }}</pre>
         </div>
       </template>
     </draggable>
