@@ -24,7 +24,6 @@
 
 ## ToDos
 
-- 📌 "Add new column" button.
 - 📌 Handle task card cloning: change `id`, `createdAt` for cloned cards. See Sortable.js docs on how to do it.
 - 📌 Add Stores (local storage).
 
@@ -38,6 +37,8 @@
 - 💡 File attachments
 
 ## Done
+- 🚀 Add "Delete" button for columns.
+- 🚀 "Add new column" button.
 - 🚀 Edit column title
 - 🚀 Exclude checkboxes, star buttons from `tab` traverse (in Firefox, at least).
 

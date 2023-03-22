@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import draggable from "vuedraggable";
-import type { Column, Task } from '@/types';
 import { nanoid } from "nanoid";
+import type { Column, Task } from '@/types';
+
+// NB: we're using Nuxt, so we don't have to import `ref()`, `nextTick()`, `useKeyModifier()` etc.
 
 const columns = ref<Column[]>([
   {
@@ -78,20 +80,38 @@ const columns = ref<Column[]>([
 
 // `alt` will be reactive boolean value, equal to `true` when the alt (or option) key is pressed.
 const alt = useKeyModifier("Alt");
+
+function addNewColumn() {
+  const column: Column = {
+    id: nanoid(),
+    title: "Новая колонка",
+    tasks: [],
+  }
+
+  columns.value.push(column);
+  // Make sure Vue has updated the DOM, then focus on the newly created column:
+  nextTick(() => {
+    (document.querySelector(".column:last-of-type .column-title-input") as HTMLInputElement).focus();
+  });
+}
 </script>
 
 <template>
-  <div>
+  <div class="board flex items-start overflow-x-auto gap-4">
     <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
     <draggable v-model="columns" group="columns" item-key="id" :animation="200" handle=".drag-handle"
-      class="flex gap-4 overflow-x-auto items-start">
+      class="columns-wrapper flex gap-4 items-start">
       <template #item="{ element: column }: { element: Column }">
         <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
-          <header class="font-bold mb-4">
+          <header class="font-bold mb-4 flex items-baseline">
             <DragHandle />
             <input
-              class="bg-transparent focus:bg-white rounded px-1 w-4/5 focus:outline focus:outline-gray-400 focus:outline-1"
+              class="column-title-input bg-transparent focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1"
               @keyup.enter="($event.target as HTMLInputElement).blur()" type="text" v-model="column.title" />
+            <button class="text-xl text-gray-400 hover:text-gray-600"
+              @click="columns = columns.filter(el => el.id != column.id)">
+              <Icon name="material-symbols:delete-outline" />
+            </button>
           </header>
 
           <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
@@ -112,5 +132,9 @@ const alt = useKeyModifier("Alt");
         </div>
       </template>
     </draggable>
+
+    <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50" @click="addNewColumn">
+      + Добавить колонку
+    </button>
   </div>
 </template>
