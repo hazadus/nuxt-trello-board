@@ -75,6 +75,9 @@ const columns = ref<Column[]>([
     tasks: [],
   },
 ]);
+
+// `alt` will be reactive boolean value, equal to `true` when the alt (or option) key is pressed.
+const alt = useKeyModifier("Alt");
 </script>
 
 <template>
@@ -83,24 +86,24 @@ const columns = ref<Column[]>([
     <draggable v-model="columns" group="columns" item-key="id" :animation="200" handle=".drag-handle"
       class="flex gap-4 overflow-x-auto items-start">
       <template #item="{ element: column }: { element: Column }">
-        <div class="column bg-gray-200 p-5 rounded shadow min-w-[300px]">
+        <div class="column bg-gray-200 p-5 rounded shadow w-[340px]">
           <header class="font-bold mb-4">
             <DragHandle />
             {{ column.title }}
           </header>
 
-          <!-- Dtaggable tasks (without handles) -->
-          <draggable v-model="column.tasks" group="tasks" item-key="id" :animation="200">
+          <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
+          <draggable v-model="column.tasks" :group="{ name: 'tasks', pull: alt ? 'clone' : true }" item-key="id"
+            :animation="200">
             <template #item="{ element: task }: { element: Task }">
-              <BoardTaskCard :task="task" />
+              <div>
+                <BoardTaskCard :task="task" />
+              </div>
             </template>
           </draggable>
 
           <footer>
-            <button class="p-2 text-gray-500">
-              <Icon name="material-symbols:add-card" />&nbsp;
-              <span class="text-sm">Добавить карточку</span>
-            </button>
+            <NewTask @add="column.tasks.push($event)" />
           </footer>
         </div>
       </template>

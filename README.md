@@ -8,11 +8,29 @@
 ## Frameworks and modules used
 - [Nuxt](https://nuxt.com/)
 - [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
-- [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple)
+- [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple), based on [Sortable.js](https://github.com/SortableJS/Sortable)
 - [VueUse](https://nuxt.com/modules/vueuse)
 - [nanoid](https://www.npmjs.com/package/nanoid)
 - [Nuxt Icon Module](https://nuxt.com/modules/icon)
   - [Icons](https://icones.js.org/)
+
+## Notes
+
+- Run with Node18. Node19 throws an error `Cannot start nuxt:  The "name" argument must be specified`.
+- Downgraded Node version to 18 because of this error ([reference](https://medium.com/@georgeenathomas/3-step-process-to-downgrade-node-version-using-homebrew-bc0b0a72ae27)).
+- `Dockerfile.dev` made for dev mode, `Dockerfile` is somewhat "prod" version.
+- Nuxt differences with plain Vue3:
+  - You don't have to import components, stuff like `ref()`, etc.
+
+## ToDos
+
+- Handle task card cloning: change `id`, `createdAt` for cloned cards. See Sortable.js docs on how to do it.
+
+## Ideas
+
+- Comments for tasks
+- Image attachments
+- File attachments
 
 ## Setup
 
