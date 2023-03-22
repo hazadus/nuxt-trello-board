@@ -5,7 +5,7 @@ import type { Column, Task } from '@/types';
 
 // NB: we're using Nuxt, so we don't have to import `ref()`, `nextTick()`, `useKeyModifier()` etc.
 
-const columns = ref<Column[]>([
+const columns = useLocalStorage<Column[]>("trelloBoard", [
   {
     id: nanoid(),
     title: "Нужно сделать 🚀",

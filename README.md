@@ -24,8 +24,8 @@
 
 ## ToDos
 
+- 📌 Build Backend
 - 📌 Handle task card cloning: change `id`, `createdAt` for cloned cards. See Sortable.js docs on how to do it.
-- 📌 Add Stores (local storage).
 
 ## Ideas
 
@@ -37,6 +37,7 @@
 - 💡 File attachments
 
 ## Done
+- 🚀 Add Stores (local storage).
 - 🚀 Add "Delete" button for columns.
 - 🚀 "Add new column" button.
 - 🚀 Edit column title

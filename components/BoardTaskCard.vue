@@ -50,8 +50,7 @@ onKeyStroke(" ", (event) => {
 </script>
 
 <template>
-  <div :title="task.createdAt.toLocaleDateString()"
-    class="bg-white p-2 mb-2 rounded max-w-[300px] shadow flex items-baseline task" @focus="focused = true"
+  <div class="bg-white p-2 mb-2 rounded max-w-[300px] shadow flex items-baseline task" @focus="focused = true"
     @blur="focused = false" tabindex="0">
     <div class="p-2">
       <input type="checkbox" v-model="completed" @change="onToggleCompleted" tabindex="-1" />
