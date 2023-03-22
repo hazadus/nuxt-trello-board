@@ -22,7 +22,6 @@ function onToggleCompleted() {
 function onToggleFavorite() {
   favorite.value = !favorite.value;
   emit("toggleFavorite", favorite.value);
-  console.log("isFavorite:", favorite.value);
 }
 
 onKeyStroke("Backspace", (event) => {
@@ -52,10 +51,10 @@ onKeyStroke(" ", (event) => {
 
 <template>
   <div :title="task.createdAt.toLocaleDateString()"
-    class="task bg-white p-2 mb-2 rounded max-w-[300px] shadow flex items-baseline" @focus="focused = true"
+    class="bg-white p-2 mb-2 rounded max-w-[300px] shadow flex items-baseline task" @focus="focused = true"
     @blur="focused = false" tabindex="0">
     <div class="p-2">
-      <input type="checkbox" v-model="completed" @change="onToggleCompleted" />
+      <input type="checkbox" v-model="completed" @change="onToggleCompleted" tabindex="-1" />
     </div>
     <div class="flex-grow">
       <span class="text-sm" :class="completed ? 'line-through' : ''">
@@ -63,7 +62,7 @@ onKeyStroke(" ", (event) => {
       </span>
     </div>
     <div class="p-2">
-      <button class="btn-favorite" :class="favorite ? 'text-yellow-400' : 'text-gray-200'"
+      <button class="btn-favorite" :class="favorite ? 'text-yellow-400' : 'text-gray-200'" tabindex="-1"
         @click.preventDefault="onToggleFavorite">
         <Icon name="material-symbols:star" />
       </button>
@@ -72,6 +71,16 @@ onKeyStroke(" ", (event) => {
 </template>
 
 <style scoped>
+.task:focus,
+.task:focus-visible {
+  @apply outline-gray-400 !important;
+  border-radius: 0.25rem;
+  outline-width: 2px;
+  outline-style: solid;
+  transform: scale(1.02);
+  transition: all 0.2s;
+}
+
 .task:hover {
   transform: scale(1.02);
   transition: all 0.2s;

@@ -97,7 +97,8 @@ const alt = useKeyModifier("Alt");
             :animation="200">
             <template #item="{ element: task }: { element: Task }">
               <BoardTaskCard :task="task" @toggle-completed="task.isCompleted = $event"
-                @toggle-favorite="task.isFavorite = $event" />
+                @toggle-favorite="task.isFavorite = $event"
+                @delete="column.tasks = column.tasks.filter(el => el.id != $event)" />
             </template>
           </draggable>
 
