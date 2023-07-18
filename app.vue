@@ -7,9 +7,9 @@
     <div class="app p-10 h-[100vh] bg-teal-600 overflow-auto">
       <h1 class="text-4xl mb-4 text-white">
         Канбан-доска
-        <Icon name="cib:nuxt-js" /> &middot;
-        <Icon name="cib:vue-js" /> &middot;
-        <Icon name="cib:typescript" />
+        <Icon name="logos:nuxt-icon" /> &middot;
+        <Icon name="logos:vue" /> &middot;
+        <Icon name="logos:typescript-icon" />
       </h1>
       <TrelloBoard />
     </div>
