@@ -1,12 +1,20 @@
 # Trello Board with Nuxt 3
 
+Trello board clone implemented in TypeScript with Nuxt 3.
+
+Live demo at: https://hazadus.github.io/nuxt-trello-board/
+
+Be aware that cards you create are saved in you local storage, not on the server! There's no backend in this demo, just static page.
+
 ## References
+
 - [Что такое kanban-доска?](https://www.atlassian.com/ru/agile/kanban/boards)
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
 - Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 - [Deploying Nuxt Static Site to Github Pages with GitHub Actions](https://donlalicon.dev/articles/nuxt-static-github-pages-action)
 
 ## Frameworks and modules used
+
 - [Nuxt](https://nuxt.com/)
 - [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
 - [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple), based on [Sortable.js](https://github.com/SortableJS/Sortable)
@@ -38,12 +46,12 @@
 - 💡 File attachments
 
 ## Done
+
 - 🚀 Add Stores (local storage).
 - 🚀 Add "Delete" button for columns.
 - 🚀 "Add new column" button.
 - 🚀 Edit column title
 - 🚀 Exclude checkboxes, star buttons from `tab` traverse (in Firefox, at least).
-
 
 ## Setup
 
@@ -67,7 +75,7 @@ npm install
 
 Start the development server on http://localhost:3000
 
-Tailwind Config viewer http://localhost:3000/_tailwind/
+Tailwind Config viewer http://localhost:3000/\_tailwind/
 
 ```bash
 npm run dev
