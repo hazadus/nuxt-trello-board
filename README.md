@@ -29,6 +29,7 @@ Be aware that cards you create are saved in you local storage, not on the server
 - [nanoid](https://www.npmjs.com/package/nanoid)
 - [Nuxt Icon Module](https://nuxt.com/modules/icon)
   - [Icons](https://icones.js.org/)
+- Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose)
 
 ## Notes
 

@@ -11,8 +11,3 @@ RUN apk update && apk upgrade
 COPY . /usr/src/app/
 RUN npm ci
 RUN npm run build
-
-ENV NITRO_HOST=0.0.0.0
-ENV NITRO_PORT=3000
-
-CMD [ "node", ".output/server/index.mjs" ]
