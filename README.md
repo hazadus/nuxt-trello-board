@@ -6,6 +6,13 @@ Live demo at: https://hazadus.github.io/nuxt-trello-board/
 
 Be aware that cards you create are saved in you local storage, not on the server! There's no backend in this demo, just static page.
 
+## Controls
+
+- `tab`: cycle columns and cards.
+- `space`: mark card as completed.
+- `enter`: mark card as starred.
+- `backspace`: delete card.
+
 ## References
 
 - [Что такое kanban-доска?](https://www.atlassian.com/ru/agile/kanban/boards)
