@@ -4,6 +4,7 @@
 - [Что такое kanban-доска?](https://www.atlassian.com/ru/agile/kanban/boards)
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
 - Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+- [Deploying Nuxt Static Site to Github Pages with GitHub Actions](https://donlalicon.dev/articles/nuxt-static-github-pages-action)
 
 ## Frameworks and modules used
 - [Nuxt](https://nuxt.com/)
