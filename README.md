@@ -32,6 +32,7 @@ Be aware that cards you create are saved in you local storage, not on the server
   - [Icons](https://icones.js.org/)
 - Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose)
 - [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
+- [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia)
 
 ## Notes
 
