@@ -7,4 +7,7 @@ export default defineNuxtConfig({
     // I.e., use `NUXT_MONGO_DB_ADDRESS` in docker-compose.yml.
     mongoDbAddress: process.env.MONGO_DB_ADDRESS,
   },
+  tailwindcss: {
+    cssPath: "~/assets/main.css",
+  },
 });
