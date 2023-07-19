@@ -107,7 +107,7 @@ function addNewColumn() {
             <DragHandle />
             <input
               class="column-title-input bg-transparent focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1"
-              @keyup.enter="($event.target as HTMLInputElement).blur()" type="text" v-model="column.title" />
+              @keyup.enter="($event.target as HTMLInputElement).blur()" type="text" v-model=" column.title " />
             <button class="text-xl text-gray-400 hover:text-gray-600"
               @click="columns = columns.filter(el => el.id != column.id)">
               <Icon name="material-symbols:delete-outline" />
@@ -115,10 +115,10 @@ function addNewColumn() {
           </header>
 
           <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
-          <draggable v-model="column.tasks" :group="{ name: 'tasks', pull: alt ? 'clone' : true }" item-key="id"
-            :animation="200">
-            <template #item="{ element: task }: { element: Task }">
-              <BoardTaskCard :task="task" @toggle-completed="task.isCompleted = $event"
+          <draggable v-model=" column.tasks " :group=" { name: 'tasks', pull: alt ? 'clone' : true } " item-key="id"
+            :animation=" 200 ">
+            <template #item=" { element: task }: { element: Task } ">
+              <BoardTaskCard :task=" task " @toggle-completed="task.isCompleted = $event"
                 @toggle-favorite="task.isFavorite = $event"
                 @delete="column.tasks = column.tasks.filter(el => el.id != $event)" />
             </template>
@@ -128,12 +128,12 @@ function addNewColumn() {
             <NewTask @add="column.tasks.push($event)" />
           </footer>
 
-          <pre v-if="false" class="text-xs overflow-x-auto mt-3">{{ column }}</pre>
+          <pre v-if=" false " class="text-xs overflow-x-auto mt-3">{{ column }}</pre>
         </div>
       </template>
     </draggable>
 
-    <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50" @click="addNewColumn">
+    <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50" @click=" addNewColumn ">
       + Добавить колонку
     </button>
   </div>

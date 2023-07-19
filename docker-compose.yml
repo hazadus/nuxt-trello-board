@@ -15,6 +15,6 @@ services:
     environment:
       - "NITRO_HOST=0.0.0.0"
       - "NITRO_PORT=3000"
-      - "NUXT_MONGO_DB_ADDRESS=mongodb://db:27017/test"
+      - "NUXT_MONGO_DB_ADDRESS=mongodb://db:27017/board"
     depends_on:
       - db

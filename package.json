@@ -13,6 +13,7 @@
     "nuxt-icon": "^0.3.3"
   },
   "dependencies": {
+    "@types/mongoose": "^5.11.97",
     "@vueuse/nuxt": "^9.13.0",
     "mongoose": "^7.3.4",
     "nanoid": "^4.0.1",
