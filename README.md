@@ -47,6 +47,7 @@ Be aware that cards you create are saved in you local storage, not on the server
 
 - [Nuxt](https://nuxt.com/)
 - [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
+  - [Headless UI](https://headlessui.com)
 - [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple), based on [Sortable.js](https://github.com/SortableJS/Sortable)
 - [VueUse](https://nuxt.com/modules/vueuse)
 - [nanoid](https://www.npmjs.com/package/nanoid)
@@ -55,6 +56,7 @@ Be aware that cards you create are saved in you local storage, not on the server
 - Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose)
 - [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
 - [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
+- [vue-toastification](https://github.com/Maronato/vue-toastification/tree/next)
 
 ## Notes
 

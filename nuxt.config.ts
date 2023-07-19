@@ -10,4 +10,7 @@ export default defineNuxtConfig({
   tailwindcss: {
     cssPath: "~/assets/main.css",
   },
+  build: {
+    transpile: ["@headlessui/tailwindcss", "@headlessui/vue", "vue-toastification"],
+  },
 });
