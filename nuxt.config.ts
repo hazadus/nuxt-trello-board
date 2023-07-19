@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@vueuse/nuxt", "nuxt-icon"],
+  modules: ["@nuxtjs/tailwindcss", "@vueuse/nuxt", "nuxt-icon", "@pinia/nuxt"],
   ssr: false,
   runtimeConfig: {
     // NB: don't forget to add `NUXT_` prefix when setting the vat in environment!

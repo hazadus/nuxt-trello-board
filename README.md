@@ -13,6 +13,28 @@ Be aware that cards you create are saved in you local storage, not on the server
 - `enter`: mark card as starred.
 - `backspace`: delete card.
 
+## Starting the project on your own
+
+### Using Docker Compose
+
+**TODO**: update docs!
+
+- Clone the repo
+
+### Running in development mode
+
+**TODO**: update docs!
+
+- Install dependencies with npm install --force (Force if you get an error abot pinia)
+- Add MongoDB URI to `.env` file
+
+```
+.env example
+```
+
+- Run dev with npm run dev
+- Docker / npm run dev stuff ...
+
 ## References
 
 - [Что такое kanban-доска?](https://www.atlassian.com/ru/agile/kanban/boards)
@@ -32,7 +54,7 @@ Be aware that cards you create are saved in you local storage, not on the server
   - [Icons](https://icones.js.org/)
 - Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose)
 - [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
-- [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia)
+- [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
 
 ## Notes
 

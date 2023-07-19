@@ -13,11 +13,16 @@
     "nuxt-icon": "^0.3.3"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
     "@types/mongoose": "^5.11.97",
     "@vueuse/nuxt": "^9.13.0",
     "joi": "^17.9.2",
     "mongoose": "^7.3.4",
     "nanoid": "^4.0.1",
+    "pinia": "^2.1.4",
     "vuedraggable": "^4.1.0"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
