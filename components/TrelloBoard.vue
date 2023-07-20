@@ -8,7 +8,7 @@ await useAsyncData(() => taskStore.getAll());
 
 const columns = computed(() => [
   {
-    id: nanoid(),
+    _id: nanoid(),
     title: "Нужно сделать 🚀",
     tasks: taskStore.tasks,
   },
@@ -18,17 +18,18 @@ const columns = computed(() => [
 const alt = useKeyModifier("Alt");
 
 function addNewColumn() {
-  const column: Column = {
-    id: nanoid(),
-    title: "Новая колонка",
-    tasks: [],
-  }
+  // const column: Column = {
+  //   _id: nanoid(),
+  //   title: "Новая колонка",
+  //   tasks: [],
+  // }
 
-  columns.value.push(column);
+  useToast().warning("Can't insert new column yet...");
+
   // Make sure Vue has updated the DOM, then focus on the newly created column:
-  nextTick(() => {
-    (document.querySelector(".column:last-of-type .column-title-input") as HTMLInputElement).focus();
-  });
+  // nextTick(() => {
+  //   (document.querySelector(".column:last-of-type .column-title-input") as HTMLInputElement).focus();
+  // });
 }
 
 async function onAddTask(task: Task) {
@@ -67,7 +68,7 @@ async function onDeleteTask(taskId: ID) {
               class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1"
               @keyup.enter="($event.target as HTMLInputElement).blur()" type="text" v-model=" column.title " />
             <button class="text-xl text-gray-400 hover:text-gray-600"
-              @click="columns = columns.filter(el => el.id != column.id)">
+              @click="columns = columns.filter(el => el._id != column._id)">
               <Icon name="material-symbols:delete-outline" />
             </button>
           </header>

@@ -15,18 +15,3 @@ const taskSchema = new Schema<Task>(
 );
 
 export const TaskModel = model<Task>("Task", taskSchema);
-
-// Reference: https://mongoosejs.com/docs/typescript/subdocuments.html#handling-subdocuments-in-typescript
-// `tasks[]` implemented as subdocuments below:
-type ColumnDocumentProps = {
-  tasks: Types.DocumentArray<Task>;
-};
-type ColumnModelType = Model<Column, {}, ColumnDocumentProps>;
-
-export const ColumnModel = model<Column, ColumnModelType>(
-  "Column",
-  new Schema<Column, ColumnModelType>({
-    title: { type: String, required: true },
-    tasks: [taskSchema],
-  }),
-);

@@ -1,7 +1,7 @@
 export type ID = string;
 
 export interface Column {
-  id: ID;
+  _id?: ID;
   title: string;
   tasks: Task[];
 }
