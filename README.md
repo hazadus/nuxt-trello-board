@@ -57,6 +57,7 @@ Be aware that cards you create are saved in you local storage, not on the server
 - [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
 - [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
 - [vue-toastification](https://github.com/Maronato/vue-toastification/tree/next)
+- [vee-validate](https://www.npmjs.com/package/vee-validate)
 
 ## Notes
 
