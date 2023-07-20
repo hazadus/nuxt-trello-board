@@ -4,6 +4,8 @@ export interface Column {
   _id?: ID;
   title: string;
   tasks: Task[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface Task {

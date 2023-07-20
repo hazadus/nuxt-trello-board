@@ -6,30 +6,33 @@ import type { Column, Task, ID } from '@/types';
 const taskStore = useTaskStore();
 await useAsyncData(() => taskStore.getAll());
 
-const columns = computed(() => [
-  {
-    _id: nanoid(),
-    title: "Нужно сделать 🚀",
-    tasks: taskStore.tasks,
-  },
-]);
+const columnStore = useColumnStore();
+await useAsyncData(() => columnStore.getAll());
 
 // `alt` will be reactive boolean value, equal to `true` when the alt (or option) key is pressed.
 const alt = useKeyModifier("Alt");
 
-function addNewColumn() {
-  // const column: Column = {
-  //   _id: nanoid(),
-  //   title: "Новая колонка",
-  //   tasks: [],
-  // }
-
-  useToast().warning("Can't insert new column yet...");
+async function addNewColumn() {
+  await columnStore.create({
+    title: "Новая колонка",
+    tasks: [],
+  });
 
   // Make sure Vue has updated the DOM, then focus on the newly created column:
-  // nextTick(() => {
-  //   (document.querySelector(".column:last-of-type .column-title-input") as HTMLInputElement).focus();
-  // });
+  nextTick(() => {
+    (document.querySelector(".column:last-of-type .column-title-input") as HTMLInputElement).focus();
+  });
+}
+
+async function onRenameColumn(column: Column, newTitle: string) {
+  await columnStore.update({
+    ...column,
+    title: newTitle,
+  });
+}
+
+async function onDeleteColumn(column: Column) {
+  await columnStore.delete(column._id!);
 }
 
 async function onAddTask(task: Task) {
@@ -58,7 +61,7 @@ async function onDeleteTask(taskId: ID) {
 <template>
   <div class="board flex items-start overflow-x-auto gap-4">
     <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
-    <draggable v-model="columns" group="columns" item-key="id" :animation="200" handle=".drag-handle"
+    <draggable v-model="columnStore.columns" group="columns" item-key="id" :animation="200" handle=".drag-handle"
       class="columns-wrapper flex gap-4 items-start">
       <template #item="{ element: column }: { element: Column }">
         <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
@@ -66,9 +69,9 @@ async function onDeleteTask(taskId: ID) {
             <DragHandle />
             <input
               class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1"
-              @keyup.enter="($event.target as HTMLInputElement).blur()" type="text" v-model=" column.title " />
-            <button class="text-xl text-gray-400 hover:text-gray-600"
-              @click="columns = columns.filter(el => el._id != column._id)">
+              @keyup.enter="onRenameColumn(column, ($event.target as HTMLInputElement).value); ($event.target as HTMLInputElement).blur()"
+              v-model=" column.title " type="text" />
+            <button class="text-xl text-gray-400 hover:text-gray-600" @click="onDeleteColumn(column)">
               <Icon name="material-symbols:delete-outline" />
             </button>
           </header>
@@ -85,8 +88,6 @@ async function onDeleteTask(taskId: ID) {
           <footer>
             <NewTask @add="onAddTask($event)" />
           </footer>
-
-          <pre v-if=" false " class="text-xs overflow-x-auto mt-3">{{ column }}</pre>
         </div>
       </template>
     </draggable>
