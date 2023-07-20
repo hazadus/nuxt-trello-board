@@ -49,6 +49,7 @@ async function onToggleCompleted(task: Task, isCompleted: boolean) {
     ...task,
     isCompleted,  // Overwrite value already in `task`
   });
+  columnStore.getAll();
 }
 
 async function onToggleFavorite(task: Task, isFavorite: boolean) {
@@ -56,10 +57,12 @@ async function onToggleFavorite(task: Task, isFavorite: boolean) {
     ...task,
     isFavorite,  // Overwrite value already in `task`
   });
+  columnStore.getAll();
 }
 
 async function onDeleteTask(taskId: ID) {
   await taskStore.delete(taskId);
+  columnStore.getAll();
 }
 </script>
 

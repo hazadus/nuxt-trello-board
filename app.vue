@@ -9,6 +9,7 @@
         Канбан-доска
         <Icon name="logos:nuxt-icon" /> &middot;
         <Icon name="logos:vue" /> &middot;
+        <Icon name="logos:mongodb-icon" /> &middot;
         <Icon name="logos:typescript-icon" />
       </h1>
       <TrelloBoard />

@@ -12,16 +12,13 @@ const emit = defineEmits<{
 }>();
 
 const focused = ref(false);
-const completed = ref(props.task.isCompleted);
-const favorite = ref(props.task.isFavorite);
 
 function onToggleCompleted() {
-  emit("toggleCompleted", completed.value);
+  emit("toggleCompleted", !props.task.isCompleted);
 }
 
 function onToggleFavorite() {
-  favorite.value = !favorite.value;
-  emit("toggleFavorite", favorite.value);
+  emit("toggleFavorite", !props.task.isFavorite);
 }
 
 onKeyStroke("Backspace", (event) => {
@@ -43,7 +40,7 @@ onKeyStroke(" ", (event) => {
   // Spacebar toggles "completed" status
   if (focused.value) {
     event.preventDefault();
-    emit("toggleCompleted", !completed.value);
+    emit("toggleCompleted", !props.task.isCompleted);
   }
 });
 </script>
@@ -52,15 +49,15 @@ onKeyStroke(" ", (event) => {
   <div class="bg-white p-2 mb-2 rounded max-w-[300px] shadow flex items-baseline task" @focus="focused = true"
     @blur="focused = false" tabindex="0">
     <div class="p-2">
-      <input type="checkbox" v-model="completed" @change="onToggleCompleted" tabindex="-1" />
+      <input type="checkbox" v-model="task.isCompleted" @change="onToggleCompleted" tabindex="-1" />
     </div>
     <div class="flex-grow">
-      <span class="text-sm" :class="completed ? 'line-through' : ''">
+      <span class="text-sm" :class="task.isCompleted ? 'line-through' : ''">
         {{ task.title }}
       </span>
     </div>
     <div class="p-2">
-      <button class="btn-favorite" :class="favorite ? 'text-yellow-400' : 'text-gray-200'" tabindex="-1"
+      <button class="btn-favorite" :class="task.isFavorite ? 'text-yellow-400' : 'text-gray-200'" tabindex="-1"
         @click.preventDefault="onToggleFavorite">
         <Icon name="material-symbols:star" />
       </button>
