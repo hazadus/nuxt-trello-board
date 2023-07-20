@@ -39,7 +39,6 @@ Be aware that cards you create are saved in you local storage, not on the server
 
 - [Что такое kanban-доска?](https://www.atlassian.com/ru/agile/kanban/boards)
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
-- Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 - [Deploying Nuxt Static Site to Github Pages with GitHub Actions](https://donlalicon.dev/articles/nuxt-static-github-pages-action)
 - [Nuxt 3 Server Routes CRUD w/ MongoDB ](https://www.youtube.com/watch?v=1uWHDdcDZWw)
 
@@ -58,6 +57,12 @@ Be aware that cards you create are saved in you local storage, not on the server
 - [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
 - [vue-toastification](https://github.com/Maronato/vue-toastification/tree/next)
 - [vee-validate](https://www.npmjs.com/package/vee-validate)
+
+## Known issues
+
+Quick reminder on what to improve later.
+
+- Focus reset from task after toggling completed, favorite status.
 
 ## Notes
 
@@ -89,52 +94,8 @@ Be aware that cards you create are saved in you local storage, not on the server
 - 🚀 Edit column title
 - 🚀 Exclude checkboxes, star buttons from `tab` traverse (in Firefox, at least).
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install --save-dev @nuxtjs/tailwindcss
-npm i vuedraggable@next nanoid @vueuse/nuxt
-npm install --save-dev nuxt-icon
-npm install
-```
-
 ## VSCode plugins
 
 - Volar
 - Disable built-in TypeScript plugin for this workspace
 - Tailwind CSS
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-Tailwind Config viewer http://localhost:3000/\_tailwind/
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Run with Docker Compose using Node:
-
-```bash
-docker compose up
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

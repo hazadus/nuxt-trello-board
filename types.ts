@@ -7,11 +7,12 @@ export interface Column {
 }
 
 export interface Task {
-  id: ID;
+  _id?: ID;
   title: string;
   details?: string | null;
   isCompleted: boolean;
   isFavorite: boolean;
-  createdAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   completedAt?: Date | null;
 }

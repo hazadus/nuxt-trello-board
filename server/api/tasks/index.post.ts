@@ -28,6 +28,7 @@ export default defineEventHandler(async (event) => {
   try {
     const task = await TaskModel.create(body);
     console.log("✅ Task created:", task);
+    return task;
   } catch (e: any) {
     console.log("❌ Error creating task:", e.message);
     // This will return JSON with detailed error description from the endpoint,

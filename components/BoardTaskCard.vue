@@ -27,7 +27,7 @@ function onToggleFavorite() {
 onKeyStroke("Backspace", (event) => {
   // Delete task using backspace key
   if (focused.value) {
-    emit("delete", props.task.id);
+    emit("delete", props.task._id!);
   }
 });
 
@@ -43,8 +43,7 @@ onKeyStroke(" ", (event) => {
   // Spacebar toggles "completed" status
   if (focused.value) {
     event.preventDefault();
-    completed.value = !completed.value;
-    emit("toggleCompleted", completed.value);
+    emit("toggleCompleted", !completed.value);
   }
 });
 </script>
