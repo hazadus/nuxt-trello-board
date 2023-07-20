@@ -22,7 +22,6 @@
     "@vueuse/nuxt": "^9.13.0",
     "joi": "^17.9.2",
     "mongoose": "^7.3.4",
-    "nanoid": "^4.0.1",
     "pinia": "^2.1.4",
     "vee-validate": "^4.10.7",
     "vue-toastification": "^2.0.0-rc.5",

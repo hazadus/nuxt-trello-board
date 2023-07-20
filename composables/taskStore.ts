@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import useToast from "./useToast";
-import type { Task, ID } from "@/types";
+import type { Task, ID, ITaskWithTargetColumnId } from "@/types";
 
 export const useTaskStore = defineStore("task-store", {
   state: () => ({
@@ -19,17 +19,17 @@ export const useTaskStore = defineStore("task-store", {
       }
     },
     // Create a new task
-    async create(task: Task) {
+    async create(taskWithColumnId: ITaskWithTargetColumnId) {
       await $fetch("/api/tasks", {
         method: "POST",
-        body: task,
+        body: taskWithColumnId,
       })
         .catch((e) => {
           useToast().error(`Error creating task! ${e.data.message}`);
         })
         .then(async () => {
           await this.getAll();
-          useToast().success(`Task "${task.title}" created!`);
+          useToast().success(`Task "${taskWithColumnId.task.title}" created!`);
         });
     },
     // Update a task

@@ -45,18 +45,21 @@ Be aware that cards you create are saved in you local storage, not on the server
 ## Frameworks and modules used
 
 - [Nuxt](https://nuxt.com/)
-- [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
-  - [Headless UI](https://headlessui.com)
-- [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple), based on [Sortable.js](https://github.com/SortableJS/Sortable)
 - [VueUse](https://nuxt.com/modules/vueuse)
-- [nanoid](https://www.npmjs.com/package/nanoid)
-- [Nuxt Icon Module](https://nuxt.com/modules/icon)
-  - [Icons](https://icones.js.org/)
-- Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose)
-- [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
-- [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
-- [vue-toastification](https://github.com/Maronato/vue-toastification/tree/next)
-- [vee-validate](https://www.npmjs.com/package/vee-validate)
+- Backend:
+  - Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose)
+  - [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
+- State Management:
+  - [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
+- UI:
+  - [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
+    - [Headless UI](https://headlessui.com)
+  - [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple), based on [Sortable.js](https://github.com/SortableJS/Sortable)
+  - [Nuxt Icon Module](https://nuxt.com/modules/icon)
+    - [Icons](https://icones.js.org/)
+  - [vue-toastification](https://github.com/Maronato/vue-toastification/tree/next)
+- Forms:
+  - [vee-validate](https://www.npmjs.com/package/vee-validate)
 
 ## Known issues
 

@@ -18,3 +18,8 @@ export interface Task {
   updatedAt?: Date;
   completedAt?: Date | null;
 }
+
+export interface ITaskWithTargetColumnId {
+  targetColumnID: ID;
+  task: Task;
+}

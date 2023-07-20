@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import draggable from "vuedraggable";
-import { nanoid } from "nanoid";
 import type { Column, Task, ID } from '@/types';
 
 const taskStore = useTaskStore();
@@ -35,8 +34,14 @@ async function onDeleteColumn(column: Column) {
   await columnStore.delete(column._id!);
 }
 
-async function onAddTask(task: Task) {
-  await taskStore.create(task);
+async function onAddTask(task: Task, targetColumn: Column) {
+  await taskStore.create({
+    targetColumnID: targetColumn._id!,
+    task
+  });
+
+  // We need to reload columns from database after we create new task:
+  columnStore.getAll();
 }
 
 async function onToggleCompleted(task: Task, isCompleted: boolean) {
@@ -86,7 +91,7 @@ async function onDeleteTask(taskId: ID) {
           </draggable>
 
           <footer>
-            <NewTask @add="onAddTask($event)" />
+            <NewTask @add="onAddTask($event, column)" />
           </footer>
         </div>
       </template>

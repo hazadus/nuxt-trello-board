@@ -1,8 +1,12 @@
 import { TaskModel } from "../../models/Task";
+import { ColumnModel } from "../../models/Column";
 import { TaskValidationSchema } from "../../validation";
+import { ITaskWithTargetColumnId } from "@/types";
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
+  const taskWithColumnId = (await readBody(event)) as ITaskWithTargetColumnId;
+  const body = taskWithColumnId.task;
+  const targetColumnId = taskWithColumnId.targetColumnID;
 
   // Validate
   let { error } = TaskValidationSchema.validate(body);
@@ -28,6 +32,12 @@ export default defineEventHandler(async (event) => {
   try {
     const task = await TaskModel.create(body);
     console.log("✅ Task created:", task);
+
+    //Add task to target column:
+    const column = await ColumnModel.findById(targetColumnId);
+    column?.tasks.push(task);
+    column?.save();
+
     return task;
   } catch (e: any) {
     console.log("❌ Error creating task:", e.message);
