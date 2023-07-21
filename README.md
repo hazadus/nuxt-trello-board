@@ -75,30 +75,9 @@ Quick reminder on what to improve later.
 - Nuxt differences with plain Vue3:
   - You don't have to import components, functions from VueUse, stuff like `ref()`, etc.
 
-## ToDos
-
-- 📌 Build Backend
-- 📌 Handle task card cloning: change `id`, `createdAt` for cloned cards. See Sortable.js docs on how to do it.
-
-## Ideas
-
-- 💡 "Favorites" column (computed)
-- 💡 "Soft" delete
-- 💡 Tags for tasks
-- 💡 Comments for tasks
-- 💡 Image attachments
-- 💡 File attachments
-
-## Done
-
-- 🚀 Add Stores (local storage).
-- 🚀 Add "Delete" button for columns.
-- 🚀 "Add new column" button.
-- 🚀 Edit column title
-- 🚀 Exclude checkboxes, star buttons from `tab` traverse (in Firefox, at least).
-
-## VSCode plugins
+## Recommended VSCode plugins
 
 - Volar
-- Disable built-in TypeScript plugin for this workspace
-- Tailwind CSS
+  - Disable built-in TypeScript plugin for project's workspace
+- Tailwind CSS Intellisense
+- Iconify Intellisense by Antfu
