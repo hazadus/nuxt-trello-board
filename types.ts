@@ -1,5 +1,11 @@
 export type ID = string;
 
+export interface IError {
+  statusCode: number;
+  statusMessage: string;
+  message: string;
+}
+
 export interface IBoard {
   _id?: ID;
   title: string;

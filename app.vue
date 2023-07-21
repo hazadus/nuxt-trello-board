@@ -6,7 +6,7 @@
   <Body>
     <div class="app h-[100vh] bg-teal-600">
       <TheNavBar />
-      <TrelloBoard class="p-5 overflow-auto" />
+      <NuxtPage />
     </div>
   </Body>
 </template>
