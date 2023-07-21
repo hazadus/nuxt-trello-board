@@ -12,6 +12,7 @@ export interface Column {
   _id?: ID;
   title: string;
   tasks: Task[];
+  targetBoardId?: ID;
   createdAt?: Date;
   updatedAt?: Date;
 }

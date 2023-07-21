@@ -13,11 +13,14 @@ const activeBoardIndex = ref(0);
 // `alt` will be reactive boolean value, equal to `true` when the alt (or option) key is pressed.
 const alt = useKeyModifier("Alt");
 
-async function addNewColumn() {
+async function addNewColumn(targetBoardId: ID) {
   await columnStore.create({
     title: "Новая колонка",
     tasks: [],
+    targetBoardId,
   });
+
+  await boardStore.getAll();
 
   // Make sure Vue has updated the DOM, then focus on the newly created column:
   nextTick(() => {
@@ -54,8 +57,8 @@ async function onAddTask(task: Task, targetColumn: Column) {
     task
   });
 
-  // We need to reload columns from database after we create new task:
-  columnStore.getAll();
+  // We need to reload board from database after we create new task:
+  boardStore.getAll();
 }
 
 async function onToggleCompleted(task: Task, isCompleted: boolean) {
@@ -63,7 +66,7 @@ async function onToggleCompleted(task: Task, isCompleted: boolean) {
     ...task,
     isCompleted,  // Overwrite value already in `task`
   });
-  columnStore.getAll();
+  boardStore.getAll();
 }
 
 async function onToggleFavorite(task: Task, isFavorite: boolean) {
@@ -71,12 +74,12 @@ async function onToggleFavorite(task: Task, isFavorite: boolean) {
     ...task,
     isFavorite,  // Overwrite value already in `task`
   });
-  columnStore.getAll();
+  boardStore.getAll();
 }
 
 async function onDeleteTask(taskId: ID) {
   await taskStore.delete(taskId);
-  columnStore.getAll();
+  boardStore.getAll();
 }
 </script>
 
@@ -114,7 +117,8 @@ async function onDeleteTask(taskId: ID) {
       </template>
     </draggable>
 
-    <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50" @click=" addNewColumn ">
+    <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50"
+      @click=" addNewColumn(boardStore.boards[activeBoardIndex]._id!) ">
       + Добавить колонку
     </button>
   </div>
