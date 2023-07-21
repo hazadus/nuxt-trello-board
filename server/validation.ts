@@ -23,3 +23,8 @@ export const UserValidationSchema = Joi.object({
   lastName: Joi.string().min(1),
   email: Joi.string().email().required(),
 });
+
+export const LoginCredentialsValidationSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(8).required(),
+});

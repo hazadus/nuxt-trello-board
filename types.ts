@@ -15,6 +15,11 @@ export interface IUser {
   updatedAt?: Date;
 }
 
+export interface ILoginCredentials {
+  email: string;
+  password: string;
+}
+
 export interface IBoard {
   _id?: ID;
   title: string;
