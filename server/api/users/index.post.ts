@@ -1,6 +1,7 @@
 import { UserModel } from "../../models/User";
 import { UserValidationSchema } from "../../validation";
 import { IUser } from "@/types";
+import { hash } from "bcrypt";
 
 export default defineEventHandler(async (event) => {
   //
@@ -44,9 +45,16 @@ export default defineEventHandler(async (event) => {
 
   // Create User
   try {
-    const user = await UserModel.create(body);
+    const hashedPassword = await hash(body.plainPassword!, 10);
+    const user = await UserModel.create({ ...body, hashedPassword });
     console.log("✅😀 User created:", user);
-    return user;
+    // Return user without hashed password
+    return {
+      _id: user._id,
+      email: user.email,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
   } catch (e: any) {
     console.log("❌ Error creating user:", e.message);
     // This will return JSON with detailed error description from the endpoint,

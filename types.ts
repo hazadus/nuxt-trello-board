@@ -11,13 +11,23 @@ export interface IUser {
   firstName?: string;
   lastName?: string;
   email: string;
+  plainPassword?: string; // Used to pass password from frontend to backend when creating new user.
+  hashedPassword?: string; // Used in DB schema to store hashed password; must not be passed to frontend.
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export interface ILoginCredentials {
   email: string;
-  password: string;
+  plainPassword: string;
+}
+
+export interface IAuthToken {
+  _id?: ID;
+  token: string;
+  user: IUser;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IBoard {

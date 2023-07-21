@@ -22,9 +22,10 @@ export const UserValidationSchema = Joi.object({
   firstName: Joi.string().min(1),
   lastName: Joi.string().min(1),
   email: Joi.string().email().required(),
+  plainPassword: Joi.string().min(8).required(),
 });
 
 export const LoginCredentialsValidationSchema = Joi.object({
   email: Joi.string().email().required(),
-  password: Joi.string().min(8).required(),
+  plainPassword: Joi.string().min(8).required(),
 });
