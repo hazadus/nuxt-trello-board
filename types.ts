@@ -6,6 +6,15 @@ export interface IError {
   message: string;
 }
 
+export interface IUser {
+  _id?: ID;
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 export interface IBoard {
   _id?: ID;
   title: string;
