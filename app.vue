@@ -4,15 +4,9 @@
   </Head>
 
   <Body>
-    <div class="app p-5 h-[100vh] bg-teal-600 overflow-auto">
-      <h1 class="text-4xl mb-4 text-white">
-        Канбан-доска
-        <Icon name="logos:nuxt-icon" /> &middot;
-        <Icon name="logos:vue" /> &middot;
-        <Icon name="logos:mongodb-icon" /> &middot;
-        <Icon name="logos:typescript-icon" />
-      </h1>
-      <TrelloBoard />
+    <div class="app h-[100vh] bg-teal-600">
+      <TheNavBar />
+      <TrelloBoard class="p-5 overflow-auto" />
     </div>
   </Body>
 </template>

@@ -27,6 +27,7 @@ Backend is ready, now working on authentication.
 - UI:
   - [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
     - [Headless UI](https://headlessui.com)
+    - [Flowbite](https://flowbite.com/) – Tailwind components
   - [Vuedraggable](https://sortablejs.github.io/vue.draggable.next/#/simple), based on [Sortable.js](https://github.com/SortableJS/Sortable)
   - [Nuxt Icon Module](https://nuxt.com/modules/icon)
     - [Icons](https://icones.js.org/)
