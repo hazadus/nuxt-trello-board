@@ -6,6 +6,8 @@ Live demo at: https://hazadus.github.io/nuxt-trello-board/
 
 Be aware that cards you create are saved in you local storage, not on the server! There's no backend in this demo, just static page.
 
+Backend is ready, now working on authentication.
+
 ## Controls
 
 - `tab`: cycle columns and cards.
@@ -13,41 +15,12 @@ Be aware that cards you create are saved in you local storage, not on the server
 - `enter`: mark card as starred.
 - `backspace`: delete card.
 
-## Starting the project on your own
+## Frameworks, modules and libraries used
 
-### Using Docker Compose
-
-**TODO**: update docs!
-
-- Clone the repo
-
-### Running in development mode
-
-**TODO**: update docs!
-
-- Install dependencies with npm install --force (Force if you get an error abot pinia)
-- Add MongoDB URI to `.env` file
-
-```
-.env example
-```
-
-- Run dev with npm run dev
-- Docker / npm run dev stuff ...
-
-## References
-
-- [Что такое kanban-доска?](https://www.atlassian.com/ru/agile/kanban/boards)
-- [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
-- [Deploying Nuxt Static Site to Github Pages with GitHub Actions](https://donlalicon.dev/articles/nuxt-static-github-pages-action)
-- [Nuxt 3 Server Routes CRUD w/ MongoDB ](https://www.youtube.com/watch?v=1uWHDdcDZWw)
-
-## Frameworks and modules used
-
-- [Nuxt](https://nuxt.com/)
+- [Nuxt](https://nuxt.com/) as frontend and backend.
 - [VueUse](https://nuxt.com/modules/vueuse)
 - Backend:
-  - Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose)
+  - Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose) - cool ORM for MongoDB.
   - [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
 - State Management:
   - [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
@@ -60,6 +33,41 @@ Be aware that cards you create are saved in you local storage, not on the server
   - [vue-toastification](https://github.com/Maronato/vue-toastification/tree/next)
 - Forms:
   - [vee-validate](https://www.npmjs.com/package/vee-validate)
+
+## Starting the project on your own
+
+All commands below are supposed to be executed from repo directory.
+
+### Using Docker Compose
+
+- Clone the repo
+- Install Docker, or Docker Desktop, if you don't have it.
+- Run `docker compose up`
+- Open app in the browser at `http://localhost`
+
+### Running in development mode
+
+- Clone the repo
+- Install dependencies with `npm install --force` (force if you get an error about Pinia).
+- Add MongoDB URI to `.env` file
+
+```
+# .env example
+MONGO_DB_ADDRESS=mongodb://localhost:27017/board
+```
+
+- Install Docker, or Docker Desktop, if you don't have it.
+- Run `docker compose up` in one terminal tab to get MongoDB up and running.
+- Run `npm run dev` in other terminal tab to have auto updates in browser window.
+- Open app in the browser at `http://localhost:3000`
+- Work with the code at your pleasure!
+
+## Recommended VSCode plugins
+
+- Volar
+  - Disable built-in TypeScript plugin for project's workspace
+- Tailwind CSS Intellisense
+- Iconify Intellisense by Antfu
 
 ## Known issues
 
@@ -79,9 +87,9 @@ Stuff I learned while working on this project.
   - `composables` directory content is also auto-imported.
 - MongoDB preserves order of the items in arrays. So, to reorder tasks or columns, we just need to reorder array items, and save updated array in MongoDB document!
 
-## Recommended VSCode plugins
+## References
 
-- Volar
-  - Disable built-in TypeScript plugin for project's workspace
-- Tailwind CSS Intellisense
-- Iconify Intellisense by Antfu
+- [Что такое kanban-доска?](https://www.atlassian.com/ru/agile/kanban/boards)
+- [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
+- [Deploying Nuxt Static Site to Github Pages with GitHub Actions](https://donlalicon.dev/articles/nuxt-static-github-pages-action)
+- [Nuxt 3 Server Routes CRUD w/ MongoDB ](https://www.youtube.com/watch?v=1uWHDdcDZWw)
