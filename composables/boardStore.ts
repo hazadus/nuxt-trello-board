@@ -1,24 +1,24 @@
 import { defineStore } from "pinia";
 import useToast from "./useToast";
-import type { Board, ID } from "@/types";
+import type { IBoard, ID } from "@/types";
 
 export const useBoardStore = defineStore("board-store", {
   state: () => ({
     // List of all Boards
-    boards: [] as Board[],
+    boards: [] as IBoard[],
   }),
   actions: {
     // Get all Boards from DB
     async getAll() {
       try {
-        let data = await $fetch<Board[]>("/api/boards");
+        let data = await $fetch<IBoard[]>("/api/boards");
         this.boards = data;
-        return data as Board[];
+        return data as IBoard[];
       } catch (e: any) {
         useToast().error(`Error fetching boards from backend! ${e.data.message}`);
       }
     },
-    async update(board: Board) {
+    async update(board: IBoard) {
       await $fetch(`/api/boards/${board._id}`, {
         method: "PUT",
         body: board,

@@ -1,15 +1,15 @@
 import { TaskModel } from "../../models/Task";
 import { ColumnModel } from "../../models/Column";
 import { TaskValidationSchema } from "../../validation";
-import { ITaskWithTargetColumnId } from "@/types";
+import { ITask } from "@/types";
 
 export default defineEventHandler(async (event) => {
-  const taskWithColumnId = (await readBody(event)) as ITaskWithTargetColumnId;
-  const body = taskWithColumnId.task;
-  const targetColumnId = taskWithColumnId.targetColumnID;
+  const body = (await readBody(event)) as ITask;
 
   // Validate
-  let { error } = TaskValidationSchema.validate(body);
+  // `{ allowUnknown: true }` is for `targetColumnId`: it does not present in the schema,
+  // we only use it here below to add task to target column.
+  let { error } = TaskValidationSchema.validate(body, { allowUnknown: true });
   if (error) {
     console.log("Error validating task:", error.message);
     // This will return JSON with detailed error description from the endpoint, e.g.:
@@ -34,9 +34,13 @@ export default defineEventHandler(async (event) => {
     console.log("✅ Task created:", task);
 
     //Add task to target column:
-    const column = await ColumnModel.findById(targetColumnId);
-    column?.tasks.push(task);
-    column?.save();
+    if (body.targetColumnId) {
+      const targetColumn = await ColumnModel.findById(body.targetColumnId);
+      if (targetColumn) {
+        targetColumn.tasks.push(task);
+        targetColumn.save();
+      }
+    }
 
     return task;
   } catch (e: any) {

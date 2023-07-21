@@ -1,34 +1,30 @@
 export type ID = string;
 
-export interface Board {
+export interface IBoard {
   _id?: ID;
   title: string;
-  columns: Column[];
+  columns: IColumn[];
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export interface Column {
+export interface IColumn {
   _id?: ID;
   title: string;
-  tasks: Task[];
+  tasks: ITask[];
   targetBoardId?: ID;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export interface Task {
+export interface ITask {
   _id?: ID;
   title: string;
   details?: string | null;
   isCompleted: boolean;
   isFavorite: boolean;
+  targetColumnId?: ID;
   createdAt?: Date;
   updatedAt?: Date;
   completedAt?: Date | null;
-}
-
-export interface ITaskWithTargetColumnId {
-  targetColumnID: ID;
-  task: Task;
 }

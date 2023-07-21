@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { Column } from "@/types";
+import { IColumn } from "@/types";
 
-const columnSchema = new Schema<Column>(
+const columnSchema = new Schema<IColumn>(
   {
     title: { type: String, required: true },
     tasks: [
@@ -14,4 +14,4 @@ const columnSchema = new Schema<Column>(
   { timestamps: true },
 );
 
-export const ColumnModel = model<Column>("Column", columnSchema);
+export const ColumnModel = model<IColumn>("Column", columnSchema);

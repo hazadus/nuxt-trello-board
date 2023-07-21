@@ -1,25 +1,25 @@
 import { defineStore } from "pinia";
 import useToast from "./useToast";
-import type { Column, ID } from "@/types";
+import type { IColumn, ID } from "@/types";
 
 export const useColumnStore = defineStore("column-store", {
   state: () => ({
     // List of all Columns
-    columns: [] as Column[],
+    columns: [] as IColumn[],
   }),
   actions: {
     // Get all Columns from DB
     async getAll() {
       try {
-        let data = await $fetch<Column[]>("/api/columns");
+        let data = await $fetch<IColumn[]>("/api/columns");
         this.columns = data;
-        return data as Column[];
+        return data as IColumn[];
       } catch (e: any) {
         useToast().error(`Error fetching columns from backend! ${e.data.message}`);
       }
     },
     // Create a new column
-    async create(column: Column) {
+    async create(column: IColumn) {
       await $fetch("/api/columns", {
         method: "POST",
         body: column,
@@ -34,7 +34,7 @@ export const useColumnStore = defineStore("column-store", {
     },
     // Update a column
     // - `column` param should be updated Column we gotta `PUT`.
-    async update(column: Column) {
+    async update(column: IColumn) {
       await $fetch(`/api/columns/${column._id}`, {
         method: "PUT",
         body: column,

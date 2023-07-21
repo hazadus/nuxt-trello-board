@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import draggable from "vuedraggable";
-import type { Column, Task, ID } from '@/types';
+import type { IColumn, ITask, ID } from '@/types';
 
 const boardStore = useBoardStore();
 await useAsyncData(() => boardStore.getAll());
@@ -40,28 +40,28 @@ async function onColumnChange(columnId: ID) {
   if (updatedColumn) await columnStore.update(updatedColumn);
 }
 
-async function onRenameColumn(column: Column, newTitle: string) {
+async function onRenameColumn(column: IColumn, newTitle: string) {
   await columnStore.update({
     ...column,
     title: newTitle,
   });
 }
 
-async function onDeleteColumn(column: Column) {
+async function onDeleteColumn(column: IColumn) {
   await columnStore.delete(column._id!);
 }
 
-async function onAddTask(task: Task, targetColumn: Column) {
+async function onAddTask(task: ITask, targetColumn: IColumn) {
   await taskStore.create({
-    targetColumnID: targetColumn._id!,
-    task
+    ...task,
+    targetColumnId: targetColumn._id!,
   });
 
   // We need to reload board from database after we create new task:
   boardStore.getAll();
 }
 
-async function onToggleCompleted(task: Task, isCompleted: boolean) {
+async function onToggleCompleted(task: ITask, isCompleted: boolean) {
   await taskStore.update({
     ...task,
     isCompleted,  // Overwrite value already in `task`
@@ -69,7 +69,7 @@ async function onToggleCompleted(task: Task, isCompleted: boolean) {
   boardStore.getAll();
 }
 
-async function onToggleFavorite(task: Task, isFavorite: boolean) {
+async function onToggleFavorite(task: ITask, isFavorite: boolean) {
   await taskStore.update({
     ...task,
     isFavorite,  // Overwrite value already in `task`
@@ -88,7 +88,7 @@ async function onDeleteTask(taskId: ID) {
     <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
     <draggable v-model="boardStore.boards[activeBoardIndex].columns" group="columns" item-key="id" :animation="200"
       @change="onBoardChange()" handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
-      <template #item="{ element: column }: { element: Column }">
+      <template #item="{ element: column }: { element: IColumn }">
         <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
           <header class="font-bold mb-4 flex items-baseline">
             <DragHandle />
@@ -104,7 +104,7 @@ async function onDeleteTask(taskId: ID) {
           <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
           <draggable v-model=" column.tasks " :group=" { name: 'tasks', pull: alt ? 'clone' : true } " item-key="_id"
             :animation=" 200 " @change="onColumnChange(column._id!)">
-            <template #item=" { element: task }: { element: Task } ">
+            <template #item=" { element: task }: { element: ITask } ">
               <BoardTaskCard :task=" task " @toggle-completed=" onToggleCompleted(task, $event)"
                 @toggle-favorite="onToggleFavorite(task, $event)" @delete="onDeleteTask($event)" />
             </template>

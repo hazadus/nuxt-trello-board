@@ -1,10 +1,10 @@
 import { ColumnModel } from "../../models/Column";
 import { BoardModel } from "../../models/Board";
 import { ColumnValidationSchema } from "../../validation";
-import { Column } from "@/types";
+import { IColumn } from "@/types";
 
 export default defineEventHandler(async (event) => {
-  const body = (await readBody(event)) as Column;
+  const body = (await readBody(event)) as IColumn;
 
   // Validate
   // `{ allowUnknown: true }` is for `targetBoardId`: it does not present in the schema,

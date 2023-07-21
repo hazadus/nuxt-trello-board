@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Task } from "@/types";
+import type { ITask } from "@/types";
 
 const emit = defineEmits<{
-  (e: "add", payload: Task): void;
+  (e: "add", payload: ITask): void;
 }>();
 
 const focused = ref(false);
@@ -15,7 +15,7 @@ function createTask(e: Event) {
       title: title.value.trim(),
       isCompleted: false,
       isFavorite: false,
-    } as Task)
+    } as ITask)
   }
 
   title.value = "";
