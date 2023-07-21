@@ -49,6 +49,7 @@ async function onRenameColumn(column: IColumn, newTitle: string) {
 
 async function onDeleteColumn(column: IColumn) {
   await columnStore.delete(column._id!);
+  boardStore.getAll();
 }
 
 async function onAddTask(task: ITask, targetColumn: IColumn) {
