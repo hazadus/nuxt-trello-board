@@ -1,6 +1,6 @@
 # Trello Board with Nuxt 3
 
-Trello board clone implemented in TypeScript with Nuxt 3.
+Trello (kanban) board clone implemented in TypeScript with Nuxt 3.
 
 Live demo at: https://hazadus.github.io/nuxt-trello-board/
 
@@ -69,11 +69,15 @@ Quick reminder on what to improve later.
 
 ## Notes
 
+Stuff I learned while working on this project.
+
 - Run with Node18. Node19 throws an error `Cannot start nuxt:  The "name" argument must be specified`.
 - Downgraded Node version to 18 because of this error ([reference](https://medium.com/@georgeenathomas/3-step-process-to-downgrade-node-version-using-homebrew-bc0b0a72ae27)).
 - `Dockerfile.dev` made for dev mode, `Dockerfile` is somewhat "prod" version.
 - Nuxt differences with plain Vue3:
   - You don't have to import components, functions from VueUse, stuff like `ref()`, etc.
+  - `composables` directory content is also auto-imported.
+- MongoDB preserves order of the items in arrays. So, to reorder tasks or columns, we just need to reorder array items, and save updated array in MongoDB document!
 
 ## Recommended VSCode plugins
 

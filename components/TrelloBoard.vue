@@ -2,11 +2,13 @@
 import draggable from "vuedraggable";
 import type { Column, Task, ID } from '@/types';
 
-const taskStore = useTaskStore();
-await useAsyncData(() => taskStore.getAll());
+const boardStore = useBoardStore();
+await useAsyncData(() => boardStore.getAll());
 
 const columnStore = useColumnStore();
-await useAsyncData(() => columnStore.getAll());
+const taskStore = useTaskStore();
+
+const activeBoardIndex = ref(0);
 
 // `alt` will be reactive boolean value, equal to `true` when the alt (or option) key is pressed.
 const alt = useKeyModifier("Alt");
@@ -23,10 +25,15 @@ async function addNewColumn() {
   });
 }
 
+async function onBoardChange() {
+  // This should be called when column inside the board was moved in another position.
+  await boardStore.update(boardStore.boards[activeBoardIndex.value]);
+}
+
 async function onColumnChange(columnId: ID) {
   // This should be called @change from inner `draggable`, which represents task cards.
   // Triggered for column when task removed, and when task is added.
-  const updatedColumn = columnStore.columns.find(column => column._id === columnId);
+  const updatedColumn = boardStore.boards[activeBoardIndex.value].columns.find(column => column._id === columnId);
   if (updatedColumn) await columnStore.update(updatedColumn);
 }
 
@@ -76,8 +83,8 @@ async function onDeleteTask(taskId: ID) {
 <template>
   <div class="board flex items-start overflow-x-auto gap-4">
     <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
-    <draggable v-model="columnStore.columns" group="columns" item-key="id" :animation="200" handle=".drag-handle"
-      class="columns-wrapper flex gap-4 items-start">
+    <draggable v-model="boardStore.boards[activeBoardIndex].columns" group="columns" item-key="id" :animation="200"
+      @change="onBoardChange()" handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
       <template #item="{ element: column }: { element: Column }">
         <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
           <header class="font-bold mb-4 flex items-baseline">

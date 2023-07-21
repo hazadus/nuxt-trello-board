@@ -15,5 +15,5 @@ export const ColumnValidationSchema = Joi.object({
 
 export const BoardValidationSchema = Joi.object({
   title: Joi.string().min(3).required(),
-  tasks: Joi.array().required(),
+  columns: Joi.array().required(),
 });
