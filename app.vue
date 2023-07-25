@@ -5,11 +5,11 @@ authStore.initializeStore();
 
 <template>
   <Head>
-    <Title>Канбан-доска</Title>
+    <Title>Доскач</Title>
   </Head>
 
   <Body>
-    <div class="app min-h-[100vh] bg-teal-600">
+    <div class="app min-h-[100vh] bg-teal-500">
       <TheNavBar />
       <NuxtPage />
     </div>

@@ -1,49 +1,50 @@
+<script setup lang="ts">
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue"
+</script>
+
 <template>
-  <nav class="sticky top-0 bg-teal-700 border-gray-200 shadow-md">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <RouterLink to="/" class="flex items-center">
-        <span class="self-center text-2xl font-semibold text-gray-900 whitespace-nowrap">
-          Kanban Board
+  <nav class="sticky top-0 bg-teal-600 border-gray-200 shadow-md">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
+      <RouterLink to="/" class="flex items-baseline">
+        <span class="self-center text-2xl font-semibold text-gray-300 whitespace-nowrap">
+          <Icon name="material-symbols:space-dashboard" class="text-3xl" />
+          Доскач
         </span>
       </RouterLink>
       <div class="flex items-center md:order-2">
-        <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
-          id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-          data-dropdown-placement="bottom">
-          <span class="sr-only">
-            Open user menu
-          </span>
-          <img class="w-8 h-8 rounded-full" src="/images/default-profile-pic.jpg" alt="Profile image">
-        </button>
-        <!-- Dropdown menu -->
-        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
-          id="user-dropdown">
-          <div class="px-4 py-3">
-            <span class="block text-sm text-gray-900">
-              Hazadus
-            </span>
-            <span class="block text-sm  text-gray-500 truncate">
-              hazadus7@gmail.com
-            </span>
-          </div>
-          <ul class="py-2" aria-labelledby="user-menu-button">
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                Profile
-              </a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                Settings
-              </a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                Sign out
-              </a>
-            </li>
-          </ul>
-        </div>
+        <!-- Dropdown user menu -->
+        <Menu as="div" class="relative">
+          <MenuButton class="focus:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-white rounded-full">
+            <img class="w-10 h-10 inline rounded-full" src="/images/default-profile-pic.jpg" alt="Profile image">
+          </MenuButton>
+
+          <Transition enterActiveClass="transition transform duration-100 ease-out" enterFromClass="opacity-0 scale-90"
+            enterToClass="opacity-100 scale-100" leaveActiveClass="transition transform duration-100 ease-in"
+            leaveFromClass="opacity-100 scale-100" leaveToClass="opacity-0 scale-90">
+            <MenuItems
+              class="absolute right-0 origin-top-right mt-2 bg-white rounded-md shadow-lg border w-48 focus:outline-none divide-y divide-gray-100">
+              <div class="px-1 py-1">
+                <MenuItem v-slot="{ active }">
+                <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">Profile</a>
+                </MenuItem>
+                <MenuItem v-slot="{ active }">
+                <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">Settings</a>
+                </MenuItem>
+                <MenuItem v-slot="{ active, disabled }" disabled>
+                <a href="#" :class="{ 'bg-gray-100': active, 'opacity-40': disabled }"
+                  class="block px-4 py-3 text-md text-gray-700">Help</a>
+                </MenuItem>
+              </div>
+
+              <div class="px-1 py-1">
+                <MenuItem v-slot="{ active }">
+                <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">Logout</a>
+                </MenuItem>
+              </div>
+            </MenuItems>
+          </Transition>
+        </Menu>
+
         <button data-collapse-toggle="navbar-user" type="button"
           class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
           aria-controls="navbar-user" aria-expanded="false">
