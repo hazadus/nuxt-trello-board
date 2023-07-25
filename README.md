@@ -22,6 +22,7 @@ Backend is ready, now working on authentication.
 - Backend:
   - Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose) - cool ORM for MongoDB.
   - [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
+  - [bcrypt](https://www.npmjs.com/package/bcrypt): A library to help you hash passwords.
 - State Management:
   - [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
 - UI:

@@ -1,10 +1,18 @@
-import { BoardModel } from "../../models/Board";
-import { BoardValidationSchema } from "../../validation";
+import { BoardModel } from "@/server/models/Board";
+import { BoardValidationSchema } from "@/server/validation";
 
 export default defineEventHandler(async (event) => {
   //
   // On success, return updated Board as JSON.
   //
+  if (!isAuthenticated(event)) {
+    throw createError({
+      message: "User must be authenticated to update boards.",
+      statusCode: 403,
+      fatal: false,
+    });
+  }
+
   const body = await readBody(event);
   const id = event.context.params?.id;
 

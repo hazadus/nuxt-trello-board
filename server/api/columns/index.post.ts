@@ -4,6 +4,14 @@ import { ColumnValidationSchema } from "../../validation";
 import { IColumn } from "@/types";
 
 export default defineEventHandler(async (event) => {
+  if (!isAuthenticated(event)) {
+    throw createError({
+      message: "User must be authenticated to create columns.",
+      statusCode: 403,
+      fatal: false,
+    });
+  }
+
   const body = (await readBody(event)) as IColumn;
 
   // Validate

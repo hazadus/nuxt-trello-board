@@ -11,7 +11,7 @@ export const useColumnStore = defineStore("column-store", {
     // Get all Columns from DB
     async getAll() {
       try {
-        let data = await $fetch<IColumn[]>("/api/columns");
+        let data = await fetchApi<IColumn[]>("/columns");
         this.columns = data;
         return data as IColumn[];
       } catch (e: any) {
@@ -20,10 +20,7 @@ export const useColumnStore = defineStore("column-store", {
     },
     // Create a new column
     async create(column: IColumn) {
-      await $fetch("/api/columns", {
-        method: "POST",
-        body: column,
-      })
+      await fetchApi("/columns", "POST", column)
         .catch((e) => {
           useToast().error(`Error creating column! ${e.data.message}`);
         })
@@ -35,10 +32,7 @@ export const useColumnStore = defineStore("column-store", {
     // Update a column
     // - `column` param should be updated Column we gotta `PUT`.
     async update(column: IColumn) {
-      await $fetch(`/api/columns/${column._id}`, {
-        method: "PUT",
-        body: column,
-      })
+      await fetchApi(`/columns/${column._id}`, "PUT", column)
         .catch((e) => {
           useToast().error(`Error updating column! ${e.data.message}`);
         })
@@ -49,9 +43,7 @@ export const useColumnStore = defineStore("column-store", {
     },
     // Delete a Column
     async delete(id: ID) {
-      await $fetch(`/api/columns/${id}`, {
-        method: "DELETE",
-      })
+      await fetchApi(`/columns/${id}`, "DELETE")
         .catch((e) => {
           useToast().error(`Error deleting column! ${e.data.message}`);
         })

@@ -11,7 +11,7 @@ export const useTaskStore = defineStore("task-store", {
     // Get all books from DB
     async getAll() {
       try {
-        let data = await $fetch<ITask[]>("/api/tasks");
+        let data = await fetchApi<ITask[]>("/tasks");
         this.tasks = data;
         return data as ITask[];
       } catch (e: any) {
@@ -20,10 +20,7 @@ export const useTaskStore = defineStore("task-store", {
     },
     // Create a new task
     async create(task: ITask) {
-      await $fetch("/api/tasks", {
-        method: "POST",
-        body: task,
-      })
+      await fetchApi("/tasks", "POST", task)
         .catch((e) => {
           useToast().error(`Error creating task! ${e.data.message}`);
         })
@@ -35,10 +32,7 @@ export const useTaskStore = defineStore("task-store", {
     // Update a task
     // - `task` param should be updated Task we gotta `PUT`.
     async update(task: ITask) {
-      await $fetch(`/api/tasks/${task._id}`, {
-        method: "PUT",
-        body: task,
-      })
+      await fetchApi(`/tasks/${task._id}`, "PUT", task)
         .catch((e) => {
           useToast().error(`Error updating task! ${e.data.message}`);
         })
@@ -49,9 +43,7 @@ export const useTaskStore = defineStore("task-store", {
     },
     // Delete a task
     async delete(id: ID) {
-      await $fetch(`/api/tasks/${id}`, {
-        method: "DELETE",
-      })
+      await fetchApi(`/tasks/${id}`, "DELETE")
         .catch((e) => {
           useToast().error(`Error deleting task! ${e.data.message}`);
         })

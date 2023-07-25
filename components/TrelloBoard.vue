@@ -3,8 +3,6 @@ import draggable from "vuedraggable";
 import type { IColumn, ITask, ID } from '@/types';
 
 const boardStore = useBoardStore();
-await useAsyncData(() => boardStore.getAll());
-
 const columnStore = useColumnStore();
 const taskStore = useTaskStore();
 
@@ -82,10 +80,14 @@ async function onDeleteTask(taskId: ID) {
   await taskStore.delete(taskId);
   boardStore.getAll();
 }
+
+onMounted(async () => {
+  await useAsyncData(() => boardStore.getAll());
+});
 </script>
 
 <template>
-  <div class="board flex items-start overflow-x-auto gap-4">
+  <div v-if="boardStore.boards.length" class="board flex items-start overflow-x-auto gap-4">
     <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
     <draggable v-model="boardStore.boards[activeBoardIndex].columns" group="columns" item-key="id" :animation="200"
       @change="onBoardChange()" handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
