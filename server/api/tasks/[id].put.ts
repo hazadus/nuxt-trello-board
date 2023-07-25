@@ -1,5 +1,5 @@
-import { TaskModel } from "../../models/Task";
-import { TaskValidationSchema } from "../../validation";
+import { TaskModel } from "@/server/models/Task";
+import { TaskValidationSchema } from "@/server/validation";
 
 export default defineEventHandler(async (event) => {
   if (!isAuthenticated(event)) {

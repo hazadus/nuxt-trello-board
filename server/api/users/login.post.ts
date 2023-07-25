@@ -1,6 +1,6 @@
-import { UserModel } from "../../models/User";
-import { AuthTokenModel } from "../../models/AuthToken";
-import { LoginCredentialsValidationSchema } from "../../validation";
+import { UserModel } from "@/server/models/User";
+import { AuthTokenModel } from "@/server/models/AuthToken";
+import { LoginCredentialsValidationSchema } from "@/server/validation";
 import { ILoginCredentials } from "@/types";
 import { hash, compare } from "bcrypt";
 

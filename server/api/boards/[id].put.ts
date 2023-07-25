@@ -1,5 +1,5 @@
-import { BoardModel } from "../../models/Board";
-import { BoardValidationSchema } from "../../validation";
+import { BoardModel } from "@/server/models/Board";
+import { BoardValidationSchema } from "@/server/validation";
 
 export default defineEventHandler(async (event) => {
   //

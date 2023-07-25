@@ -1,5 +1,5 @@
-import { UserModel } from "../../models/User";
-import { UserValidationSchema } from "../../validation";
+import { UserModel } from "@/server/models/User";
+import { UserValidationSchema } from "@/server/validation";
 import { IUser } from "@/types";
 import { hash } from "bcrypt";
 

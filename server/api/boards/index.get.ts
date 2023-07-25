@@ -1,4 +1,4 @@
-import { BoardModel } from "../../models/Board";
+import { BoardModel } from "@/server/models/Board";
 
 export default defineEventHandler(async (event) => {
   if (!isAuthenticated(event)) {

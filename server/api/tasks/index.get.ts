@@ -1,4 +1,4 @@
-import { TaskModel } from "../../models/Task";
+import { TaskModel } from "@/server/models/Task";
 
 export default defineEventHandler(async (event) => {
   if (!isAuthenticated(event)) {
