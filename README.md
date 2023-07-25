@@ -2,11 +2,16 @@
 
 Trello (kanban) board clone implemented in TypeScript with Nuxt 3.
 
-Live demo at: https://hazadus.github.io/nuxt-trello-board/
+## Features
 
-Be aware that cards you create are saved in you local storage, not on the server! There's no backend in this demo, just static page.
+- Kanban board with columns, cards, and full drag-and-drop support.
+- Mark cards as "done" or "favorite".
+- Data stored on backend in MongoDB.
+- User authentication (no sign up at the moment, login and logout only).
 
-Backend is ready, now working on authentication.
+**Coming soon**: implement sign up page, allow to create and manage multiple boards. When these features will be ready, I'll deploy the app for public access.
+
+See [Issues](https://github.com/hazadus/nuxt-trello-board/issues) tab for all planned features.
 
 ## Controls
 
