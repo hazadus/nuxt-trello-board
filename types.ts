@@ -1,4 +1,5 @@
 export type ID = string;
+export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 export interface IError {
   statusCode: number;

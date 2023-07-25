@@ -2,6 +2,14 @@ import { ColumnModel } from "../../models/Column";
 import { ColumnValidationSchema } from "../../validation";
 
 export default defineEventHandler(async (event) => {
+  if (!isAuthenticated(event)) {
+    throw createError({
+      message: "User must be authenticated to update columns.",
+      statusCode: 403,
+      fatal: false,
+    });
+  }
+
   //
   // On success, return updated column as JSON.
   //

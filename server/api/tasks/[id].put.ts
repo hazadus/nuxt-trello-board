@@ -2,6 +2,13 @@ import { TaskModel } from "../../models/Task";
 import { TaskValidationSchema } from "../../validation";
 
 export default defineEventHandler(async (event) => {
+  if (!isAuthenticated(event)) {
+    throw createError({
+      message: "User must be authenticated to update tasks.",
+      statusCode: 403,
+      fatal: false,
+    });
+  }
   //
   // On success, return updated task as JSON.
   //

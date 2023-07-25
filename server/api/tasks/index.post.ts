@@ -4,6 +4,14 @@ import { TaskValidationSchema } from "../../validation";
 import { ITask } from "@/types";
 
 export default defineEventHandler(async (event) => {
+  if (!isAuthenticated(event)) {
+    throw createError({
+      message: "User must be authenticated to create tasks.",
+      statusCode: 403,
+      fatal: false,
+    });
+  }
+
   const body = (await readBody(event)) as ITask;
 
   // Validate

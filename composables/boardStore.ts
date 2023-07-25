@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import useToast from "./useToast";
-import type { IBoard, ID } from "@/types";
+import type { IBoard } from "@/types";
 
 export const useBoardStore = defineStore("board-store", {
   state: () => ({
@@ -11,7 +11,7 @@ export const useBoardStore = defineStore("board-store", {
     // Get all Boards from DB
     async getAll() {
       try {
-        let data = await $fetch<IBoard[]>("/api/boards");
+        let data = await fetchApi<IBoard[]>("/boards");
         this.boards = data;
         return data as IBoard[];
       } catch (e: any) {
@@ -19,10 +19,7 @@ export const useBoardStore = defineStore("board-store", {
       }
     },
     async update(board: IBoard) {
-      await $fetch(`/api/boards/${board._id}`, {
-        method: "PUT",
-        body: board,
-      })
+      await fetchApi(`/boards/${board._id}`, "PUT", board)
         .catch((e) => {
           useToast().error(`Error updating board! ${e.data.message}`);
         })

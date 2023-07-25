@@ -2,24 +2,24 @@ import { defineStore } from "pinia";
 import type { IAuthToken, ILoginCredentials, IUser } from "@/types";
 
 interface StateShape {
-  token: string | null;
+  token: string;
   user: IUser | null;
   isAuthenticated: boolean;
 }
 
 export const useAuthStore = defineStore("auth-store", {
   state: (): StateShape => ({
-    token: null,
+    token: "",
     user: null,
     isAuthenticated: false,
   }),
   actions: {
     initializeStore() {
       if (localStorage.getItem("nuxt-trello-board-token")) {
-        this.token = localStorage.getItem("nuxt-trello-board-token");
+        this.token = localStorage.getItem("nuxt-trello-board-token") || "";
         this.isAuthenticated = true;
       } else {
-        this.token = null;
+        this.token = "";
         this.isAuthenticated = false;
       }
 

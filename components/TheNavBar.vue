@@ -2,7 +2,7 @@
   <nav class="bg-white border-gray-200">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <RouterLink to="/" class="flex items-center">
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        <span class="self-center text-2xl font-semibold whitespace-nowrap">
           Kanban Board
         </span>
       </RouterLink>
@@ -67,25 +67,25 @@
           </li>
           <li>
             <RouterLink to="/signup/"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
               Sign Up
             </RouterLink>
           </li>
           <li>
             <RouterLink to="/login/"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
               Log In
             </RouterLink>
           </li>
           <li>
             <RouterLink to="/about/"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
               About
             </RouterLink>
           </li>
           <li>
             <RouterLink to="/contact/"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
               Contact
             </RouterLink>
           </li>

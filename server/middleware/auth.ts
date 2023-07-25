@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   // - Try to find provided token in the database
   // - If succeeded, set auth flag to `true` in the context, and put user info there.
   //
-  event.context.isAuthorized = false;
+  event.context.isAuthenticated = false;
   event.context.user = null;
 
   if (event.node.req.headers.authorization) {
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
       .populate("user", "-hashedPassword");
 
     if (authToken) {
-      event.context.isAuthorized = true;
+      event.context.isAuthenticated = true;
       event.context.user = authToken.user;
     }
   }
