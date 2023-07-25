@@ -1,8 +1,8 @@
 <template>
-  <nav class="bg-white border-gray-200">
+  <nav class="sticky top-0 bg-teal-700 border-gray-200 shadow-md">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <RouterLink to="/" class="flex items-center">
-        <span class="self-center text-2xl font-semibold whitespace-nowrap">
+        <span class="self-center text-2xl font-semibold text-gray-900 whitespace-nowrap">
           Kanban Board
         </span>
       </RouterLink>
@@ -58,34 +58,33 @@
       </div>
       <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
         <ul
-          class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+          class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-transparent md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
           <li>
-            <RouterLink to="/"
-              class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0">
+            <RouterLink to="/" class="block py-2 pl-3 pr-4 text-gray-300 rounded bg-transparent md:p-0">
               Home
             </RouterLink>
           </li>
           <li>
             <RouterLink to="/signup/"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0">
               Sign Up
             </RouterLink>
           </li>
           <li>
             <RouterLink to="/login/"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0">
               Log In
             </RouterLink>
           </li>
           <li>
             <RouterLink to="/about/"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0">
               About
             </RouterLink>
           </li>
           <li>
             <RouterLink to="/contact/"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0">
               Contact
             </RouterLink>
           </li>
