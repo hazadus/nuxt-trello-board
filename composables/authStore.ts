@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import type { IAuthToken, ILoginCredentials, IUser } from "@/types";
+import useToast from "./useToast";
 
 interface StateShape {
   token: string;
@@ -38,11 +39,25 @@ export const useAuthStore = defineStore("auth-store", {
         });
         this.token = data.token;
         this.user = data.user;
+        this.isAuthenticated = true;
         localStorage.setItem("nuxt-trello-board-token", this.token);
         localStorage.setItem("nuxt-trello-board-user", JSON.stringify(this.user));
         useToast().success(`Logged in as "${this.user.email}"!`);
       } catch (e: any) {
         useToast().error(`Error logging in: ${e.data.message}`);
+      }
+    },
+    async logOut() {
+      try {
+        await fetchApi("/users/logout");
+        this.token = "";
+        this.user = null;
+        this.isAuthenticated = false;
+        localStorage.setItem("nuxt-trello-board-token", this.token);
+        localStorage.setItem("nuxt-trello-board-user", JSON.stringify(this.user));
+        useToast().success(`Logged out successfully!`);
+      } catch (e: any) {
+        useToast().error(`Error logging out: ${e.data.message}`);
       }
     },
   },

@@ -54,6 +54,8 @@ export default defineEventHandler(async (event) => {
       token: await hash(user.email, 10), // hash email to create random token
       user: user._id,
     });
+    // NB: populate user info, we need it on the frontend:
+    token = await token.populate("user", "-hashedPassword");
   }
   console.log(`🚀 '${user.email}': login correct, returning token!`);
   return token;

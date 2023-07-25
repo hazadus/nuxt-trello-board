@@ -2,6 +2,12 @@
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 
 const authStore = useAuthStore();
+const router = useRouter();
+
+async function onClickLogOut() {
+  await authStore.logOut();
+  if (!authStore.isAuthenticated) router.push("/login/");
+}
 </script>
 
 <template>
@@ -13,16 +19,18 @@ const authStore = useAuthStore();
           style="line-height: 1.8rem;">
           Доскач
         </RouterLink>
-        <button
-          class="navbar-button hidden md:block py-1 px-3 mr-2 text-gray-100 hover:text-white text-sm bg-teal-500 shadow-md rounded-sm">
-          <Icon name="material-symbols:dashboard" />
-          Boards
-        </button>
-        <button
-          class="navbar-button hidden md:block py-1 px-3 text-gray-100 hover:text-white text-sm bg-teal-500 shadow-md rounded-sm">
-          <Icon name="material-symbols:dashboard-customize-outline" />
-          Create
-        </button>
+        <template v-if="authStore.isAuthenticated">
+          <button
+            class="navbar-button hidden md:block py-1 px-3 mr-2 text-gray-100 hover:text-white text-sm bg-teal-500 shadow-md rounded-sm">
+            <Icon name="material-symbols:dashboard" />
+            Boards
+          </button>
+          <button
+            class="navbar-button hidden md:block py-1 px-3 text-gray-100 hover:text-white text-sm bg-teal-500 shadow-md rounded-sm">
+            <Icon name="material-symbols:dashboard-customize-outline" />
+            Create
+          </button>
+        </template>
       </div>
 
       <div class="flex items-center md:order-2">
@@ -59,7 +67,10 @@ const authStore = useAuthStore();
 
               <div class="px-1 py-1">
                 <MenuItem v-slot="{ active }">
-                <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">Logout</a>
+                <a href="#" @click.prevent="onClickLogOut" :class="{ 'bg-gray-100': active }"
+                  class="block px-4 py-3 text-md text-gray-700">
+                  Logout
+                </a>
                 </MenuItem>
               </div>
             </MenuItems>

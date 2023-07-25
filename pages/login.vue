@@ -37,7 +37,7 @@ onMounted(() => {
     Log In | Доскач
   </Title>
 
-  <section class="bg-gray-50">
+  <section class="bg-teal-500">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0" style="height: calc(100vh - 64px);">
       <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
