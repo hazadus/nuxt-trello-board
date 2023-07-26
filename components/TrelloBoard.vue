@@ -32,14 +32,20 @@ async function addNewColumn(targetBoardId: ID) {
   });
 }
 
+/**
+ * This should be called when column inside the board was moved in another position,
+ * or the board has changed.
+ */
 async function onBoardChange() {
-  // This should be called when column inside the board was moved in another position.
   await boardStore.update(board.value!);
 }
 
+/**
+ * This should be called on `change` from inner `draggable`, which represents task cards.
+ * Triggered for column when task removed, and when task is added.
+ * @param columnId 
+ */
 async function onColumnChange(columnId: ID) {
-  // This should be called @change from inner `draggable`, which represents task cards.
-  // Triggered for column when task removed, and when task is added.
   const updatedColumn = board.value!.columns.find(column => column._id === columnId);
   if (updatedColumn) await columnStore.update(updatedColumn);
 }
@@ -106,10 +112,10 @@ onMounted(async () => {
   </AlertBox>
 
   <template v-if="board">
-    <div class="flex justify-between px-5 py-4">
-      <h1 class="text-gray-100 text-4xl font-semibold">
-        {{ board.title }}
-      </h1>
+    <div class="flex justify-between items-middle px-5 py-4">
+      <input v-model="board.title"
+        class="text-4xl font-semibold bg-transparent border-none rounded px-1 flex-grow text-gray-100 focus:text-black focus:bg-white  focus:outline focus:outline-gray-400 focus:outline-1"
+        @keyup.enter="onBoardChange(); ($event.target as HTMLInputElement).blur()" type="text">
 
       <button class="text-gray-100 bg-transparent px-5 py-0 rounded hover:bg-gray-100 hover:bg-opacity-20">
         <Icon name="ph:dots-three-outline-fill" />
