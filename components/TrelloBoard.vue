@@ -114,7 +114,7 @@ onMounted(async () => {
   <template v-if="board">
     <div class="flex justify-between items-middle px-5 py-4">
       <input v-model="board.title"
-        class="text-4xl font-semibold bg-transparent border-none rounded px-1 flex-grow text-gray-100 focus:text-black focus:bg-white  focus:outline focus:outline-gray-400 focus:outline-1"
+        class="text-4xl font-semibold bg-transparent border-none rounded px-1 flex-grow text-gray-100 focus:text-black focus:bg-white  focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-100 hover:bg-opacity-20"
         @keyup.enter="onBoardChange(); ($event.target as HTMLInputElement).blur()" type="text">
 
       <button class="text-gray-100 bg-transparent px-5 py-0 rounded hover:bg-gray-100 hover:bg-opacity-20">
