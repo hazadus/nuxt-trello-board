@@ -1,4 +1,4 @@
-import { HttpMethod } from "types";
+import { HttpMethod, ID } from "types";
 
 /**
  * Fetch data from API. Adds `Authorization` header with user token to all requests.
@@ -17,4 +17,8 @@ export async function fetchApi<T>(
     headers: [["authorization", useAuthStore().token]],
     body,
   });
+}
+
+export function buildBoardUrl(boardId: ID) {
+  return `/boards/${boardId}`;
 }

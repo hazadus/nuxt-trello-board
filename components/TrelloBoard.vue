@@ -2,14 +2,20 @@
 import draggable from "vuedraggable";
 import type { IColumn, ITask, ID } from '@/types';
 
+const props = defineProps<{
+  boardId: ID;
+}>();
+
 const boardStore = useBoardStore();
 const columnStore = useColumnStore();
 const taskStore = useTaskStore();
 
-const activeBoardIndex = ref(0);
-
 // `alt` will be reactive boolean value, equal to `true` when the alt (or option) key is pressed.
 const alt = useKeyModifier("Alt");
+
+const board = computed(() => {
+  return boardStore.boards.find((item) => item._id === props.boardId);
+});
 
 async function addNewColumn(targetBoardId: ID) {
   await columnStore.create({
@@ -28,13 +34,13 @@ async function addNewColumn(targetBoardId: ID) {
 
 async function onBoardChange() {
   // This should be called when column inside the board was moved in another position.
-  await boardStore.update(boardStore.boards[activeBoardIndex.value]);
+  await boardStore.update(board.value!);
 }
 
 async function onColumnChange(columnId: ID) {
   // This should be called @change from inner `draggable`, which represents task cards.
   // Triggered for column when task removed, and when task is added.
-  const updatedColumn = boardStore.boards[activeBoardIndex.value].columns.find(column => column._id === columnId);
+  const updatedColumn = board.value!.columns.find(column => column._id === columnId);
   if (updatedColumn) await columnStore.update(updatedColumn);
 }
 
@@ -82,15 +88,27 @@ async function onDeleteTask(taskId: ID) {
 }
 
 onMounted(async () => {
+  // https://nuxt.com/docs/api/composables/use-async-data#example
   await useAsyncData(() => boardStore.getAll());
 });
 </script>
 
 <template>
-  <div v-if="boardStore.boards.length" class="board flex items-start overflow-x-auto gap-4">
+  <Title>
+    {{ board?.title || "Not found" }} | Доскач
+  </Title>
+
+  <AlertBox v-if="!board" alertType="danger" class="m-4">
+    Can't fint board vith ID "{{ boardId }}"!
+    <RouterLink to="/boards/" class="underline">
+      View all boards.
+    </RouterLink>
+  </AlertBox>
+
+  <div v-if="board" class="board flex items-start p-5 overflow-x-auto gap-4">
     <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
-    <draggable v-model="boardStore.boards[activeBoardIndex].columns" group="columns" item-key="id" :animation="200"
-      @change="onBoardChange()" handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
+    <draggable v-model="board.columns" group="columns" item-key="id" :animation="200" @change="onBoardChange()"
+      handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
       <template #item="{ element: column }: { element: IColumn }">
         <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
           <header class="font-bold mb-4 flex items-baseline">
@@ -120,8 +138,7 @@ onMounted(async () => {
       </template>
     </draggable>
 
-    <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50"
-      @click=" addNewColumn(boardStore.boards[activeBoardIndex]._id!) ">
+    <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50" @click=" addNewColumn(board._id!) ">
       + Добавить колонку
     </button>
   </div>

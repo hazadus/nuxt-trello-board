@@ -20,11 +20,11 @@ async function onClickLogOut() {
           Доскач
         </RouterLink>
         <template v-if="authStore.isAuthenticated">
-          <button
+          <RouterLink to="/boards/"
             class="navbar-button hidden md:block py-1 px-3 mr-2 text-gray-100 hover:text-white text-sm bg-teal-500 shadow-md rounded-sm">
             <Icon name="material-symbols:dashboard" />
             Boards
-          </button>
+          </RouterLink>
           <button
             class="navbar-button hidden md:block py-1 px-3 text-gray-100 hover:text-white text-sm bg-teal-500 shadow-md rounded-sm">
             <Icon name="material-symbols:dashboard-customize-outline" />
