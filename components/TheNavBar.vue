@@ -19,14 +19,20 @@ async function onClickLogOut() {
           style="line-height: 1.8rem;">
           Доскач
         </RouterLink>
+
         <template v-if="authStore.isAuthenticated">
           <RouterLink to="/boards/"
-            class="navbar-button hidden md:block py-1 px-3 mr-2 text-gray-100 hover:text-white text-sm bg-teal-500 shadow-md rounded-sm">
+            class="hidden md:block py-1 px-3 mr-2 text-gray-100 text-sm rounded-sm hover:text-white hover:bg-gray-100 hover:bg-opacity-20">
             <Icon name="material-symbols:dashboard" />
             Boards
           </RouterLink>
           <button
-            class="navbar-button hidden md:block py-1 px-3 text-gray-100 hover:text-white text-sm bg-teal-500 shadow-md rounded-sm">
+            class="hidden md:block py-1 px-3 mr-2 text-gray-100 text-sm rounded-sm hover:text-white hover:bg-gray-100 hover:bg-opacity-20">
+            <Icon name="material-symbols:star-outline" />
+            Favorites
+          </button>
+          <button
+            class="hidden md:block py-1 px-3 mr-2 text-gray-100 text-sm rounded-sm hover:text-white hover:bg-gray-100 hover:bg-opacity-20">
             <Icon name="material-symbols:dashboard-customize-outline" />
             Create
           </button>
@@ -129,10 +135,3 @@ async function onClickLogOut() {
     </div>
   </nav>
 </template>
-
-<style scoped>
-.navbar-button:hover {
-  transform: scale(1.02);
-  transition: all 0.2s;
-}
-</style>

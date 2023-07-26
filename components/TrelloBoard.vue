@@ -111,7 +111,7 @@ onMounted(async () => {
         {{ board.title }}
       </h1>
 
-      <button class="text-gray-100 bg-transparent hover:bg-gray-100 hover:bg-opacity-20 px-5 py-0 rounded">
+      <button class="text-gray-100 bg-transparent px-5 py-0 rounded hover:bg-gray-100 hover:bg-opacity-20">
         <Icon name="ph:dots-three-outline-fill" />
       </button>
     </div>
