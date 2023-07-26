@@ -105,41 +105,52 @@ onMounted(async () => {
     </RouterLink>
   </AlertBox>
 
-  <div v-if="board" class="board flex items-start p-5 overflow-x-auto gap-4">
-    <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
-    <draggable v-model="board.columns" group="columns" item-key="id" :animation="200" @change="onBoardChange()"
-      handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
-      <template #item="{ element: column }: { element: IColumn }">
-        <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
-          <header class="font-bold mb-4 flex items-baseline">
-            <DragHandle />
-            <input
-              class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1"
-              @keyup.enter="onRenameColumn(column, ($event.target as HTMLInputElement).value); ($event.target as HTMLInputElement).blur()"
-              v-model=" column.title " type="text" />
-            <button class="text-xl text-gray-400 hover:text-gray-600" @click="onDeleteColumn(column)">
-              <Icon name="material-symbols:delete-outline" />
-            </button>
-          </header>
+  <template v-if="board">
+    <div class="flex justify-between px-5 py-4">
+      <h1 class="text-gray-100 text-4xl font-semibold">
+        {{ board.title }}
+      </h1>
 
-          <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
-          <draggable v-model=" column.tasks " :group=" { name: 'tasks', pull: alt ? 'clone' : true } " item-key="_id"
-            :animation=" 200 " @change="onColumnChange(column._id!)">
-            <template #item=" { element: task }: { element: ITask } ">
-              <BoardTaskCard :task=" task " @toggle-completed=" onToggleCompleted(task, $event)"
-                @toggle-favorite="onToggleFavorite(task, $event)" @delete="onDeleteTask($event)" />
-            </template>
-          </draggable>
+      <button class="text-gray-100 bg-transparent hover:bg-gray-100 hover:bg-opacity-20 px-5 py-0 rounded">
+        <Icon name="ph:dots-three-outline-fill" />
+      </button>
+    </div>
+    <div class="board flex items-start pt-0 px-5 pb-5 overflow-x-auto gap-4">
+      <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
+      <draggable v-model="board.columns" group="columns" item-key="id" :animation="200" @change="onBoardChange()"
+        handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
+        <template #item="{ element: column }: { element: IColumn }">
+          <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
+            <header class="font-bold mb-4 flex items-baseline">
+              <DragHandle />
+              <input
+                class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1"
+                @keyup.enter="onRenameColumn(column, ($event.target as HTMLInputElement).value); ($event.target as HTMLInputElement).blur()"
+                v-model=" column.title " type="text" />
+              <button class="text-xl text-gray-400 hover:text-gray-600" @click="onDeleteColumn(column)">
+                <Icon name="material-symbols:delete-outline" />
+              </button>
+            </header>
 
-          <footer>
-            <NewTask @add="onAddTask($event, column)" />
-          </footer>
-        </div>
-      </template>
-    </draggable>
+            <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
+            <draggable v-model=" column.tasks " :group=" { name: 'tasks', pull: alt ? 'clone' : true } " item-key="_id"
+              :animation=" 200 " @change="onColumnChange(column._id!)">
+              <template #item=" { element: task }: { element: ITask } ">
+                <BoardTaskCard :task=" task " @toggle-completed=" onToggleCompleted(task, $event)"
+                  @toggle-favorite="onToggleFavorite(task, $event)" @delete="onDeleteTask($event)" />
+              </template>
+            </draggable>
 
-    <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50" @click=" addNewColumn(board._id!) ">
-      + Добавить колонку
-    </button>
-  </div>
+            <footer>
+              <NewTask @add="onAddTask($event, column)" />
+            </footer>
+          </div>
+        </template>
+      </draggable>
+
+      <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50" @click=" addNewColumn(board._id!) ">
+        + Добавить колонку
+      </button>
+    </div>
+  </template>
 </template>

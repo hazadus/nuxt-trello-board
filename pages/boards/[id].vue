@@ -3,8 +3,6 @@ const authStore = useAuthStore();
 const router = useRouter();
 const route = useRoute();
 
-
-
 onBeforeMount(() => {
   if (!authStore.isAuthenticated) {
     router.push("/login/");
@@ -13,5 +11,5 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <TrelloBoard :boardId="(route.params.id as string)" v-if="authStore.isAuthenticated" />
+  <TrelloBoard v-if="authStore.isAuthenticated" :boardId="(route.params.id as string)" />
 </template>
