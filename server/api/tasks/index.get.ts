@@ -1,6 +1,8 @@
 import { TaskModel } from "@/server/models/Task";
 
 export default defineEventHandler(async (event) => {
+  myHooks.callHook("sse:event", { message: "Message from '/api/tasks'!" });
+
   if (!isAuthenticated(event)) {
     throw createError({
       message: "User must be authenticated to get list of tasks.",
