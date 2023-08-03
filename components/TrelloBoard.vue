@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import draggable from "vuedraggable";
 import type { IColumn, ITask, ID } from '@/types';
+import BoardOptionsSlideover from "./BoardOptionsSlideover.vue";
 
 const props = defineProps<{
   boardId: ID;
@@ -117,10 +118,9 @@ onMounted(async () => {
         class="text-4xl font-semibold bg-transparent border-none rounded px-1 flex-grow text-gray-100 focus:text-black focus:bg-white  focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-100 hover:bg-opacity-20"
         @keyup.enter="onBoardChange(); ($event.target as HTMLInputElement).blur()" type="text">
 
-      <button class="text-gray-100 bg-transparent px-5 py-0 rounded hover:bg-gray-100 hover:bg-opacity-20">
-        <Icon name="ph:dots-three-outline-fill" />
-      </button>
+      <BoardOptionsSlideover />
     </div>
+
     <div class="board flex items-start pt-0 px-5 pb-5 overflow-x-auto gap-4">
       <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
       <draggable v-model="board.columns" group="columns" item-key="id" :animation="200" @change="onBoardChange()"
