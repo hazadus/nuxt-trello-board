@@ -24,9 +24,12 @@ export const useTaskStore = defineStore("task-store", {
         .catch((e) => {
           useToast().error(`Error creating task! ${e.data.message}`);
         })
-        .then(async () => {
-          await this.getAll();
-          useToast().success(`Task "${task.title}" created!`);
+        .then(async (data) => {
+          // In case of error, we get `data=undefined`, so we check `data` here:
+          if (data) {
+            await this.getAll();
+            useToast().success(`Task "${task.title}" created!`);
+          }
         });
     },
     // Update a task
@@ -36,9 +39,11 @@ export const useTaskStore = defineStore("task-store", {
         .catch((e) => {
           useToast().error(`Error updating task! ${e.data.message}`);
         })
-        .then(async () => {
-          await this.getAll();
-          useToast().success("Task updated!");
+        .then(async (data) => {
+          if (data) {
+            await this.getAll();
+            useToast().success("Task updated!");
+          }
         });
     },
     // Delete a task
@@ -47,9 +52,11 @@ export const useTaskStore = defineStore("task-store", {
         .catch((e) => {
           useToast().error(`Error deleting task! ${e.data.message}`);
         })
-        .then(async () => {
-          await this.getAll();
-          useToast().success("Task deleted.");
+        .then(async (data) => {
+          if (data) {
+            await this.getAll();
+            useToast().success("Task deleted.");
+          }
         });
     },
   },

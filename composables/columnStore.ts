@@ -24,9 +24,11 @@ export const useColumnStore = defineStore("column-store", {
         .catch((e) => {
           useToast().error(`Error creating column! ${e.data.message}`);
         })
-        .then(async () => {
-          await this.getAll();
-          useToast().success(`Column "${column.title}" created!`);
+        .then(async (data) => {
+          if (data) {
+            await this.getAll();
+            useToast().success(`Column "${column.title}" created!`);
+          }
         });
     },
     // Update a column
@@ -36,9 +38,11 @@ export const useColumnStore = defineStore("column-store", {
         .catch((e) => {
           useToast().error(`Error updating column! ${e.data.message}`);
         })
-        .then(async () => {
-          await this.getAll();
-          useToast().success("Column updated!");
+        .then(async (data) => {
+          if (data) {
+            await this.getAll();
+            useToast().success("Column updated!");
+          }
         });
     },
     // Delete a Column
@@ -47,9 +51,11 @@ export const useColumnStore = defineStore("column-store", {
         .catch((e) => {
           useToast().error(`Error deleting column! ${e.data.message}`);
         })
-        .then(async () => {
-          await this.getAll();
-          useToast().success("Column deleted.");
+        .then(async (data) => {
+          if (data) {
+            await this.getAll();
+            useToast().success("Column deleted.");
+          }
         });
     },
   },

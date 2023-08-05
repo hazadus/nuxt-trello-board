@@ -12,6 +12,7 @@ export async function fetchApi<T>(
   method: HttpMethod = "GET",
   body: any | undefined = undefined,
 ) {
+  // Reference: https://nuxt.com/docs/api/utils/dollarfetch
   return await $fetch<T>(`/api${endPoint}`, {
     method,
     headers: [["authorization", useAuthStore().token]],

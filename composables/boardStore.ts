@@ -23,9 +23,11 @@ export const useBoardStore = defineStore("board-store", {
         .catch((e) => {
           useToast().error(`Error updating board! ${e.data.message}`);
         })
-        .then(async () => {
-          await this.getAll();
-          useToast().success("Board updated!");
+        .then(async (data) => {
+          if (data) {
+            await this.getAll();
+            useToast().success("Board updated!");
+          }
         });
     },
   },
