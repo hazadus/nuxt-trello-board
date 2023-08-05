@@ -100,3 +100,5 @@ Stuff I learned while working on this project.
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
 - [Deploying Nuxt Static Site to Github Pages with GitHub Actions](https://donlalicon.dev/articles/nuxt-static-github-pages-action)
 - [Nuxt 3 Server Routes CRUD w/ MongoDB ](https://www.youtube.com/watch?v=1uWHDdcDZWw)
+- [HeadlessUI - Dialog (Modal)](https://headlessui.com/vue/dialog)
+- [HeadlessUI - Transition](https://headlessui.com/vue/transition)
