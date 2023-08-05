@@ -3,42 +3,51 @@ const authStore = useAuthStore();
 const boardStore = useBoardStore();
 const router = useRouter();
 
-boardStore.getAll();
-
 onBeforeMount(() => {
   if (!authStore.isAuthenticated) {
     router.push("/login/");
   }
 });
+
+async function onClickCreateNewBoard() {
+  await boardStore.create({
+    title: `Новая доска ${boardStore.boards.length + 1}`,
+    columns: [],
+  });
+}
+
+boardStore.getAll();
 </script>
 
 <template>
   <Title>
-    All Boards | Доскач
+    Все доски | Доскач
   </Title>
 
   <h1 class="text-4xl font-semibold text-gray-100 px-5 py-6">
-    All boards
+    Все доски
   </h1>
 
-  <section v-if="boardStore.boards.length"
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 px-5 pt-0 pb-5">
-    <div class="h-48 p-4 bg-gray-50 rounded-lg shadow-md overflow-hidden cursor-pointer text-center hover:bg-opacity-90">
-      Create new board
+  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 px-5 pt-0 pb-5">
+    <div @click="onClickCreateNewBoard()"
+      class="h-48 p-4 bg-gray-50 rounded-lg shadow-md overflow-hidden cursor-pointer text-center hover:bg-opacity-90 hover:scale-[1.01]">
+      Создать новую доску
     </div>
 
-    <div v-for="board in boardStore.boards" :key="`board-id-${board._id}`"
-      class="p-4 bg-teal-600 rounded-lg shadow-md overflow-hidden cursor-pointer hover:bg-opacity-90"
-      @click="$router.push(buildBoardUrl(board._id!))">
-      <div class="flex flex-col h-full">
-        <div class="flex grow text-2xl text-gray-50 ">
-          {{ board.title }}
-        </div>
-        <div class="grow-0 text-sm text-gray-300">
-          {{ board.columns.length }} columns &middot;
-          {{ board.columns.reduce((accumulator, column) => accumulator + column.tasks.length, 0) }} cards
+    <template v-if="boardStore.boards.length">
+      <div v-for="board in boardStore.boards" :key="`board-id-${board._id}`"
+        class="h-48 p-4 bg-teal-600 rounded-lg shadow-md overflow-hidden cursor-pointer hover:bg-opacity-90 hover:scale-[1.01]"
+        @click="$router.push(buildBoardUrl(board._id!))">
+        <div class="flex flex-col h-full">
+          <div class="flex grow text-2xl text-gray-50 ">
+            {{ board.title }}
+          </div>
+          <div class="grow-0 text-sm text-gray-300">
+            {{ board.columns.length }} columns &middot;
+            {{ board.columns.reduce((accumulator, column) => accumulator + column.tasks.length, 0) }} cards
+          </div>
         </div>
       </div>
-    </div>
+    </template>
   </section>
 </template>

@@ -18,7 +18,7 @@ async function submitForm() {
   });
 
   isFetching.value = false;
-  if (authStore.isAuthenticated) router.push("/");
+  if (authStore.isAuthenticated) router.push("/boards/");
 }
 
 onBeforeMount(() => {

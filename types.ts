@@ -33,7 +33,7 @@ export interface IAuthToken {
 
 export interface IBoard {
   _id?: ID;
-  user: IUser;
+  user?: IUser;
   title: string;
   columns: IColumn[];
   createdAt?: Date;
