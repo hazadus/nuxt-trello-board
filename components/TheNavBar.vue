@@ -4,6 +4,43 @@ import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 const authStore = useAuthStore();
 const router = useRouter();
 
+const activeMenuClasses = "block py-2 pl-3 pr-4 text-gray-100 underline rounded bg-transparent md:p-0";
+const menuClasses = "block py-2 pl-3 pr-4 text-gray-200 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0";
+
+interface IMenuItem {
+  title: string;
+  route: string;
+  classes: string;
+}
+
+const menu = computed((): IMenuItem[] => [
+  {
+    title: "Главная",
+    route: "/",
+    classes: useRoute().path == '/' ? activeMenuClasses : menuClasses,
+  },
+  {
+    title: "Регистрация",
+    route: "/signup/",
+    classes: useRoute().path == '/signup/' ? activeMenuClasses : menuClasses,
+  },
+  {
+    title: "Вход",
+    route: "/login/",
+    classes: useRoute().path == '/login/' ? activeMenuClasses : menuClasses,
+  },
+  {
+    title: "О сайте",
+    route: "/about/",
+    classes: useRoute().path == '/about/' ? activeMenuClasses : menuClasses,
+  },
+  {
+    title: "Контакты",
+    route: "/contact/",
+    classes: useRoute().path == '/contact/' ? activeMenuClasses : menuClasses,
+  },
+]);
+
 async function onClickLogOut() {
   await authStore.logOut();
   if (!authStore.isAuthenticated) router.push("/login/");
@@ -100,33 +137,9 @@ async function onClickLogOut() {
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
           <ul
             class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-transparent md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
-            <li>
-              <RouterLink to="/" class="block py-2 pl-3 pr-4 text-gray-300 rounded bg-transparent md:p-0">
-                Home
-              </RouterLink>
-            </li>
-            <li>
-              <RouterLink to="/signup/"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0">
-                Sign Up
-              </RouterLink>
-            </li>
-            <li>
-              <RouterLink to="/login/"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0">
-                Log In
-              </RouterLink>
-            </li>
-            <li>
-              <RouterLink to="/about/"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0">
-                About
-              </RouterLink>
-            </li>
-            <li>
-              <RouterLink to="/contact/"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0">
-                Contact
+            <li v-for="(item, index) in menu" :key="`menu-item-${index}`">
+              <RouterLink :to="item.route" :class="item.classes">
+                {{ item.title }}
               </RouterLink>
             </li>
           </ul>
