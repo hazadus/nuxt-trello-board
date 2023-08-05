@@ -1,4 +1,4 @@
-import { ColumnModel } from "../../models/Column";
+import { ColumnModel } from "@/server/models/Column";
 
 export default defineEventHandler(async (event) => {
   if (!isAuthenticated(event)) {
@@ -9,6 +9,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Simply return all `Column` documents
-  return await ColumnModel.find().populate("tasks");
+  // Return all `Column` documents created by authenticated user.
+  return await ColumnModel.find({ user: getAuthenticatedUser(event)!._id! }).populate("tasks");
 });

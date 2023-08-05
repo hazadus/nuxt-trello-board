@@ -2,9 +2,6 @@ import { BoardModel } from "@/server/models/Board";
 import { BoardValidationSchema } from "@/server/validation";
 
 export default defineEventHandler(async (event) => {
-  //
-  // On success, return updated Board as JSON.
-  //
   if (!isAuthenticated(event)) {
     throw createError({
       message: "User must be authenticated to update boards.",
@@ -14,7 +11,10 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event);
-  const id = event.context.params?.id;
+  const id: string = event.context.params?.id || "";
+
+  // Check if authenticated user can update the board
+  await handleUpdatePermission("Board", id, event);
 
   // Validate
   // Abort on first error, allow unknown keys

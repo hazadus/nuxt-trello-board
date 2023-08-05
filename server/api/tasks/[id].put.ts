@@ -9,11 +9,12 @@ export default defineEventHandler(async (event) => {
       fatal: false,
     });
   }
-  //
-  // On success, return updated task as JSON.
-  //
+
   const body = await readBody(event);
-  const id = event.context.params?.id;
+  const id: string = event.context.params?.id || "";
+
+  // Check if authenticated user can update the task
+  await handleUpdatePermission("Task", id, event);
 
   // Validate
   // Abort on first error, allow unknown keys
