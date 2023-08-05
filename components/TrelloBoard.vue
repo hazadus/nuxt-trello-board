@@ -118,7 +118,7 @@ onMounted(async () => {
         class="text-4xl font-semibold bg-transparent border-none rounded px-1 flex-grow text-gray-100 focus:text-black focus:bg-white  focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-100 hover:bg-opacity-20"
         @keyup.enter="onBoardChange(); ($event.target as HTMLInputElement).blur()" type="text">
 
-      <BoardOptionsSlideover />
+      <BoardOptionsSlideover :board="board" />
     </div>
 
     <div class="board flex items-start pt-0 px-5 pb-5 overflow-x-auto gap-4">

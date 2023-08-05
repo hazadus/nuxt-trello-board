@@ -7,8 +7,16 @@ import {
   TransitionRoot,
   TransitionChild,
 } from "@headlessui/vue";
+import type { IBoard } from "@/types";
+
+const props = defineProps<{
+  board: IBoard;
+}>();
 
 const isOpen = ref(false);
+
+const created = useDateFormat(props.board.createdAt, "DD.MM.YYYY HH:mm").value;
+const updated = useDateFormat(props.board.updatedAt, "DD.MM.YYYY HH:mm").value;
 
 function setIsOpen(value: boolean) {
   isOpen.value = value;
@@ -40,7 +48,7 @@ function placeholder() {
         <div class="bg-gray-100 flex flex-col fixed inset-y-0 right-0 w-full max-w-sm">
           <div class="flex justify-between items-center p-4 shadow">
             <DialogTitle class="text-xl font-semibold">
-              Menu
+              Меню
             </DialogTitle>
             <button @click="setIsOpen(false)"
               class="text-xl text-gray-900 bg-transparent px-3 py-0 rounded hover:bg-gray-300 hover:bg-opacity-20">
@@ -49,27 +57,27 @@ function placeholder() {
           </div>
 
           <DialogDescription class="p-4">
-            Actions available for the board ...
+            Доска &laquo;{{ board.title }}&raquo; &mdash; доступные действия:
           </DialogDescription>
 
           <div class="flex-1 flex flex-col">
             <div class="flex-1 px-1">
               <div class="p-4 font-semibold hover:bg-gray-200 hover:cursor-pointer" @click="placeholder()">
-                Description
+                Описание
               </div>
               <div class="p-4 font-semibold hover:bg-gray-200 hover:cursor-pointer" @click="placeholder()">
-                Background color
+                Цвет фона
               </div>
               <div class="p-4 font-semibold hover:bg-gray-200 hover:cursor-pointer" @click="placeholder()">
-                Close the board
+                Закрыть доску
               </div>
             </div>
             <div class="flex flex-col text-gray-400">
               <div class="px-4 py-1">
-                Created: ...
+                Создана: {{ created }}
               </div>
               <div class="px-4 py-1">
-                Updated: ...
+                Обновлена: {{ updated }}
               </div>
             </div>
           </div>
