@@ -3,6 +3,10 @@ import { IBoard } from "@/types";
 
 const boardSchema = new Schema<IBoard>(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     title: { type: String, required: true },
     columns: [
       {

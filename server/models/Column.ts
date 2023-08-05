@@ -3,6 +3,10 @@ import { IColumn } from "@/types";
 
 const columnSchema = new Schema<IColumn>(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     title: { type: String, required: true },
     tasks: [
       {
