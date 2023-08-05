@@ -1,6 +1,8 @@
 import { H3Event } from "h3";
 import { IUser, ITask, IColumn, IBoard } from "@/types";
 import { TaskModel } from "@/server/models/Task";
+import { ColumnModel } from "@/server/models/Column";
+import { BoardModel } from "@/server/models/Board";
 
 /**
  * Check if user is authenticated via context data set by server middleware.
@@ -34,6 +36,10 @@ export async function isAllowedToUpdate(
 
   if (documentType === "Task") {
     document = await TaskModel.findById(documentId).populate("user");
+  } else if (documentType === "Column") {
+    document = await ColumnModel.findById(documentId).populate("user");
+  } else if (documentType === "Board") {
+    document = await BoardModel.findById(documentId).populate("user");
   } else {
     document = null;
   }

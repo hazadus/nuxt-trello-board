@@ -1,5 +1,5 @@
-import { ColumnModel } from "../../models/Column";
-import { ColumnValidationSchema } from "../../validation";
+import { ColumnModel } from "@/server/models/Column";
+import { ColumnValidationSchema } from "@/server/validation";
 
 export default defineEventHandler(async (event) => {
   if (!isAuthenticated(event)) {
@@ -10,11 +10,11 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  //
-  // On success, return updated column as JSON.
-  //
   const body = await readBody(event);
-  const id = event.context.params?.id;
+  const id: string = event.context.params?.id || "";
+
+  // Check if authenticated user can update the column
+  await handleUpdatePermission("Column", id, event);
 
   // Validate
   // Abort on first error, allow unknown keys
