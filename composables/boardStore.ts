@@ -4,7 +4,7 @@ import type { IBoard } from "@/types";
 
 export const useBoardStore = defineStore("board-store", {
   state: () => ({
-    // List of all Boards
+    // List of all user's Boards
     boards: [] as IBoard[],
   }),
   actions: {
@@ -17,6 +17,18 @@ export const useBoardStore = defineStore("board-store", {
       } catch (e: any) {
         useToast().error(`Error fetching boards from backend! ${e.data.message}`);
       }
+    },
+    async create(board: IBoard) {
+      await fetchApi("/boards", "POST", board)
+        .catch((e) => {
+          useToast().error(`Error creating board! ${e.data.message}`);
+        })
+        .then(async (data) => {
+          if (data) {
+            await this.getAll();
+            useToast().success(`Board "${board.title}" created!`);
+          }
+        });
     },
     async update(board: IBoard) {
       await fetchApi(`/boards/${board._id}`, "PUT", board)
