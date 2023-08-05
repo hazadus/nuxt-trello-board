@@ -3,9 +3,11 @@ import { IBoard } from "@/types";
 
 const boardSchema = new Schema<IBoard>(
   {
+    // Documents references described here: https://mongoosejs.com/docs/subdocs.html
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
     title: { type: String, required: true },
     columns: [

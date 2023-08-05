@@ -36,9 +36,12 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Create Task
+  // Create Column
   try {
-    const column = await ColumnModel.create(body);
+    const column = await ColumnModel.create({
+      ...body,
+      user: getAuthenticatedUser(event)!,
+    });
     console.log("✅ Column created:", column);
 
     // Add column to the board, if specified:
