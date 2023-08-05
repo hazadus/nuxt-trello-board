@@ -48,7 +48,7 @@ export async function isAllowedToUpdate(
 }
 
 /**
- * For use in APIs. Throw error if authenticated user has no permission to update the document.
+ * For use in APIs. Throw error if authenticated user has no permission to UPDATE the document.
  * @param documentType Task, Column, or Board
  * @param documentId ID of the document to check permissions to
  * @param event H3Event
@@ -64,6 +64,31 @@ export async function handleUpdatePermission(
     );
     throw createError({
       message: `Only authors can update their ${documentType}s.`,
+      statusCode: 403,
+      fatal: false,
+    });
+  }
+}
+
+/**
+ * For use in APIs. Throw error if authenticated user has no permission to DELETE the document.
+ * @param documentType Task, Column, or Board
+ * @param documentId ID of the document to check permissions to
+ * @param event H3Event
+ */
+export async function handleDeletePermission(
+  documentType: "Task" | "Column" | "Board",
+  documentId: string,
+  event: H3Event,
+) {
+  // For now, we use same permission rules to delete and update documents,
+  // so we call `isAllowedToUpdate()` here:
+  if (!(await isAllowedToUpdate(documentType, documentId, event))) {
+    console.log(
+      `❌ Error deleting ${documentType} "${documentId}": only authors can delete their ${documentType}s.`,
+    );
+    throw createError({
+      message: `Only authors can delete their ${documentType}s.`,
       statusCode: 403,
       fatal: false,
     });

@@ -10,7 +10,10 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const id = event.context.params?.id;
+  const id: string = event.context.params?.id || "";
+
+  // Throw error if authenticated user has no permission to delete the column
+  await handleDeletePermission("Column", id, event);
 
   // Do not allow deleting non-empty columns
   const column = await ColumnModel.findById(id);

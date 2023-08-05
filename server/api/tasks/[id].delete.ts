@@ -10,7 +10,10 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const id = event.context.params?.id;
+  const id: string = event.context.params?.id || "";
+
+  // Throw error if authenticated user has no permission to delete the task
+  await handleDeletePermission("Task", id, event);
 
   // Delete Task
   try {
