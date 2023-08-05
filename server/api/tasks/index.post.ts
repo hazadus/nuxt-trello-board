@@ -38,7 +38,10 @@ export default defineEventHandler(async (event) => {
 
   // Create Task
   try {
-    const task = await TaskModel.create(body);
+    const task = await TaskModel.create({
+      ...body,
+      user: getAuthenticatedUser(event)!,
+    });
     console.log("✅ Task created:", task);
 
     //Add task to target column:
