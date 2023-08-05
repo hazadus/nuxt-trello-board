@@ -9,6 +9,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Simply return all `Task` documents
-  return await TaskModel.find();
+  // Return all `Task` documents created by authenticated user.
+  return await TaskModel.find({ user: getAuthenticatedUser(event)!._id! });
 });

@@ -9,7 +9,10 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Simply return all `Board` documents
+  // Return all `Board` documents created by authenticated user.
   // Populate columns, and in each column populate `tasks` array with detailed task info:
-  return await BoardModel.find().populate({ path: "columns", populate: { path: "tasks" } });
+  return await BoardModel.find({ user: getAuthenticatedUser(event)!._id! }).populate({
+    path: "columns",
+    populate: { path: "tasks" },
+  });
 });
