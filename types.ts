@@ -33,6 +33,7 @@ export interface IAuthToken {
 
 export interface IBoard {
   _id?: ID;
+  user: IUser;
   title: string;
   columns: IColumn[];
   createdAt?: Date;
@@ -41,6 +42,7 @@ export interface IBoard {
 
 export interface IColumn {
   _id?: ID;
+  user: IUser;
   title: string;
   tasks: ITask[];
   targetBoardId?: ID;
@@ -50,6 +52,7 @@ export interface IColumn {
 
 export interface ITask {
   _id?: ID;
+  user: IUser;
   title: string;
   details?: string | null;
   isCompleted: boolean;
