@@ -61,17 +61,17 @@ async function onClickLogOut() {
           <RouterLink to="/boards/"
             class="hidden md:block py-1 px-3 mr-2 text-gray-100 text-sm rounded-sm hover:text-white hover:bg-gray-100 hover:bg-opacity-20">
             <Icon name="material-symbols:dashboard" />
-            Boards
+            Доски
           </RouterLink>
           <button
             class="hidden md:block py-1 px-3 mr-2 text-gray-100 text-sm rounded-sm hover:text-white hover:bg-gray-100 hover:bg-opacity-20">
             <Icon name="material-symbols:star-outline" />
-            Favorites
+            Избранное
           </button>
           <button
             class="hidden md:block py-1 px-3 mr-2 text-gray-100 text-sm rounded-sm hover:text-white hover:bg-gray-100 hover:bg-opacity-20">
             <Icon name="material-symbols:dashboard-customize-outline" />
-            Create
+            Создать
           </button>
         </template>
       </div>
@@ -97,14 +97,20 @@ async function onClickLogOut() {
               </div>
               <div class="px-1 py-1">
                 <MenuItem v-slot="{ active }">
-                <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">Profile</a>
+                <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">
+                  Профиль
+                </a>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
-                <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">Settings</a>
+                <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">
+                  Настройки
+                </a>
                 </MenuItem>
                 <MenuItem v-slot="{ active, disabled }" disabled>
                 <a href="#" :class="{ 'bg-gray-100': active, 'opacity-40': disabled }"
-                  class="block px-4 py-3 text-md text-gray-700">Help</a>
+                  class="block px-4 py-3 text-md text-gray-700">
+                  Помощь
+                </a>
                 </MenuItem>
               </div>
 
@@ -112,7 +118,7 @@ async function onClickLogOut() {
                 <MenuItem v-slot="{ active }">
                 <a href="#" @click.prevent="onClickLogOut" :class="{ 'bg-gray-100': active }"
                   class="block px-4 py-3 text-md text-gray-700">
-                  Logout
+                  Выйти
                 </a>
                 </MenuItem>
               </div>

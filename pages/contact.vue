@@ -1,5 +1,5 @@
 <template>
   <Title>
-    Contact
+    Контакт
   </Title>
 </template>

@@ -1,5 +1,5 @@
 <template>
   <Title>
-    About
+    О сайте
   </Title>
 </template>

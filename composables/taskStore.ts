@@ -22,41 +22,32 @@ export const useTaskStore = defineStore("task-store", {
     async create(task: ITask) {
       await fetchApi("/tasks", "POST", task)
         .catch((e) => {
-          useToast().error(`Error creating task! ${e.data.message}`);
+          useToast().error(`Ошибка при создании карточки! ${e.data.message}`);
         })
         .then(async (data) => {
           // In case of error, we get `data=undefined`, so we check `data` here:
-          if (data) {
-            await this.getAll();
-            useToast().success(`Task "${task.title}" created!`);
-          }
+          if (data) useToast().success(`Карточка "${task.title}" создана!`);
         });
     },
     // Update a task
-    // - `task` param should be updated Task we gotta `PUT`.
+    // - `task` param should contain updated Task we have to `PUT` to the server.
     async update(task: ITask) {
       await fetchApi(`/tasks/${task._id}`, "PUT", task)
         .catch((e) => {
-          useToast().error(`Error updating task! ${e.data.message}`);
+          useToast().error(`Ошибка при сохранении карточки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) {
-            await this.getAll();
-            useToast().success("Task updated!");
-          }
+          if (data) useToast().success("Карточка сохранена!");
         });
     },
     // Delete a task
     async delete(id: ID) {
       await fetchApi(`/tasks/${id}`, "DELETE")
         .catch((e) => {
-          useToast().error(`Error deleting task! ${e.data.message}`);
+          useToast().error(`Ошибка при удалении карточки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) {
-            await this.getAll();
-            useToast().success("Task deleted.");
-          }
+          if (data) useToast().success("Карточка удалена.");
         });
     },
   },

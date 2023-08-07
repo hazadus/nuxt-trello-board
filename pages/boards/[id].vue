@@ -11,5 +11,6 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <TrelloBoard v-if="authStore.isAuthenticated" :boardId="(route.params.id as string)" />
+  <TrelloBoard v-if="authStore.isAuthenticated" :boardId="(route.params.id as string)"
+    :key="`board-id-${(route.params.id as string)}`" />
 </template>

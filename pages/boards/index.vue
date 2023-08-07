@@ -43,8 +43,8 @@ boardStore.getAll();
             {{ board.title }}
           </div>
           <div class="grow-0 text-sm text-gray-300">
-            {{ board.columns.length }} columns &middot;
-            {{ board.columns.reduce((accumulator, column) => accumulator + column.tasks.length, 0) }} cards
+            {{ board.columns.length }} кол. &middot;
+            {{ board.columns.reduce((accumulator, column) => accumulator + column.tasks.length, 0) }} карт.
           </div>
         </div>
       </div>

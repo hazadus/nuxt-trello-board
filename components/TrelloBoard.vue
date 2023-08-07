@@ -102,13 +102,13 @@ onMounted(async () => {
 
 <template>
   <Title>
-    {{ board?.title || "Not found" }} | Доскач
+    {{ board?.title || "Доска не найдена" }} | Доскач
   </Title>
 
   <AlertBox v-if="!board" alertType="danger" class="m-4">
-    Can't fint board vith ID "{{ boardId }}"!
+    Не найдена доска с ID "{{ boardId }}"!
     <RouterLink to="/boards/" class="underline">
-      View all boards.
+      Просмотреть все доски.
     </RouterLink>
   </AlertBox>
 

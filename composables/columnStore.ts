@@ -15,20 +15,17 @@ export const useColumnStore = defineStore("column-store", {
         this.columns = data;
         return data as IColumn[];
       } catch (e: any) {
-        useToast().error(`Error fetching columns from backend! ${e.data.message}`);
+        useToast().error(`Ошибка при получении данных о колонках с сервера! ${e.data.message}`);
       }
     },
     // Create a new column
     async create(column: IColumn) {
       await fetchApi("/columns", "POST", column)
         .catch((e) => {
-          useToast().error(`Error creating column! ${e.data.message}`);
+          useToast().error(`Ошибка при создании колонки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) {
-            await this.getAll();
-            useToast().success(`Column "${column.title}" created!`);
-          }
+          if (data) useToast().success(`Колонка "${column.title}" создана!`);
         });
     },
     // Update a column
@@ -36,26 +33,20 @@ export const useColumnStore = defineStore("column-store", {
     async update(column: IColumn) {
       await fetchApi(`/columns/${column._id}`, "PUT", column)
         .catch((e) => {
-          useToast().error(`Error updating column! ${e.data.message}`);
+          useToast().error(`Ошибка при сохранении колонки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) {
-            await this.getAll();
-            useToast().success("Column updated!");
-          }
+          if (data) useToast().success("Колонка сохранена!");
         });
     },
     // Delete a Column
     async delete(id: ID) {
       await fetchApi(`/columns/${id}`, "DELETE")
         .catch((e) => {
-          useToast().error(`Error deleting column! ${e.data.message}`);
+          useToast().error(`Ошибка при удалении колонки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) {
-            await this.getAll();
-            useToast().success("Column deleted.");
-          }
+          if (data) useToast().success("Колонка удалена.");
         });
     },
   },

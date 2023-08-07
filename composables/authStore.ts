@@ -42,9 +42,9 @@ export const useAuthStore = defineStore("auth-store", {
         this.isAuthenticated = true;
         localStorage.setItem("nuxt-trello-board-token", this.token);
         localStorage.setItem("nuxt-trello-board-user", JSON.stringify(this.user));
-        useToast().success(`Logged in as "${this.user.email}"!`);
+        useToast().success(`Вы вошли с учётной записью "${this.user.email}"!`);
       } catch (e: any) {
-        useToast().error(`Error logging in: ${e.data.message}`);
+        useToast().error(`Ошибка при входе в учётную запись: ${e.data.message}`);
       }
     },
     async logOut() {
@@ -55,9 +55,9 @@ export const useAuthStore = defineStore("auth-store", {
         this.isAuthenticated = false;
         localStorage.setItem("nuxt-trello-board-token", this.token);
         localStorage.setItem("nuxt-trello-board-user", JSON.stringify(this.user));
-        useToast().success(`Logged out successfully!`);
+        useToast().success(`Вы успешно вышли из учётной записи.`);
       } catch (e: any) {
-        useToast().error(`Error logging out: ${e.data.message}`);
+        useToast().error(`Ошибка при выходе из учётной записи: ${e.data.message}`);
       }
     },
   },

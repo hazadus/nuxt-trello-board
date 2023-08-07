@@ -15,30 +15,30 @@ export const useBoardStore = defineStore("board-store", {
         this.boards = data;
         return data as IBoard[];
       } catch (e: any) {
-        useToast().error(`Error fetching boards from backend! ${e.data.message}`);
+        useToast().error(`Ошибка при получении данных о досках с сервера! ${e.data.message}`);
       }
     },
     async create(board: IBoard) {
       await fetchApi("/boards", "POST", board)
         .catch((e) => {
-          useToast().error(`Error creating board! ${e.data.message}`);
+          useToast().error(`Ошибка при создании доски! ${e.data.message}`);
         })
         .then(async (data) => {
           if (data) {
             await this.getAll();
-            useToast().success(`Board "${board.title}" created!`);
+            useToast().success(`Доска "${board.title}" создана!`);
           }
         });
     },
     async update(board: IBoard) {
       await fetchApi(`/boards/${board._id}`, "PUT", board)
         .catch((e) => {
-          useToast().error(`Error updating board! ${e.data.message}`);
+          useToast().error(`Ошибка при сохранении доски! ${e.data.message}`);
         })
         .then(async (data) => {
           if (data) {
             await this.getAll();
-            useToast().success("Board updated!");
+            useToast().success("Доска сохранена!");
           }
         });
     },

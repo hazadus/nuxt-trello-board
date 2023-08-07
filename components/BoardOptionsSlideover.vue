@@ -23,7 +23,7 @@ function setIsOpen(value: boolean) {
 }
 
 function placeholder() {
-  alert("Not yet implemented!");
+  alert("Эта возможность пока ещё не реализована!");
 }
 </script>
 

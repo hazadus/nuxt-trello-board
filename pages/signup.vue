@@ -1,5 +1,5 @@
 <template>
   <Title>
-    Sign Up
+    Регистрация
   </Title>
 </template>
