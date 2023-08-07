@@ -23,7 +23,7 @@ async function submitForm() {
 
 onBeforeMount(() => {
   if (authStore.isAuthenticated) {
-    router.push("/");
+    router.push("/boards/");
   }
 });
 

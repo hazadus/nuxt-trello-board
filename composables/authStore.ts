@@ -31,6 +31,18 @@ export const useAuthStore = defineStore("auth-store", {
         localStorage.setItem("nuxt-trello-board-user", JSON.stringify(this.user));
       }
     },
+    async signUpAndLogin(loginCredentials: ILoginCredentials) {
+      try {
+        let data = await $fetch<IUser>("/api/users", {
+          method: "POST",
+          body: loginCredentials,
+        });
+        useToast().success(`Учётная запись "${data.email}" успешно создана!`);
+        await this.logIn(loginCredentials);
+      } catch (e: any) {
+        useToast().error(`Ошибка при создании учётной записи: ${e.data.message}`);
+      }
+    },
     async logIn(loginCredentials: ILoginCredentials) {
       try {
         let data = await $fetch<IAuthToken>("/api/users/login", {
