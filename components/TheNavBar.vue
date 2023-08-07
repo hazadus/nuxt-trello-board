@@ -48,7 +48,7 @@ async function onClickLogOut() {
 </script>
 
 <template>
-  <nav class="sticky top-0 bg-teal-600 border-gray-200 shadow-md">
+  <nav class="sticky top-0 z-10 bg-teal-600 border-gray-200 shadow-md">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
       <div class="flex items-middle">
         <Icon name="material-symbols:space-dashboard" class="text-3xl mr-2 text-gray-700 drop-shadow-lg" />

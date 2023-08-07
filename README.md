@@ -93,6 +93,8 @@ Stuff I learned while working on this project.
   - You don't have to import components, functions from VueUse, stuff like `ref()`, etc.
   - `composables` directory content is also auto-imported.
 - MongoDB preserves order of the items in arrays. So, to reorder tasks or columns, we just need to reorder array items, and save updated array in MongoDB document!
+- [z-index is canceled by setting transform(rotate)](https://stackoverflow.com/questions/20851452/z-index-is-canceled-by-setting-transformrotate)
+  - Solution: [Managing Z-Index In A Component-Based Web Application](https://www.smashingmagazine.com/2019/04/z-index-component-based-web-application/)
 
 ## References
 
@@ -100,5 +102,7 @@ Stuff I learned while working on this project.
 - [Build a Drag-and-Drop Trello Board with Vue.js](https://vueschool.io/courses/build-a-drag-and-drop-trello-board)
 - [Deploying Nuxt Static Site to Github Pages with GitHub Actions](https://donlalicon.dev/articles/nuxt-static-github-pages-action)
 - [Nuxt 3 Server Routes CRUD w/ MongoDB ](https://www.youtube.com/watch?v=1uWHDdcDZWw)
+- [HeadlessUI - Menu](https://headlessui.com/vue/menu)
 - [HeadlessUI - Dialog (Modal)](https://headlessui.com/vue/dialog)
 - [HeadlessUI - Transition](https://headlessui.com/vue/transition)
+- [Managing Z-Index In A Component-Based Web Application](https://www.smashingmagazine.com/2019/04/z-index-component-based-web-application/)

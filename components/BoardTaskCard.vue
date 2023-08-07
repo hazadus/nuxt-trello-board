@@ -46,8 +46,8 @@ onKeyStroke(" ", (event) => {
 </script>
 
 <template>
-  <div class="bg-white p-2 mb-2 rounded max-w-[300px] shadow flex items-baseline task" @focus="focused = true"
-    @blur="focused = false" tabindex="0">
+  <div class="relative z-0 bg-white p-2 mb-2 rounded max-w-[300px] shadow flex items-baseline task"
+    @focus="focused = true" @blur="focused = false" tabindex="0">
     <div class="p-2">
       <input type="checkbox" v-model="task.isCompleted" @change="onToggleCompleted" tabindex="-1" />
     </div>

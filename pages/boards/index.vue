@@ -30,7 +30,7 @@ boardStore.getAll();
 
   <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 px-5 pt-0 pb-5">
     <div @click="onClickCreateNewBoard()"
-      class="h-48 p-4 bg-gray-50 rounded-lg shadow-md overflow-hidden cursor-pointer text-center hover:bg-opacity-90 hover:scale-[1.01]">
+      class="h-48 p-4 bg-gray-50 rounded-lg shadow-md overflow-hidden cursor-pointer text-center hover:bg-opacity-90 ">
       Создать новую доску
     </div>
 

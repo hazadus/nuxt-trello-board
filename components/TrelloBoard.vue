@@ -126,7 +126,7 @@ onMounted(async () => {
       <draggable v-model="board.columns" group="columns" item-key="id" :animation="200" @change="onBoardChange()"
         handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
         <template #item="{ element: column }: { element: IColumn }">
-          <div class="column flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
+          <div class="column relative z-0 flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
             <header class="font-bold mb-4 flex items-baseline">
               <DragHandle />
               <input
@@ -154,7 +154,8 @@ onMounted(async () => {
         </template>
       </draggable>
 
-      <button class="bg-gray-200 whitespace-nowrap px-6 py-2 rounded opacity-50" @click=" addNewColumn(board._id!) ">
+      <button class=" bg-gray-200 whitespace-nowrap px-6 py-2 rounded bg-opacity-50 hover:bg-opacity-60"
+        @click=" addNewColumn(board._id!) ">
         + Добавить колонку
       </button>
     </div>
