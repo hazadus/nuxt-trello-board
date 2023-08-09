@@ -130,7 +130,7 @@ onMounted(async () => {
             <header class="font-bold mb-4 flex items-baseline">
               <DragHandle />
               <input
-                class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1"
+                class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-400 hover:bg-opacity-20"
                 @keyup.enter="onRenameColumn(column, ($event.target as HTMLInputElement).value); ($event.target as HTMLInputElement).blur()"
                 v-model=" column.title " type="text" />
               <button class="text-xl text-gray-400 hover:text-gray-600" @click="onDeleteColumn(column)">
@@ -154,7 +154,7 @@ onMounted(async () => {
         </template>
       </draggable>
 
-      <button class=" bg-gray-200 whitespace-nowrap px-6 py-2 rounded bg-opacity-50 hover:bg-opacity-60"
+      <button class=" bg-gray-200 whitespace-nowrap mt-1 px-6 py-2 rounded bg-opacity-50 hover:bg-opacity-60 "
         @click=" addNewColumn(board._id!) ">
         + Добавить колонку
       </button>

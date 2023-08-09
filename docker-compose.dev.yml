@@ -6,6 +6,8 @@ services:
     image: mongo:6-jammy
     ports:
       - "27017:27017"
+    volumes:
+      - ./docker/mongodb:/data/db
   web:
     container_name: "board-web"
     build: .
