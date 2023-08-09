@@ -4,6 +4,8 @@ services:
   db:
     container_name: "board-db"
     image: mongo:6-jammy
+    volumes:
+      - ./docker/mongodb:/data/db
   web:
     container_name: "board-web"
     build: .
