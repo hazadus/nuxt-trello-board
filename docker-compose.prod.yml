@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: "board-db"
+    image: mongo:6-jammy
+  web:
+    container_name: "board-web"
+    build: .
+    command: node .output/server/index.mjs
+    ports:
+      - "80:3000"
+    environment:
+      - "NITRO_HOST=0.0.0.0"
+      - "NITRO_PORT=3000"
+      - "NUXT_MONGO_DB_ADDRESS=mongodb://db:27017/board"
+    depends_on:
+      - db
