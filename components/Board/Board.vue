@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import draggable from "vuedraggable";
 import type { IColumn, ITask, ID } from '@/types';
-import BoardOptionsSlideover from "./BoardOptionsSlideover.vue";
 
 const props = defineProps<{
   boardId: ID;
@@ -128,7 +127,7 @@ onMounted(async () => {
         <template #item="{ element: column }: { element: IColumn }">
           <div class="column relative z-0 flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
             <header class="font-bold mb-4 flex items-baseline">
-              <DragHandle />
+              <BoardDragHandle />
               <input
                 class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-400 hover:bg-opacity-20"
                 @keyup.enter="onRenameColumn(column, ($event.target as HTMLInputElement).value); ($event.target as HTMLInputElement).blur()"
@@ -148,7 +147,7 @@ onMounted(async () => {
             </draggable>
 
             <footer>
-              <NewTask @add="onAddTask($event, column)" />
+              <BoardTaskCardCreate @add="onAddTask($event, column)" />
             </footer>
           </div>
         </template>
