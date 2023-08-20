@@ -2,6 +2,10 @@
 </script>
 
 <template>
+  <Title>
+    Трололо
+  </Title>
+
   <!-- Hero section -->
   <section class="hero bg-primary-50 dark:bg-gray-900 flex flex-col items-center justify-center ">
     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">

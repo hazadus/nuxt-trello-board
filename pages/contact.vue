@@ -1,5 +1,5 @@
 <template>
   <Title>
-    Контакт
+    Контакт | Трололо
   </Title>
 </template>

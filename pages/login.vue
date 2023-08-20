@@ -34,7 +34,7 @@ onMounted(() => {
 
 <template>
   <Title>
-    Вход в учётную запись | Доскач
+    Вход в учётную запись | Трололо
   </Title>
 
   <section class="bg-teal-500">

@@ -10,7 +10,7 @@ Trello (kanban) board clone implemented in TypeScript with Nuxt 3.
 - Data stored on backend in MongoDB.
 - User authentication.
 
-**Coming soon**: Now the project is being polished. When the basic features will be ready enough, I'll deploy the app for public access.
+Check out current version of the app at http://boards.hazadus.ru
 
 See [Issues](https://github.com/hazadus/nuxt-trello-board/issues) tab for all planned features.
 

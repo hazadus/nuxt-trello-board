@@ -21,7 +21,7 @@ boardStore.getAll();
 
 <template>
   <Title>
-    Все доски | Доскач
+    Все доски | Трололо
   </Title>
 
   <h1 class="text-4xl font-semibold text-gray-100 px-5 py-6">

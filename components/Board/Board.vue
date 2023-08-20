@@ -101,7 +101,7 @@ onMounted(async () => {
 
 <template>
   <Title>
-    {{ board?.title || "Доска не найдена" }} | Доскач
+    {{ board?.title || "Доска не найдена" }} | Трололо
   </Title>
 
   <AlertBox v-if="!board" alertType="danger" class="m-4">
