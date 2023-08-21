@@ -140,8 +140,8 @@ onMounted(async () => {
             <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
             <draggable v-model=" column.tasks " :group=" { name: 'tasks', pull: alt ? 'clone' : true } " item-key="_id"
               :animation=" 200 " @change="onColumnChange(column._id!)">
+              <!-- Hide completed cards if this options is on  -->
               <template #item=" { element: task }: { element: ITask } ">
-                <!-- Hide completed cards if this options is on  -->
                 <BoardTaskCard :task=" task " v-if=" !task.isCompleted || !board.hideCompletedCards "
                   @toggle-completed=" onToggleCompleted(task, $event)" @toggle-favorite="onToggleFavorite(task, $event)"
                   @delete="onDeleteTask($event)" />

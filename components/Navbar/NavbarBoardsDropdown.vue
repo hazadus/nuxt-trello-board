@@ -17,6 +17,9 @@ const menuTitle = computed(() => {
   return { icon: "", title: "Ваши доски" }
 });
 
+if (!boardStore.boards.length) {
+  boardStore.getAll();
+}
 </script>
 
 <template>
@@ -41,7 +44,7 @@ const menuTitle = computed(() => {
           </a>
           </MenuItem>
         </div>
-        <div class="px-1 py-1">
+        <div class="px-1 py-1" v-if="boardStore.boards.length">
           <MenuItem v-slot="{ active }" v-for="board in boardStore.boards" :key="`board-menu-item-${board._id}`">
           <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700"
             @click="router.push(`/boards/${board._id}`)">
