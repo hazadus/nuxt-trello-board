@@ -29,13 +29,15 @@ async function onClickLogOut() {
           </MenuItem>
         </div>
         <div class="px-1 py-1">
-          <MenuItem v-slot="{ active }">
-          <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">
+          <MenuItem v-slot="{ active, disabled }" disabled>
+          <a href="#" :class="{ 'bg-gray-100': active, 'opacity-40': disabled }"
+            class="block px-4 py-3 text-md text-gray-700">
             Профиль
           </a>
           </MenuItem>
-          <MenuItem v-slot="{ active }">
-          <a href="#" :class="{ 'bg-gray-100': active }" class="block px-4 py-3 text-md text-gray-700">
+          <MenuItem v-slot="{ active, disabled }" disabled>
+          <a href="#" :class="{ 'bg-gray-100': active, 'opacity-40': disabled }"
+            class="block px-4 py-3 text-md text-gray-700">
             Настройки
           </a>
           </MenuItem>
