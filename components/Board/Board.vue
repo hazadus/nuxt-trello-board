@@ -10,6 +10,8 @@ const boardStore = useBoardStore();
 const columnStore = useColumnStore();
 const taskStore = useTaskStore();
 
+const selectedCard = ref<ITask | null>(null);
+
 // `alt` will be reactive boolean value, equal to `true` when the alt (or option) key is pressed.
 const alt = useKeyModifier("Alt");
 
@@ -111,6 +113,10 @@ onMounted(async () => {
     </RouterLink>
   </AlertBox>
 
+  <!-- Modal shows itself when the `card` is not null -->
+  <BoardTaskCardModal v-if="selectedCard" :key="selectedCard._id" :card="selectedCard"
+    :onClose="() => selectedCard = null" />
+
   <template v-if="board">
     <div class="flex justify-between items-middle px-5 py-4">
       <input v-model="board.title"
@@ -144,7 +150,7 @@ onMounted(async () => {
               <template #item=" { element: task }: { element: ITask } ">
                 <BoardTaskCard :task=" task " v-if=" !task.isCompleted || !board.hideCompletedCards "
                   @toggle-completed=" onToggleCompleted(task, $event)" @toggle-favorite="onToggleFavorite(task, $event)"
-                  @delete="onDeleteTask($event)" />
+                  @delete="onDeleteTask($event)" @dblclick="selectedCard = task" />
               </template>
             </draggable>
 
