@@ -6,6 +6,7 @@ import {
   DialogOverlay,
   TransitionRoot,
   TransitionChild,
+  Switch,
 } from "@headlessui/vue";
 import type { IBoard } from "@/types";
 
@@ -14,6 +15,7 @@ const props = defineProps<{
 }>();
 
 const isOpen = ref(false);
+const switchHideCompleted = ref(false);
 
 const created = useDateFormat(props.board.createdAt, "DD.MM.YYYY HH:mm").value;
 const updated = useDateFormat(props.board.updatedAt, "DD.MM.YYYY HH:mm").value;
@@ -68,10 +70,31 @@ function placeholder() {
               <div class="p-4 font-semibold hover:bg-gray-200 hover:cursor-pointer" @click="placeholder()">
                 Цвет фона
               </div>
+
+              <div class="p-4">
+                <div class="pb-1 font-semibold">
+                  Скрывать выполненные
+                </div>
+                <div class=" flex items-center">
+                  <div class="mr-2">
+                    <Switch v-model="switchHideCompleted" :class="switchHideCompleted ? 'bg-blue-600' : 'bg-gray-200'"
+                      class="relative inline-flex h-6 w-11 items-center rounded-full">
+                      <span class="sr-only">Enable notifications</span>
+                      <span :class="switchHideCompleted ? 'translate-x-6' : 'translate-x-1'"
+                        class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
+                    </Switch>
+                  </div>
+                  <div class="text-sm text-gray-500">
+                    Не показывать на доске карточки вы<wbr>пол<wbr>ненных задач.
+                  </div>
+                </div>
+              </div>
+
               <div class="p-4 font-semibold hover:bg-gray-200 hover:cursor-pointer" @click="placeholder()">
                 Закрыть доску
               </div>
             </div>
+
             <div class="flex flex-col text-gray-400">
               <div class="px-4 py-1">
                 Создана: {{ created }}
