@@ -16,6 +16,7 @@ const boardSchema = new Schema<IBoard>(
         ref: "Column",
       },
     ],
+    hideCompletedCards: { type: Boolean, required: false },
   },
   { timestamps: true },
 );

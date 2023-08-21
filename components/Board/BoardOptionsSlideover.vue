@@ -14,11 +14,19 @@ const props = defineProps<{
   board: IBoard;
 }>();
 
+const boardStore = useBoardStore();
 const isOpen = ref(false);
-const switchHideCompleted = ref(false);
+const switchHideCompleted = ref(props.board.hideCompletedCards);
 
 const created = useDateFormat(props.board.createdAt, "DD.MM.YYYY HH:mm").value;
 const updated = useDateFormat(props.board.updatedAt, "DD.MM.YYYY HH:mm").value;
+
+watch(switchHideCompleted, async (switchHideCompleted, prevSwitchHideCompleted) => {
+  await boardStore.update({
+    ...props.board,
+    hideCompletedCards: switchHideCompleted,
+  });
+})
 
 function setIsOpen(value: boolean) {
   isOpen.value = value;

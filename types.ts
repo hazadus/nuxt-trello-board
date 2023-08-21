@@ -36,6 +36,7 @@ export interface IBoard {
   user?: IUser;
   title: string;
   columns: IColumn[];
+  hideCompletedCards?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
