@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import NavbarBoardsMenu from './NavbarBoardsMenu.vue';
+
 const authStore = useAuthStore();
 
 const isHamburgerOpen = ref(false);
@@ -52,7 +54,7 @@ const menu = computed((): IMenuItem[] => [
           Трололо
         </RouterLink>
 
-        <NavbarBoardsDropdown v-if="authStore.isAuthenticated" />
+        <NavbarBoardsMenu v-if="authStore.isAuthenticated" />
       </div>
 
       <div class="flex items-center md:order-2">
