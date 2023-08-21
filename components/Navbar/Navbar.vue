@@ -52,13 +52,7 @@ const menu = computed((): IMenuItem[] => [
           Трололо
         </RouterLink>
 
-        <template v-if="authStore.isAuthenticated">
-          <RouterLink to="/boards/"
-            class="hidden md:block py-1 px-3 mr-2 text-gray-100 text-sm rounded-sm hover:text-white hover:bg-gray-100 hover:bg-opacity-20">
-            <Icon name="material-symbols:dashboard" />
-            Доски
-          </RouterLink>
-        </template>
+        <NavbarBoardsDropdown v-if="authStore.isAuthenticated" />
       </div>
 
       <div class="flex items-center md:order-2">
