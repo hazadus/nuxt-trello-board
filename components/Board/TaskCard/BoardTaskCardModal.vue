@@ -116,20 +116,13 @@ const onClickSave = async () => {
                   <h3 class="mb-2 text-xs font-semibold tracking-wide text-gray-500 uppercase">
                     Действия
                   </h3>
-                  <button @click="onClickSave"
-                    class="inline-flex items-center w-full px-4 py-2 mb-1 text-sm font-medium text-gray-700 bg-gray-200 rounded-md shadow-sm hover:bg-gray-300">
-                    <Icon name="material-symbols:check-circle-rounded" class="mr-1 -ml-1 w-4 h-4 shrink-0" />
-                    <span>
-                      Сохранить
-                    </span>
-                  </button>
-                  <button disabled
-                    class="inline-flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 disabled:text-gray-500 bg-gray-200 rounded-md shadow-sm enabled:hover:bg-gray-300">
-                    <Icon name="material-symbols:delete" class="mr-1 -ml-1 w-4 h-4 shrink-0" />
-                    <span>
-                      Удалить
-                    </span>
-                  </button>
+                  <CustomButton @click="onClickSave" :isDisabled="isFetching" icon="material-symbols:check-circle-rounded"
+                    class="w-full mb-1">
+                    Сохранить
+                  </CustomButton>
+                  <CustomButton :isDisabled="true" icon="material-symbols:delete" class="w-full">
+                    Удалить
+                  </CustomButton>
                 </div>
               </div>
             </DialogPanel>
