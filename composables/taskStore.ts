@@ -31,14 +31,22 @@ export const useTaskStore = defineStore("task-store", {
     },
     // Update a task
     // - `task` param should contain updated Task we have to `PUT` to the server.
-    async update(task: ITask) {
+    // return true on success
+    async update(task: Partial<ITask>) {
+      let isSuccess = false;
+
       await fetchApi(`/tasks/${task._id}`, "PUT", task)
         .catch((e) => {
           useToast().error(`Ошибка при сохранении карточки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) useToast().success("Карточка сохранена!");
+          if (data) {
+            useToast().success("Карточка сохранена!");
+            isSuccess = true;
+          }
         });
+
+      return isSuccess;
     },
     // Delete a task
     async delete(id: ID) {

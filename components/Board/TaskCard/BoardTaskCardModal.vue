@@ -12,16 +12,45 @@ const props = defineProps<{
   onClose: () => void;
 }>();
 
+const taskStore = useTaskStore();
+const boardStore = useBoardStore();
+
+const isFetching = ref(false);
+const errorMessage = ref("");
 const editableCard: Ref<Partial<ITask> | null> = props.card ? ref({
+  _id: props.card._id,
   title: props.card.title,
-  description: "",
+  details: props.card.details,
   isCompleted: props.card.isCompleted,
   isFavorite: props.card.isFavorite,
 }) : ref(null);
 
 const isOpen = computed(() => props.card ? true : false);
 
-const onClickSave = () => { };
+/**
+ * Save updated task to the database, then fetch updated data to the global state.
+ */
+const onClickSave = async () => {
+  if (editableCard.value) {
+    errorMessage.value = "";
+
+    // Validate title length
+    if (editableCard.value.title?.length && editableCard.value.title.trim().length < 3) {
+      errorMessage.value = "Заголовок карточки должен содержать не менее трёх символов";
+      return;
+    }
+
+    // Actually update the task in database
+    isFetching.value = true;
+    const isSuccess = await taskStore.update(editableCard.value);
+    if (isSuccess) {
+      // Update global state and close the modal
+      await boardStore.getAll();
+      props.onClose();
+    }
+    isFetching.value = false;
+  }
+};
 </script>
 
 <template>
@@ -40,10 +69,11 @@ const onClickSave = () => { };
             <DialogPanel
               class="overflow-hidden w-full max-w-4xl text-left align-middle bg-white rounded-md shadow-xl transition-all transform">
 
+              <!--Modal header with "X" button -->
               <div class="flex justify-between items-center p-4">
                 <Icon name="mdi:card-text" class="text-xl mx-2 text-gray-500" />
                 <div class="flex-1">
-                  <input v-model="editableCard.title"
+                  <input v-model="editableCard.title" :disabled="isFetching"
                     class="block w-full text-xl font-semibold rounded-md bg-transparent border-none focus:ring-gray-300 hover:bg-gray-50" />
                 </div>
                 <button @click="onClose"
@@ -53,43 +83,48 @@ const onClickSave = () => { };
               </div>
 
               <div class="flex flex-col sm:flex-row">
-
+                <!-- Left column - edit the card -->
                 <div class="flex-1 px-5 pt-0 pb-5">
                   <div>
                     <label class="inline-block mb-1 ml-1 text-md font-semibold text-gray-700" for="description">
                       Описание
                     </label>
-                    <textarea v-model="(editableCard.title)"
+                    <textarea v-model="(editableCard.details as string)" :disabled="isFetching"
                       class="block w-full text-sm mb-2 rounded-md bg-gray-50 border-none focus:ring-gray-300 focus:bg-white"
-                      name="description" rows="4">
+                      name="description" rows="10">
                     </textarea>
 
                     <span class="block mb-1 ml-1 text-md font-semibold text-gray-700">
                       Статус
                     </span>
-                    <input type="checkbox" id="checkboxFavorite" v-model="editableCard.isFavorite"
+                    <input type="checkbox" id="checkboxFavorite" v-model="editableCard.isFavorite" :disabled="isFetching"
                       class="mx-2 rounded-md" />
                     <label for="checkboxFavorite">Избранная</label>
 
                     <input type="checkbox" id="checkboxCompleted" v-model="editableCard.isCompleted"
-                      class="mx-2 rounded-md" />
+                      :disabled="isFetching" class="mx-2 rounded-md" />
                     <label for="checkboxCompleted">Завершенная</label>
                   </div>
+
+                  <AlertBox v-if="errorMessage" alertType="danger" class="mt-3">
+                    {{ errorMessage }}
+                  </AlertBox>
                 </div>
 
+                <!-- Right column - actions -->
                 <div class="px-5 pt-0 pb-5 bg-white sm:w-48">
                   <h3 class="mb-2 text-xs font-semibold tracking-wide text-gray-500 uppercase">
                     Действия
                   </h3>
-                  <button
+                  <button @click="onClickSave"
                     class="inline-flex items-center w-full px-4 py-2 mb-1 text-sm font-medium text-gray-700 bg-gray-200 rounded-md shadow-sm hover:bg-gray-300">
                     <Icon name="material-symbols:check-circle-rounded" class="mr-1 -ml-1 w-4 h-4 shrink-0" />
                     <span>
                       Сохранить
                     </span>
                   </button>
-                  <button
-                    class="inline-flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md shadow-sm hover:bg-gray-300">
+                  <button disabled
+                    class="inline-flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 disabled:text-gray-500 bg-gray-200 rounded-md shadow-sm enabled:hover:bg-gray-300">
                     <Icon name="material-symbols:delete" class="mr-1 -ml-1 w-4 h-4 shrink-0" />
                     <span>
                       Удалить
@@ -103,4 +138,4 @@ const onClickSave = () => { };
       </div>
     </Dialog>
   </TransitionRoot>
-</template>s
+</template>
