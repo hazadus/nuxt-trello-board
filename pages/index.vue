@@ -75,7 +75,7 @@
   </section>
 
   <!-- Content section -->
-  <section class="content bg-primary-100 dark:bg-gray-700">
+  <section class="content bg-primary-100 dark:bg-gray-700 flex flex-col items-center justify-center">
     <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
       <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
         <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
@@ -128,11 +128,10 @@
             </svg>
           </div>
           <h3 class="mb-2 text-xl font-bold dark:text-white">
-            Marketing
+            Планирование
           </h3>
           <p class="text-gray-500 dark:text-gray-400">
-            Plan it, create it, launch it. Collaborate seamlessly with all the
-            organization and hit your marketing goals every month with our marketing plan.
+            Планируй, создавай, запускай. Организуйте свои дела и достигайте целей, каждый день.
           </p>
         </div>
         <div>
@@ -146,11 +145,10 @@
             </svg>
           </div>
           <h3 class="mb-2 text-xl font-bold dark:text-white">
-            Open source
+            Открытый код
           </h3>
           <p class="text-gray-500 dark:text-gray-400">
-            Protect your organization, devices and stay compliant with our
-            structured workflows and custom permissions made for you.
+            Код проекта доступен для всех. Никаких подводных камней! Вы даже можете запустить его на своём сайте.
           </p>
         </div>
         <div>
@@ -167,12 +165,10 @@
             </svg>
           </div>
           <h3 class="mb-2 text-xl font-bold dark:text-white">
-            Business Automation
+            Используйте в бизнесе
           </h3>
           <p class="text-gray-500 dark:text-gray-400">
-            Auto-assign tasks, send Slack messages, and much more. Now power
-            up
-            with hundreds of new templates to help you get started.
+            Презентуйте свои планы коллегам на канбан-доске!
           </p>
         </div>
         <div>
@@ -192,8 +188,7 @@
             Бесплатно
           </h3>
           <p class="text-gray-500 dark:text-gray-400">
-            Audit-proof software built for critical financial operations like
-            month-end close and quarterly budgeting.
+            Использование сервиса не стоит для вас не копейки, и всегда останется бесплатным.
           </p>
         </div>
         <div>
@@ -210,8 +205,8 @@
             Современный UI
           </h3>
           <p class="text-gray-500 dark:text-gray-400">
-            Craft beautiful, delightful experiences for both marketing and
-            product with real cross-company collaboration.
+            Отзывчивый и современный интерфейс позволит вам с комфортом планировать работу как на десктопе, так и на
+            смартфоне.
           </p>
         </div>
         <div>
@@ -225,11 +220,10 @@
             </svg>
           </div>
           <h3 class="mb-2 text-xl font-bold dark:text-white">
-            Operations
+            Настройки
           </h3>
           <p class="text-gray-500 dark:text-gray-400">
-            Keep your company’s lights on with customizable, iterative, and
-            structured workflows built for all efficient teams and individual.
+            Выбирайте такой внешний вид досок, какой удобен лично вам (опция пока на стадии проектирования).
           </p>
         </div>
       </div>
@@ -268,6 +262,32 @@
     </div>
   </section>
 
+  <!-- CTA section -->
+  <section class="cta bg-primary-100 dark:bg-gray-700">
+    <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+      <img class="w-full" src="/images/screenshot1.png" alt="Kanban board">
+      <div class="mt-4 md:mt-0">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+          Создавайте новое и приводите свои идеи в жизнь при помощи современного инструмента.
+        </h2>
+        <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+          Трололо поможет вам качественно спланировать выполнение любых задач, и с удовольсвием довести свои идеи до
+          реализации.
+        </p>
+        <RouterLink to="/login/"
+          class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
+          Приступим
+          <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd">
+            </path>
+          </svg>
+        </RouterLink>
+      </div>
+    </div>
+  </section>
+
   <!-- Testimonials section -->
   <section class="testimonial bg-white dark:bg-gray-900">
     <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
@@ -280,8 +300,8 @@
         </svg>
         <blockquote>
           <p class="text-2xl font-medium text-gray-900 dark:text-white">
-            "Доскач очень крут. Я не знаю, для чего это нужно, и сам не пользуюсь, но парни говорят, что штука рабочая. И
-            я придумал это название!"
+            "Трололо очень крут. Я не знаю, для чего это нужно, и сам не пользуюсь, но парни говорят, что штука рабочая. И
+            я придумал название!"
           </p>
         </blockquote>
         <figcaption class="flex items-center justify-center mt-6 space-x-3">
@@ -297,32 +317,6 @@
           </div>
         </figcaption>
       </figure>
-    </div>
-  </section>
-
-  <!-- CTA section -->
-  <section class="cta bg-primary-100 dark:bg-gray-700">
-    <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-      <img class="w-full" src="/images/screenshot1.png" alt="Kanban board">
-      <div class="mt-4 md:mt-0">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-          Let's create more tools and ideas that brings us together.
-        </h2>
-        <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
-          Flowbite helps you connect with friends and communities of people who share your interests. Connecting with your
-          friends and family as well as discovering new ones is easy with features like Groups.
-        </p>
-        <RouterLink to="/login/"
-          class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
-          Приступим
-          <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-              clip-rule="evenodd">
-            </path>
-          </svg>
-        </RouterLink>
-      </div>
     </div>
   </section>
 </template>
