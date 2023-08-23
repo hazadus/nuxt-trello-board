@@ -11,7 +11,8 @@
     "@nuxt/devtools": "^0.7.4",
     "@nuxtjs/tailwindcss": "^6.6.0",
     "nuxt": "^3.6.3",
-    "nuxt-icon": "^0.3.3"
+    "nuxt-icon": "^0.3.3",
+    "prettier": "3.0.2"
   },
   "dependencies": {
     "@headlessui/tailwindcss": "^0.1.3",
