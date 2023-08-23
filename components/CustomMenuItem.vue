@@ -6,6 +6,10 @@ defineProps({
     type: String,
     required: false,
   },
+  link: {
+    type: String,
+    required: false,
+  },
   isDisabled: {
     type: Boolean,
     required: false,
@@ -16,13 +20,15 @@ defineProps({
 
 <template>
   <MenuItem
-    v-slot="{ active, disabled }"
+    v-slot="{ active, disabled, close }"
     :disabled="isDisabled"
+    class="cursor-pointer"
   >
-    <a
-      href="#"
+    <NuxtLink
+      :to="link || ''"
       class="block px-4 py-3 text-md text-gray-700"
       :class="{ 'bg-gray-100': active, 'opacity-40': disabled }"
+      @click="close()"
     >
       <Icon
         v-if="icon"
@@ -30,6 +36,6 @@ defineProps({
         class="mr-2"
       />
       <slot />
-    </a>
+    </NuxtLink>
   </MenuItem>
 </template>

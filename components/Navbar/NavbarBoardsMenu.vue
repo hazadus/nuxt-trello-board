@@ -53,7 +53,7 @@ if (!boardStore.boards.length) {
         <div class="px-1 py-1">
           <CustomMenuItem
             icon="ic:sharp-home"
-            @click="router.push('/boards/')"
+            link="/boards/"
           >
             Все доски
           </CustomMenuItem>
@@ -66,7 +66,7 @@ if (!boardStore.boards.length) {
             icon="material-symbols:dashboard"
             v-for="board in boardStore.boards"
             :key="`board-menu-item-${board._id}`"
-            @click="router.push(`/boards/${board._id}`)"
+            :link="`/boards/${board._id}`"
           >
             {{ board.title }}
           </CustomMenuItem>
