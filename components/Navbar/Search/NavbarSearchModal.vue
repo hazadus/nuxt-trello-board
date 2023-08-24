@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Dialog, DialogOverlay, TransitionRoot, TransitionChild } from "@headlessui/vue";
+import { formatTimeAgo } from "@vueuse/core";
+import { ITask } from "types";
 
 defineProps({
   isOpen: {
@@ -10,7 +12,21 @@ defineProps({
 
 const emit = defineEmits<{
   (e: "closeModal", closeModal: boolean): void;
+  (e: "taskSelected", selectedTask: ITask): void;
 }>();
+
+const taskStore = useTaskStore();
+const searchText = ref("");
+
+const searchResults = computed(() => {
+  const searchTextTrimmed = searchText.value.trim();
+
+  if (searchTextTrimmed.length)
+    return taskStore.tasks.filter((task) => task.title.includes(searchTextTrimmed));
+  else return [];
+});
+
+onMounted(() => taskStore.getAll());
 </script>
 
 <template>
@@ -44,10 +60,12 @@ const emit = defineEmits<{
         leave-from="opacity-100 scale-100"
         leave-to="opacity-0 scale-95"
       >
-        <div class="w-full max-w-2xl bg-white rounded-lg mx-4 max-h-[80vh] mt-[10vh] relative">
+        <div
+          class="flex flex-col w-full max-w-2xl bg-white rounded-lg mx-4 max-h-[80vh] mt-[10vh] relative"
+        >
           <form
             action="#"
-            class="flex items-center"
+            class="flex items-center relative"
           >
             <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
               <Icon
@@ -57,9 +75,10 @@ const emit = defineEmits<{
             </div>
 
             <input
+              v-model="searchText"
               type="text"
               placeholder="Найти..."
-              class="w-full overflow-hidden py-4 pl-12 border-b border-gray-100 outline-none focus:border-none placeholder-gray-400 focus:ring-gray-100 rounded-lg"
+              class="w-full overflow-hidden py-4 pl-12 outline-none border-b focus:border-b border-gray-100 focus:border-gray-100 ring-0 focus:ring-0 rounded-lg placeholder-gray-400"
             />
 
             <div class="absolute inset-y-0 right-0 flex items-center pr-4">
@@ -71,6 +90,32 @@ const emit = defineEmits<{
               </button>
             </div>
           </form>
+
+          <div class="overflow-auto">
+            <ul
+              v-if="searchResults.length"
+              class="divide-y divide-gray-100"
+            >
+              <li
+                v-for="task in searchResults"
+                :key="`result-id-${task._id}`"
+                class="flex items-center px-4 py-2.5 cursor-pointer"
+                @click="() => emit('taskSelected', task)"
+              >
+                <div>
+                  <div
+                    class="font-semibold text-gray-600 mb-1"
+                    :class="task.isCompleted ? 'line-through' : ''"
+                  >
+                    {{ task.title }}
+                  </div>
+                  <div class="text-xs text-gray-400">
+                    Создана {{ formatTimeAgo(new Date(task.createdAt!)) }}
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </TransitionChild>
     </Dialog>
