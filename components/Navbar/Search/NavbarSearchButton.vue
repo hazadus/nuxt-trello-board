@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const isAppleOs = () => {
+  const platform = navigator.userAgent;
+  return /(Mac|iPhone|iPad|iPod)/i.test(platform);
+};
+
+const keyaboardShortcut = isAppleOs() ? "⌘K" : "Ctrl+K";
+</script>
 
 <template>
   <div
@@ -9,6 +16,6 @@
       class="text-xl"
     />
     <span class="flex-1 text-left text-gray-600"> Найти... </span>
-    <span class="hidden sm:flex">Ctrl+K</span>
+    <span class="hidden sm:flex">{{ keyaboardShortcut }}</span>
   </div>
 </template>

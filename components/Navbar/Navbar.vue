@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NavbarBoardsMenu from "./NavbarBoardsMenu.vue";
-import NavbarSearchButton from "./SearchButton/NavbarSearchButton.vue";
+import NavbarSearchButton from "./Search/NavbarSearchButton.vue";
 
 const authStore = useAuthStore();
 
