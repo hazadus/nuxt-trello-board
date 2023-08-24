@@ -12,6 +12,11 @@ const boardStore = useBoardStore();
 
 const isFetching = ref(false);
 const errorMessage = ref("");
+
+// Initialize auto-resizable text area for card title
+const { textarea: titleTextarea, input: newTitle } = useTextareaAutosize();
+newTitle.value = props.card?.title || "";
+
 const editableCard: Ref<Partial<ITask> | null> = props.card
   ? ref({
       _id: props.card._id,
@@ -32,10 +37,12 @@ const onClickSave = async () => {
     errorMessage.value = "";
 
     // Validate title length
-    if (editableCard.value.title?.length && editableCard.value.title.trim().length < 3) {
+    if (newTitle.value.length && newTitle.value.trim().length < 3) {
       errorMessage.value = "Заголовок карточки должен содержать не менее трёх символов";
       return;
     }
+
+    editableCard.value.title = newTitle.value;
 
     // Actually update the task in database
     isFetching.value = true;
@@ -95,15 +102,16 @@ const onClickSave = async () => {
                   class="text-xl mx-2 text-gray-500"
                 />
                 <div class="flex-1">
-                  <input
-                    v-model="editableCard.title"
+                  <textarea
+                    v-model="newTitle"
+                    ref="titleTextarea"
                     :disabled="isFetching"
-                    class="block w-full text-xl font-semibold rounded-md bg-transparent border-none focus:ring-gray-300 hover:bg-gray-50"
+                    class="block w-full text-xl resize-none font-semibold rounded-md bg-transparent border-none focus:ring-gray-300 hover:bg-gray-50"
                   />
                 </div>
                 <button
-                  @click="onClose"
                   class="text-xl text-gray-900 bg-transparent px-3 py-0 rounded hover:bg-gray-300 hover:bg-opacity-20"
+                  @click="onClose"
                 >
                   <Icon name="mdi:close" />
                 </button>
