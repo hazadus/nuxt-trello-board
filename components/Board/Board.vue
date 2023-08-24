@@ -132,12 +132,12 @@ onMounted(async () => {
     <div class="flex justify-between items-middle px-5 py-4">
       <input
         v-model="board.title"
+        type="text"
         class="text-4xl font-semibold bg-transparent border-none rounded px-1 min-w-0 flex-grow text-gray-100 focus:text-black focus:bg-white focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-100 hover:bg-opacity-20"
         @keyup.enter="
           onBoardChange();
           ($event.target as HTMLInputElement).blur();
         "
-        type="text"
       />
 
       <BoardOptionsSlideover :board="board" />
@@ -150,22 +150,22 @@ onMounted(async () => {
         group="columns"
         item-key="id"
         :animation="200"
-        @change="onBoardChange()"
         handle=".drag-handle"
         class="columns-wrapper flex gap-4 items-start"
+        @change="onBoardChange()"
       >
         <template #item="{ element: column }: { element: IColumn }">
           <div class="column relative z-0 flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
             <header class="font-bold mb-4 flex items-baseline">
               <BoardDragHandle />
               <input
+                v-model="column.title"
+                type="text"
                 class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-400 hover:bg-opacity-20"
                 @keyup.enter="
                   onRenameColumn(column, ($event.target as HTMLInputElement).value);
                   ($event.target as HTMLInputElement).blur();
                 "
-                v-model="column.title"
-                type="text"
               />
               <button
                 class="text-xl text-gray-400 hover:text-gray-600"
@@ -197,6 +197,20 @@ onMounted(async () => {
             </draggable>
 
             <footer>
+              <!-- Show number of hidden completed cards if option `hideCompletedCards` is on -->
+              <div
+                v-if="board.hideCompletedCards"
+                class="text-sm text-gray-500 p-2"
+              >
+                <Icon name="formkit:hidden" />
+                {{
+                  column.tasks.reduce((accumulator, task) => {
+                    return accumulator + (task.isCompleted ? 1 : 0);
+                  }, 0)
+                }}
+                скрыто
+              </div>
+
               <BoardTaskCardCreate @add="onAddTask($event, column)" />
             </footer>
           </div>
