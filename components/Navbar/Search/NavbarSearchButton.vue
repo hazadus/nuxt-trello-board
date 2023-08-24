@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const emit = defineEmits<{
+  (e: "shortcutPressed", isPressed: boolean): void;
+}>();
+// emit("shortcutPressed", void);
+
 const isAppleOs = () => {
   const platform = navigator.userAgent;
   return /(Mac|iPhone|iPad|iPod)/i.test(platform);

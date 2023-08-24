@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import NavbarBoardsMenu from "./NavbarBoardsMenu.vue";
 import NavbarSearchButton from "./Search/NavbarSearchButton.vue";
+import NavbarSearchModal from "./Search/NavbarSearchModal.vue";
 
 const authStore = useAuthStore();
 
 const isHamburgerOpen = ref(false);
+const isSearchModalOpen = ref(false);
 
 const activeMenuClasses =
   "block py-2 pl-3 pr-4 text-gray-100 underline rounded bg-transparent md:p-0";
@@ -66,7 +68,11 @@ const menu = computed((): IMenuItem[] => [
       </div>
 
       <div class="flex items-center md:order-2">
-        <NavbarSearchButton class="mr-4" />
+        <NavbarSearchButton
+          class="mr-4"
+          @click="isSearchModalOpen = true"
+          @shortcutPressed="isSearchModalOpen = true"
+        />
         <NavbarUserMenu />
 
         <!-- Hamburger button - show only to not authenticated users on small screens  -->
@@ -120,4 +126,9 @@ const menu = computed((): IMenuItem[] => [
       </template>
     </div>
   </nav>
+
+  <NavbarSearchModal
+    :isOpen="isSearchModalOpen"
+    @closeModal="isSearchModalOpen = false"
+  />
 </template>
