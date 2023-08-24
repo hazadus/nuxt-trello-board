@@ -71,6 +71,7 @@ const menu = computed((): IMenuItem[] => [
 
       <div class="flex items-center md:order-2">
         <NavbarSearchButton
+          v-if="authStore.isAuthenticated"
           class="mr-4"
           @click="isSearchModalOpen = true"
           @shortcutPressed="isSearchModalOpen = !isSearchModalOpen"
@@ -129,20 +130,22 @@ const menu = computed((): IMenuItem[] => [
     </div>
   </nav>
 
-  <NavbarSearchModal
-    :isOpen="isSearchModalOpen"
-    @closeModal="isSearchModalOpen = false"
-    @taskSelected="
-      (task) => {
-        isSearchModalOpen = false;
-        selectedSearchResult = task;
-      }
-    "
-  />
-  <BoardTaskCardModal
-    v-if="selectedSearchResult"
-    :key="selectedSearchResult._id"
-    :card="selectedSearchResult"
-    :onClose="() => (selectedSearchResult = null)"
-  />
+  <template v-if="authStore.isAuthenticated">
+    <NavbarSearchModal
+      :isOpen="isSearchModalOpen"
+      @closeModal="isSearchModalOpen = false"
+      @taskSelected="
+        (task) => {
+          isSearchModalOpen = false;
+          selectedSearchResult = task;
+        }
+      "
+    />
+    <BoardTaskCardModal
+      v-if="selectedSearchResult"
+      :key="selectedSearchResult._id"
+      :card="selectedSearchResult"
+      :onClose="() => (selectedSearchResult = null)"
+    />
+  </template>
 </template>
