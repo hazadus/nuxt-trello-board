@@ -45,7 +45,32 @@ const emit = defineEmits<{
         leave-to="opacity-0 scale-95"
       >
         <div class="w-full max-w-2xl bg-white rounded-lg mx-4 max-h-[80vh] mt-[10vh] relative">
-          SearchModal
+          <form
+            action="#"
+            class="flex items-center"
+          >
+            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+              <Icon
+                name="material-symbols:search"
+                class="w-5 h-5 text-gray-700"
+              />
+            </div>
+
+            <input
+              type="text"
+              placeholder="Найти..."
+              class="w-full overflow-hidden py-4 pl-12 border-b border-gray-100 outline-none focus:border-none placeholder-gray-400 focus:ring-gray-100 rounded-lg"
+            />
+
+            <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+              <button
+                type="button"
+                class="flex items-center p-1.5 text-sm uppercase font-semibold tracking-wider text-gray-700 rounded-md border border-gray-200 focus:outline-none focus:border-gray-300"
+              >
+                Esc
+              </button>
+            </div>
+          </form>
         </div>
       </TransitionChild>
     </Dialog>
