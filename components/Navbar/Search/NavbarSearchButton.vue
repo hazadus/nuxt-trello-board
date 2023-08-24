@@ -2,14 +2,22 @@
 const emit = defineEmits<{
   (e: "shortcutPressed", isPressed: boolean): void;
 }>();
-// emit("shortcutPressed", void);
 
 const isAppleOs = () => {
   const platform = navigator.userAgent;
   return /(Mac|iPhone|iPad|iPod)/i.test(platform);
 };
 
-const keyaboardShortcut = isAppleOs() ? "⌘K" : "Ctrl+K";
+const keyaboardShortcut = isAppleOs() ? "⌘ /" : "Ctrl+/";
+
+const onKeyDown = (event: KeyboardEvent) => {
+  if ((event.metaKey || event.ctrlKey) && event.key === "/") {
+    emit("shortcutPressed", true);
+  }
+};
+
+onMounted(() => window.addEventListener("keydown", onKeyDown));
+onUnmounted(() => window.removeEventListener("keydown", onKeyDown));
 </script>
 
 <template>

@@ -71,7 +71,7 @@ const menu = computed((): IMenuItem[] => [
         <NavbarSearchButton
           class="mr-4"
           @click="isSearchModalOpen = true"
-          @shortcutPressed="isSearchModalOpen = true"
+          @shortcutPressed="isSearchModalOpen = !isSearchModalOpen"
         />
         <NavbarUserMenu />
 
