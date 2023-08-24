@@ -17,6 +17,8 @@ const emit = defineEmits<{
 
 const taskStore = useTaskStore();
 const searchText = ref("");
+const resultsRefs = ref<Element[]>([]);
+const selectedIndex = ref(0);
 
 const searchResults = computed(() => {
   const searchTextTrimmed = searchText.value.trim();
@@ -24,6 +26,36 @@ const searchResults = computed(() => {
   if (searchTextTrimmed.length)
     return taskStore.tasks.filter((task) => task.title.includes(searchTextTrimmed));
   else return [];
+});
+
+/**
+ * Used to navigate search results with up and down keyboard keys.
+ * @param event Keyboard event from `@keydown`
+ */
+const navigateResults = (event: KeyboardEvent) => {
+  switch (event.code) {
+    case "ArrowDown":
+      if (selectedIndex.value === searchResults.value.length - 1) selectedIndex.value = 0;
+      else selectedIndex.value += 1;
+      break;
+    case "ArrowUp":
+      if (selectedIndex.value === 0) selectedIndex.value = searchResults.value.length - 1;
+      else selectedIndex.value -= 1;
+      break;
+  }
+
+  resultsRefs.value[selectedIndex.value].scrollIntoView(false);
+};
+
+const onSearchInputKeyDown = (event: KeyboardEvent) => {
+  if (["ArrowUp", "ArrowDown"].includes(event.code)) {
+    event.preventDefault();
+    navigateResults(event);
+  }
+};
+
+watch(searchText, () => {
+  selectedIndex.value = 0;
 });
 
 onMounted(() => taskStore.getAll());
@@ -38,6 +70,7 @@ onMounted(() => taskStore.getAll());
       class="fixed inset-0 z-50 flex justify-center items-start"
       :open="isOpen"
       @close="() => emit('closeModal', true)"
+      @keydown="navigateResults"
     >
       <TransitionChild
         as="template"
@@ -66,6 +99,11 @@ onMounted(() => taskStore.getAll());
           <form
             action="#"
             class="flex items-center relative"
+            @submit.prevent="
+              () => {
+                if (searchResults.length) emit('taskSelected', searchResults[selectedIndex]);
+              }
+            "
           >
             <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
               <Icon
@@ -79,6 +117,7 @@ onMounted(() => taskStore.getAll());
               type="text"
               placeholder="Найти..."
               class="w-full overflow-hidden py-4 pl-12 outline-none border-b focus:border-b border-gray-100 focus:border-gray-100 ring-0 focus:ring-0 rounded-lg placeholder-gray-400"
+              @keydown="onSearchInputKeyDown"
             />
 
             <div class="absolute inset-y-0 right-0 flex items-center pr-4">
@@ -97,10 +136,17 @@ onMounted(() => taskStore.getAll());
               class="divide-y divide-gray-100"
             >
               <li
-                v-for="task in searchResults"
+                v-for="(task, index) in searchResults"
                 :key="`result-id-${task._id}`"
+                :ref="
+                  (el) => {
+                    resultsRefs[index] = el as Element;
+                  }
+                "
                 class="flex items-center px-4 py-2.5 cursor-pointer"
+                :class="selectedIndex === index ? 'bg-gray-100' : ''"
                 @click="() => emit('taskSelected', task)"
+                @mousemove="selectedIndex = index"
               >
                 <div>
                   <div
