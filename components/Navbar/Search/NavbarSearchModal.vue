@@ -24,7 +24,9 @@ const searchResults = computed(() => {
   const searchTextTrimmed = searchText.value.trim();
 
   if (searchTextTrimmed.length)
-    return taskStore.tasks.filter((task) => task.title.includes(searchTextTrimmed));
+    return taskStore.tasks.filter((task) =>
+      task.title.toLowerCase().includes(searchTextTrimmed.toLowerCase()),
+    );
   else return [];
 });
 
@@ -143,7 +145,7 @@ onMounted(() => taskStore.getAll());
                     resultsRefs[index] = el as Element;
                   }
                 "
-                class="flex items-center px-4 py-2.5 cursor-pointer"
+                class="flex items-center px-4 py-2.5 cursor-pointer rounded-lg"
                 :class="selectedIndex === index ? 'bg-gray-100' : ''"
                 @click="() => emit('taskSelected', task)"
                 @mousemove="selectedIndex = index"

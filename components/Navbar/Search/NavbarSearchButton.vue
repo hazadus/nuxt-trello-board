@@ -11,7 +11,7 @@ const isAppleOs = () => {
 const keyaboardShortcut = isAppleOs() ? "⌘ /" : "Ctrl+/";
 
 const onKeyDown = (event: KeyboardEvent) => {
-  if ((event.metaKey || event.ctrlKey) && event.key === "/") {
+  if ((event.metaKey || event.ctrlKey) && (event.key === "/" || event.key === ".")) {
     emit("shortcutPressed", true);
   }
 };
