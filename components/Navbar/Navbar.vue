@@ -2,11 +2,13 @@
 import NavbarBoardsMenu from "./NavbarBoardsMenu.vue";
 import NavbarSearchButton from "./Search/NavbarSearchButton.vue";
 import NavbarSearchModal from "./Search/NavbarSearchModal.vue";
+import { ITask } from "types";
 
 const authStore = useAuthStore();
 
 const isHamburgerOpen = ref(false);
 const isSearchModalOpen = ref(false);
+const selectedSearchResult = ref<ITask | null>(null);
 
 const activeMenuClasses =
   "block py-2 pl-3 pr-4 text-gray-100 underline rounded bg-transparent md:p-0";
@@ -130,5 +132,17 @@ const menu = computed((): IMenuItem[] => [
   <NavbarSearchModal
     :isOpen="isSearchModalOpen"
     @closeModal="isSearchModalOpen = false"
+    @taskSelected="
+      (task) => {
+        isSearchModalOpen = false;
+        selectedSearchResult = task;
+      }
+    "
+  />
+  <BoardTaskCardModal
+    v-if="selectedSearchResult"
+    :key="selectedSearchResult._id"
+    :card="selectedSearchResult"
+    :onClose="() => (selectedSearchResult = null)"
   />
 </template>
