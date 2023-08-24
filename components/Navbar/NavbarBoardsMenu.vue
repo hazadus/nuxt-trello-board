@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems } from "@headlessui/vue";
 
-const router = useRouter();
 const route = useRoute();
 const boardStore = useBoardStore();
 

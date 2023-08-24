@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import draggable from "vuedraggable";
-import type { IColumn, ITask, ID } from '@/types';
+import type { IColumn, ITask, ID } from "@/types";
 
 const props = defineProps<{
   boardId: ID;
@@ -30,7 +30,9 @@ async function addNewColumn(targetBoardId: ID) {
 
   // Make sure Vue has updated the DOM, then focus on the newly created column:
   nextTick(() => {
-    (document.querySelector(".column:last-of-type .column-title-input") as HTMLInputElement).focus();
+    (
+      document.querySelector(".column:last-of-type .column-title-input") as HTMLInputElement
+    ).focus();
   });
 }
 
@@ -45,10 +47,10 @@ async function onBoardChange() {
 /**
  * This should be called on `change` from inner `draggable`, which represents task cards.
  * Triggered for column when task removed, and when task is added.
- * @param columnId 
+ * @param columnId
  */
 async function onColumnChange(columnId: ID) {
-  const updatedColumn = board.value!.columns.find(column => column._id === columnId);
+  const updatedColumn = board.value!.columns.find((column) => column._id === columnId);
   if (updatedColumn) await columnStore.update(updatedColumn);
 }
 
@@ -77,7 +79,7 @@ async function onAddTask(task: ITask, targetColumn: IColumn) {
 async function onToggleCompleted(task: ITask, isCompleted: boolean) {
   await taskStore.update({
     ...task,
-    isCompleted,  // Overwrite value already in `task`
+    isCompleted, // Overwrite value already in `task`
   });
   boardStore.getAll();
 }
@@ -85,7 +87,7 @@ async function onToggleCompleted(task: ITask, isCompleted: boolean) {
 async function onToggleFavorite(task: ITask, isFavorite: boolean) {
   await taskStore.update({
     ...task,
-    isFavorite,  // Overwrite value already in `task`
+    isFavorite, // Overwrite value already in `task`
   });
   boardStore.getAll();
 }
@@ -102,55 +104,95 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Title>
-    {{ board?.title || "Доска не найдена" }} | Трололо
-  </Title>
+  <Title> {{ board?.title || "Доска не найдена" }} | Трололо </Title>
 
-  <AlertBox v-if="!board" alertType="danger" class="m-4">
+  <AlertBox
+    v-if="!board"
+    alertType="danger"
+    class="m-4"
+  >
     Не найдена доска с ID "{{ boardId }}"!
-    <RouterLink to="/boards/" class="underline">
+    <RouterLink
+      to="/boards/"
+      class="underline"
+    >
       Просмотреть все доски.
     </RouterLink>
   </AlertBox>
 
   <!-- Modal shows itself when the `card` is not null -->
-  <BoardTaskCardModal v-if="selectedCard" :key="selectedCard._id" :card="selectedCard"
-    :onClose="() => selectedCard = null" />
+  <BoardTaskCardModal
+    v-if="selectedCard"
+    :key="selectedCard._id"
+    :card="selectedCard"
+    :onClose="() => (selectedCard = null)"
+  />
 
   <template v-if="board">
     <div class="flex justify-between items-middle px-5 py-4">
-      <input v-model="board.title"
-        class="text-4xl font-semibold bg-transparent border-none rounded px-1 min-w-0 flex-grow text-gray-100 focus:text-black focus:bg-white  focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-100 hover:bg-opacity-20"
-        @keyup.enter="onBoardChange(); ($event.target as HTMLInputElement).blur()" type="text">
+      <input
+        v-model="board.title"
+        class="text-4xl font-semibold bg-transparent border-none rounded px-1 min-w-0 flex-grow text-gray-100 focus:text-black focus:bg-white focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-100 hover:bg-opacity-20"
+        @keyup.enter="
+          onBoardChange();
+          ($event.target as HTMLInputElement).blur();
+        "
+        type="text"
+      />
 
       <BoardOptionsSlideover :board="board" />
     </div>
 
     <div class="board flex items-start pt-0 px-5 pb-5 overflow-x-auto gap-4">
       <!-- When `handle` prop is defined, the column can be dragged only by it's handle. -->
-      <draggable v-model="board.columns" group="columns" item-key="id" :animation="200" @change="onBoardChange()"
-        handle=".drag-handle" class="columns-wrapper flex gap-4 items-start">
+      <draggable
+        v-model="board.columns"
+        group="columns"
+        item-key="id"
+        :animation="200"
+        @change="onBoardChange()"
+        handle=".drag-handle"
+        class="columns-wrapper flex gap-4 items-start"
+      >
         <template #item="{ element: column }: { element: IColumn }">
           <div class="column relative z-0 flex-shrink-0 bg-gray-200 p-5 rounded shadow w-[340px]">
             <header class="font-bold mb-4 flex items-baseline">
               <BoardDragHandle />
               <input
                 class="column-title-input bg-transparent border-none focus:bg-white rounded px-1 flex-grow focus:outline focus:outline-gray-400 focus:outline-1 hover:bg-gray-400 hover:bg-opacity-20"
-                @keyup.enter="onRenameColumn(column, ($event.target as HTMLInputElement).value); ($event.target as HTMLInputElement).blur()"
-                v-model=" column.title " type="text" />
-              <button class="text-xl text-gray-400 hover:text-gray-600" @click="onDeleteColumn(column)">
+                @keyup.enter="
+                  onRenameColumn(column, ($event.target as HTMLInputElement).value);
+                  ($event.target as HTMLInputElement).blur();
+                "
+                v-model="column.title"
+                type="text"
+              />
+              <button
+                class="text-xl text-gray-400 hover:text-gray-600"
+                @click="onDeleteColumn(column)"
+              >
                 <Icon name="material-symbols:delete-outline" />
               </button>
             </header>
 
             <!-- Tasks are cloned when "alt" ("option") key is pressed. -->
-            <draggable v-model=" column.tasks " :group=" { name: 'tasks', pull: alt ? 'clone' : true } " item-key="_id"
-              :animation=" 200 " @change="onColumnChange(column._id!)">
+            <draggable
+              v-model="column.tasks"
+              :group="{ name: 'tasks', pull: alt ? 'clone' : true }"
+              item-key="_id"
+              :animation="200"
+              @change="onColumnChange(column._id!)"
+            >
               <!-- Hide completed cards if this options is on  -->
-              <template #item=" { element: task }: { element: ITask } ">
-                <BoardTaskCard :task=" task " v-if=" !task.isCompleted || !board.hideCompletedCards "
-                  @toggle-completed=" onToggleCompleted(task, $event)" @toggle-favorite="onToggleFavorite(task, $event)"
-                  @delete="onDeleteTask($event)" @dblclick="selectedCard = task" />
+              <template #item="{ element: task }: { element: ITask }">
+                <BoardTaskCard
+                  :task="task"
+                  v-if="!task.isCompleted || !board.hideCompletedCards"
+                  @toggle-completed="onToggleCompleted(task, $event)"
+                  @toggle-favorite="onToggleFavorite(task, $event)"
+                  @delete="onDeleteTask($event)"
+                  @dblclick="selectedCard = task"
+                />
               </template>
             </draggable>
 
@@ -161,8 +203,10 @@ onMounted(async () => {
         </template>
       </draggable>
 
-      <button class=" bg-gray-200 whitespace-nowrap mt-1 px-6 py-2 rounded bg-opacity-50 hover:bg-opacity-60 "
-        @click=" addNewColumn(board._id!) ">
+      <button
+        class="bg-gray-200 whitespace-nowrap mt-1 px-6 py-2 rounded bg-opacity-50 hover:bg-opacity-60"
+        @click="addNewColumn(board._id!)"
+      >
         + Добавить колонку
       </button>
     </div>

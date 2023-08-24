@@ -1,5 +1,3 @@
 <template>
-  <Title>
-    Контакт | Трололо
-  </Title>
+  <Title> Контакт | Трололо </Title>
 </template>

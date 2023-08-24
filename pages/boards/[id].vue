@@ -11,6 +11,9 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <Board v-if="authStore.isAuthenticated" :boardId="(route.params.id as string)"
-    :key="`board-id-${(route.params.id as string)}`" />
+  <Board
+    v-if="authStore.isAuthenticated"
+    :boardId="route.params.id as string"
+    :key="`board-id-${route.params.id as string}`"
+  />
 </template>

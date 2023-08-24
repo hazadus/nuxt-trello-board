@@ -15,7 +15,7 @@ function createTask(e: Event) {
       title: title.value.trim(),
       isCompleted: false,
       isFavorite: false,
-    } as ITask)
+    } as ITask);
   }
 
   title.value = "";
@@ -24,12 +24,19 @@ function createTask(e: Event) {
 
 <template>
   <div>
-    <textarea v-model="title" @keydown.tab="createTask" @keyup.enter="createTask"
+    <textarea
+      v-model="title"
       class="bg-gray-200 focus:bg-white focus:shadow p-2 focus:pl-3 text-gray-500 resize-none rounded w-full border-none overflow-y-hidden focus:overflow-y-auto"
       :class="{
         'h-7': !focused,
         'h-20': focused,
-      }" style="outline: none !important;" @focus="focused = true" @blur="focused = false"
-      :placeholder="!focused ? '+ Добавить карточку' : 'Введите текст карточки'" />
+      }"
+      :placeholder="!focused ? '+ Добавить карточку' : 'Введите текст карточки'"
+      style="outline: none !important"
+      @keydown.tab="createTask"
+      @keyup.enter="createTask"
+      @focus="focused = true"
+      @blur="focused = false"
+    />
   </div>
 </template>

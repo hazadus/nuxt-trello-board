@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ITask, ID } from '@/types';
+import type { ITask, ID } from "@/types";
 
 const props = defineProps<{
   task: ITask;
@@ -21,7 +21,7 @@ function onToggleFavorite() {
   emit("toggleFavorite", !props.task.isFavorite);
 }
 
-onKeyStroke("Backspace", (event) => {
+onKeyStroke("Backspace", () => {
   // Delete task using backspace key
   if (focused.value) {
     emit("delete", props.task._id!);
@@ -46,16 +46,27 @@ onKeyStroke(" ", (event) => {
 </script>
 
 <template>
-  <div class="relative z-0 bg-white p-2 mb-2 rounded max-w-[300px] shadow flex flex-col task" @focus="focused = true"
-    @blur="focused = false" tabindex="0">
+  <div
+    class="relative z-0 bg-white p-2 mb-2 rounded max-w-[300px] shadow flex flex-col task"
+    tabindex="0"
+    @focus="focused = true"
+    @blur="focused = false"
+  >
     <div class="p-2">
-      <p class="text-sm leading-5" :class="task.isCompleted ? 'line-through' : ''">
+      <p
+        class="text-sm leading-5"
+        :class="task.isCompleted ? 'line-through' : ''"
+      >
         {{ task.title }}
       </p>
     </div>
     <div class="pb-2 px-2">
-      <button class="btn-favorite" :class="task.isFavorite ? 'text-yellow-400' : 'text-gray-200'" tabindex="-1"
-        @click.preventDefault="onToggleFavorite">
+      <button
+        class="btn-favorite"
+        :class="task.isFavorite ? 'text-yellow-400' : 'text-gray-200'"
+        tabindex="-1"
+        @click.preventDefault="onToggleFavorite"
+      >
         <Icon name="material-symbols:star" />
       </button>
     </div>
