@@ -27,15 +27,16 @@ if (!boardStore.boards.length) {
     class="relative"
   >
     <MenuButton
-      class="py-1 px-3 bg-opacity-50 bg-teal-500 focus:outline-none hover:bg-opacity-70 rounded-sm"
+      class="py-1.5 px-3 bg-opacity-50 bg-teal-500 focus:outline-none hover:bg-opacity-70 rounded-lg"
     >
-      <Icon
-        v-if="menuTitle.icon"
-        :name="menuTitle.icon"
-        class="mr-1"
-      />
-      {{ menuTitle.title }}
-      <Icon name="mdi:chevron-down" />
+      <div class="flex items-center space-x-2">
+        <Icon
+          v-if="menuTitle.icon"
+          :name="menuTitle.icon"
+        />
+        <span>{{ menuTitle.title }}</span>
+        <Icon name="mdi:chevron-down" />
+      </div>
     </MenuButton>
 
     <Transition

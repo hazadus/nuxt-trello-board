@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NavbarBoardsMenu from "./NavbarBoardsMenu.vue";
+import NavbarSearchButton from "./SearchButton/NavbarSearchButton.vue";
 
 const authStore = useAuthStore();
 
@@ -48,7 +49,7 @@ const menu = computed((): IMenuItem[] => [
 <template>
   <nav class="sticky top-0 z-10 bg-teal-600 border-gray-200 shadow-md">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
-      <div class="flex items-middle">
+      <div class="flex items-middle items-center p-0">
         <Icon
           name="material-symbols:space-dashboard"
           class="text-3xl mr-2 text-gray-700 drop-shadow-lg"
@@ -65,6 +66,7 @@ const menu = computed((): IMenuItem[] => [
       </div>
 
       <div class="flex items-center md:order-2">
+        <NavbarSearchButton class="mr-4" />
         <NavbarUserMenu />
 
         <!-- Hamburger button - show only to not authenticated users on small screens  -->

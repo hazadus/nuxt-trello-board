@@ -1,0 +1,14 @@
+<script setup lang="ts"></script>
+
+<template>
+  <div
+    class="flex items-center space-x-2 w-40 sm:w-56 md:w-96 text-gray-900 border border-gray-900/10 bg-teal-500 bg-opacity-50 hover:bg-opacity-70 shadow-sm px-3 py-1.5 hover:border-gray-300 focus:outline-none focus:border-gray-300 rounded-lg cursor-pointer"
+  >
+    <Icon
+      name="material-symbols:search"
+      class="text-xl"
+    />
+    <span class="flex-1 text-left text-gray-600"> Найти... </span>
+    <span class="hidden sm:flex">Ctrl+K</span>
+  </div>
+</template>
