@@ -37,8 +37,10 @@ taskStore.getAll();
 
   <h1 class="text-4xl font-semibold text-gray-100 px-5 py-6">Все карточки</h1>
 
-  <div class="p-5 max-w-screen-xl mx-auto">
-    <div class="flex justify-between p-0 mb-1 items-center">
+  <div class="px-5 max-w-screen-xl mx-auto">
+    <div
+      class="flex flex-col md:flex-row justify-between p-0 mb-3 md:mb-1 items-left md:items-center"
+    >
       <div class="relative">
         <div class="absolute inset-y-0 left-0 flex items-center -top-2 pl-4 pointer-events-none">
           <Icon

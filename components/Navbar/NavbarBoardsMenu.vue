@@ -28,15 +28,21 @@ if (!boardStore.boards.length) {
     class="relative"
   >
     <MenuButton
-      class="py-1.5 px-3 bg-opacity-50 bg-teal-500 focus:outline-none hover:bg-opacity-70 rounded-lg"
+      class="w-40 md:w-56 lg:w-72 py-1.5 px-3 bg-opacity-50 bg-teal-500 focus:outline-none hover:bg-opacity-70 rounded-lg"
     >
       <div class="flex items-center space-x-2">
         <Icon
           v-if="menuTitle.icon"
           :name="menuTitle.icon"
+          class="shrink-0"
         />
-        <span>{{ menuTitle.title }}</span>
-        <Icon name="mdi:chevron-down" />
+        <span class="inline-block whitespace-nowrap overflow-hidden flex-1">{{
+          menuTitle.title
+        }}</span>
+        <Icon
+          name="mdi:chevron-down"
+          class="shrink-0"
+        />
       </div>
     </MenuButton>
 
@@ -49,7 +55,7 @@ if (!boardStore.boards.length) {
       leaveToClass="opacity-0 scale-90"
     >
       <MenuItems
-        class="absolute left-0 origin-top-left mt-2 bg-white rounded-md shadow-lg border w-48 focus:outline-none divide-y divide-gray-100"
+        class="absolute left-0 origin-top-left w-48 md:w-56 lg:w-72 mt-2 bg-white rounded-md shadow-lg border focus:outline-none divide-y divide-gray-100"
       >
         <div class="px-1 py-1">
           <CustomMenuItem
