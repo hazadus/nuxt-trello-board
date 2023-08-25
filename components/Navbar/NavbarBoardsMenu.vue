@@ -6,6 +6,7 @@ const boardStore = useBoardStore();
 
 const menuTitle = computed(() => {
   if (route.path === "/boards/") return { icon: "ic:sharp-home", title: "Все доски" };
+  if (route.path === "/table/") return { icon: "ph:table-fill", title: "Все карточки" };
 
   if (route.path.startsWith("/boards/")) {
     const boardId = route.path.split("/")[2];
@@ -56,6 +57,12 @@ if (!boardStore.boards.length) {
             link="/boards/"
           >
             Все доски
+          </CustomMenuItem>
+          <CustomMenuItem
+            icon="ph:table-fill"
+            link="/table/"
+          >
+            Все карточки
           </CustomMenuItem>
         </div>
         <div

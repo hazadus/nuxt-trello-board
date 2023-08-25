@@ -39,6 +39,7 @@ See [Issues](https://github.com/hazadus/nuxt-trello-board/issues) tab for all pl
   - [Nuxt Icon Module](https://nuxt.com/modules/icon)
     - [Icons](https://icones.js.org/)
   - [vue-toastification](https://github.com/Maronato/vue-toastification/tree/next)
+  - [vue3-easy-data-table](https://github.com/HC200ok/vue3-easy-data-table): [Docs](https://hc200ok.github.io/vue3-easy-data-table-doc/getting-started.html)
 - Forms:
   - [vee-validate](https://www.npmjs.com/package/vee-validate)
 
@@ -107,3 +108,4 @@ Stuff I learned while working on this project.
 - [HeadlessUI - Dialog (Modal)](https://headlessui.com/vue/dialog)
 - [HeadlessUI - Transition](https://headlessui.com/vue/transition)
 - [Managing Z-Index In A Component-Based Web Application](https://www.smashingmagazine.com/2019/04/z-index-component-based-web-application/)
+- [A easy-to-use data table component made with Vue.js 3.x ](https://vuejsexamples.com/a-easy-to-use-data-table-component-made-with-vue-js-3-x/)

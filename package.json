@@ -29,6 +29,7 @@
     "pinia": "^2.1.4",
     "vee-validate": "^4.10.7",
     "vue-toastification": "^2.0.0-rc.5",
+    "vue3-easy-data-table": "^1.5.47",
     "vuedraggable": "^4.1.0"
   },
   "overrides": {
