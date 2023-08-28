@@ -2,17 +2,32 @@
 import { formatTimeAgo } from "@vueuse/core";
 import { IFile } from "types";
 
+const fileStore = useFileStore();
+
 const fileTypeIcons = new Map();
 fileTypeIcons.set("image/png", "bi:filetype-png");
 fileTypeIcons.set("image/svg+xml", "bi:filetype-svg");
 fileTypeIcons.set("application/pdf", "bi:filetype-pdf");
 
-defineProps({
+const isDeleting = ref(false);
+
+const props = defineProps({
   file: {
     type: Object as PropType<IFile>,
     required: true,
   },
 });
+
+const emit = defineEmits<{
+  (e: "delete", payload: IFile): void;
+}>();
+
+const onClickDelete = async () => {
+  isDeleting.value = true;
+  await fileStore.delete(props.file._id!);
+  emit("delete", props.file);
+  isDeleting.value = false;
+};
 </script>
 
 <template>
@@ -39,11 +54,18 @@ defineProps({
         >
       </div>
       <div class="text-sm text-gray-400">
-        {{ file.size.toLocaleString() }} байт &middot; {{ file.mimeType }}
+        {{ file.size.toLocaleString() }} байт &middot; {{ file.mimeType }} &middot;
+        {{ formatTimeAgo(new Date(file.createdAt!)) }}
       </div>
     </div>
-    <div class="text-md text-gray-400 hidden md:block">
-      {{ formatTimeAgo(new Date(file.createdAt!)) }}
+    <div>
+      <CustomButton
+        :icon="isDeleting ? `svg-spinners:3-dots-scale` : `material-symbols:delete-outline`"
+        :isDisabled="isDeleting"
+        @click="onClickDelete"
+      >
+        Удалить
+      </CustomButton>
     </div>
   </div>
 </template>

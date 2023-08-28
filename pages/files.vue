@@ -94,7 +94,14 @@ onMounted(() => {
         v-for="file in filteredFiles"
         :file="file"
         :key="file._id"
+        @delete="() => fileStore.getAll()"
       />
     </div>
+    <AlertBox
+      v-else
+      alertType="success"
+    >
+      У вас пока что нет загруженных файлов.
+    </AlertBox>
   </div>
 </template>

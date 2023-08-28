@@ -1,6 +1,6 @@
+import type { ID, IFile } from "@/types";
 import { defineStore } from "pinia";
 import useToast from "./useToast";
-import type { IFile, ID } from "@/types";
 
 export const useFileStore = defineStore("files-store", {
   state: () => ({
@@ -18,6 +18,7 @@ export const useFileStore = defineStore("files-store", {
         useToast().error(e.message);
       }
     },
+    // Upload file to the server, and create corresponding MongoDB File document
     async uploadFile(file: File) {
       const formData = new FormData();
       formData.append("file", file);
@@ -30,6 +31,16 @@ export const useFileStore = defineStore("files-store", {
           if (data) {
             useToast().success("Файл успешно загружен!");
           }
+        });
+    },
+    // Delete a file (document in MongoDB + corresponding file itself)
+    async delete(id: ID) {
+      await fetchApi(`/uploads/${id}`, "DELETE")
+        .catch((e) => {
+          useToast().error(`Ошибка при удалении файла! ${e.data.message}`);
+        })
+        .then(async (data) => {
+          if (data) useToast().success("Файл удалён.");
         });
     },
   },
