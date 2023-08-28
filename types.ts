@@ -71,4 +71,6 @@ export interface IFile {
   mimeType: string;
   fileName: string;
   size: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
