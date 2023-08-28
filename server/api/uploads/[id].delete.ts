@@ -1,5 +1,6 @@
 import { FileModel } from "@/server/models/File";
 import { unlink } from "node:fs";
+import * as path from "path";
 
 export default defineEventHandler(async (event) => {
   if (!isAuthenticated(event)) {
@@ -27,7 +28,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // 2. Delete actual file
-  const filePath = uploadDir + fileDocument.fileName;
+  const filePath = path.join(uploadDir + fileDocument.fileName);
   unlink(filePath, async (err) => {
     if (err)
       throw createError({

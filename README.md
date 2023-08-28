@@ -118,3 +118,4 @@ Stuff I learned while working on this project.
 - [File uploads in Nuxt 3 using Server API Routes](https://reffect.co.jp/en/nuxt/nuxt3-file-upload/)
 - [Node.js - fs.unlink(path, callback)](https://nodejs.org/api/fs.html#fs_fs_unlink_path_callback)
 - [Issue with UTF-8 characters in filename](https://github.com/expressjs/multer/issues/1104)
+- [Nuxt3: Unable to serve static files after build](https://github.com/nuxt/nuxt/issues/15779)

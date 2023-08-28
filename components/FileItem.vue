@@ -47,11 +47,12 @@ const onClickDelete = async () => {
     <div class="flex flex-col flex-1">
       <div class="text-md font-semibold">
         <a
-          :href="`/uploads/${file.fileName}`"
+          :href="`/file/${file.fileName}`"
           target="_blank"
           class="hover:underline mb-1"
-          >{{ file.fileName }}</a
         >
+          {{ file.fileName }}
+        </a>
       </div>
       <div class="text-sm text-gray-400">
         {{ file.size.toLocaleString() }} байт &middot; {{ file.mimeType }} &middot;
