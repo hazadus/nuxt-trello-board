@@ -52,13 +52,39 @@ async function onClickLogOut() {
           </MenuItem>
         </div>
         <div class="px-1 py-1">
-          <CustomMenuItem :isDisabled="true">Профиль</CustomMenuItem>
-          <CustomMenuItem :isDisabled="true">Настройки</CustomMenuItem>
-          <CustomMenuItem :isDisabled="true">Помощь</CustomMenuItem>
+          <CustomMenuItem
+            icon="material-symbols:account-box-outline"
+            :isDisabled="true"
+          >
+            Профиль
+          </CustomMenuItem>
+          <CustomMenuItem
+            icon="ph:files"
+            link="/files/"
+          >
+            Файлы
+          </CustomMenuItem>
+          <CustomMenuItem
+            icon="material-symbols:settings"
+            :isDisabled="true"
+          >
+            Настройки
+          </CustomMenuItem>
+          <CustomMenuItem
+            icon="material-symbols:help-outline"
+            :isDisabled="true"
+          >
+            Помощь
+          </CustomMenuItem>
         </div>
 
         <div class="px-1 py-1">
-          <CustomMenuItem @click.prevent="onClickLogOut">Выйти</CustomMenuItem>
+          <CustomMenuItem
+            icon="fluent:sign-out-20-regular"
+            @click.prevent="onClickLogOut"
+          >
+            Выйти
+          </CustomMenuItem>
         </div>
       </MenuItems>
     </Transition>
