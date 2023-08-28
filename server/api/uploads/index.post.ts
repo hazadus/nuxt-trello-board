@@ -1,6 +1,6 @@
-import multer from "multer";
-import { callNodeListener } from "h3";
 import { FileModel } from "@/server/models/File";
+import { callNodeListener } from "h3";
+import multer from "multer";
 
 export default defineEventHandler(async (event) => {
   if (!isAuthenticated(event)) {
@@ -21,6 +21,9 @@ export default defineEventHandler(async (event) => {
         cb(null, uploadDir);
       },
       filename: function (req, file, cb) {
+        // Reference: Issue with UTF-8 characters in filename (this fixes cyrillic filenames)
+        // https://github.com/expressjs/multer/issues/1104
+        file.originalname = Buffer.from(file.originalname, "latin1").toString("utf8");
         // Generate unique suffix for the file name, preserving the extension
         const fileNameSplit = file.originalname.split(".");
         let extension = "";

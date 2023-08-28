@@ -116,3 +116,5 @@ Stuff I learned while working on this project.
 - [Managing Z-Index In A Component-Based Web Application](https://www.smashingmagazine.com/2019/04/z-index-component-based-web-application/)
 - [A easy-to-use data table component made with Vue.js 3.x ](https://vuejsexamples.com/a-easy-to-use-data-table-component-made-with-vue-js-3-x/)
 - [File uploads in Nuxt 3 using Server API Routes](https://reffect.co.jp/en/nuxt/nuxt3-file-upload/)
+- [Node.js - fs.unlink(path, callback)](https://nodejs.org/api/fs.html#fs_fs_unlink_path_callback)
+- [Issue with UTF-8 characters in filename](https://github.com/expressjs/multer/issues/1104)
