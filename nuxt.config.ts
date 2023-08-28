@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     // NB: don't forget to add `NUXT_` prefix when setting the vat in environment!
     // I.e., use `NUXT_MONGO_DB_ADDRESS` in docker-compose.yml.
     mongoDbAddress: process.env.MONGO_DB_ADDRESS,
+    uploadDir: process.env.UPLOAD_DIR,
   },
   tailwindcss: {
     cssPath: "~/assets/main.css",

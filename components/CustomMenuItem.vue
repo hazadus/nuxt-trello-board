@@ -30,12 +30,17 @@ defineProps({
       :class="{ 'bg-gray-100': active, 'opacity-40': disabled }"
       @click="close()"
     >
-      <Icon
-        v-if="icon"
-        :name="icon"
-        class="mr-2"
-      />
-      <slot />
+      <div class="flex flex-row items-center">
+        <Icon
+          v-if="icon"
+          :name="icon"
+          class="mr-2 shrink-0"
+          size="20"
+        />
+        <div>
+          <slot />
+        </div>
+      </div>
     </NuxtLink>
   </MenuItem>
 </template>

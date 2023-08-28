@@ -9,6 +9,14 @@ const taskStore = useTaskStore();
 const selectedTask = ref<ITask | null>(null);
 const searchText = ref("");
 const switchHideCompleted = ref(true);
+const authStore = useAuthStore();
+const router = useRouter();
+
+onBeforeMount(() => {
+  if (!authStore.isAuthenticated) {
+    router.push("/login/");
+  }
+});
 
 const headers: Header[] = [
   { text: "Изб.", value: "isFavorite", sortable: true, width: 64 },
@@ -29,7 +37,9 @@ const completedQty = computed(() => {
   return taskStore.tasks.reduce((accumulator, task) => accumulator + (task.isCompleted ? 1 : 0), 0);
 });
 
-taskStore.getAll();
+onMounted(() => {
+  taskStore.getAll();
+});
 </script>
 
 <template>

@@ -9,3 +9,4 @@ dist
 .DS_Store
 logs
 docker/mongodb
+public/uploads

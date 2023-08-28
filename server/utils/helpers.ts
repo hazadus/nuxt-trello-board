@@ -1,8 +1,9 @@
-import { H3Event } from "h3";
-import { IUser, ITask, IColumn, IBoard } from "@/types";
-import { TaskModel } from "@/server/models/Task";
-import { ColumnModel } from "@/server/models/Column";
 import { BoardModel } from "@/server/models/Board";
+import { ColumnModel } from "@/server/models/Column";
+import { FileModel } from "@/server/models/File";
+import { TaskModel } from "@/server/models/Task";
+import { IBoard, IColumn, ITask, IUser } from "@/types";
+import { H3Event } from "h3";
 
 /**
  * Check if user is authenticated via context data set by server middleware.
@@ -27,7 +28,7 @@ export function getAuthenticatedUser(event: H3Event): IUser | null {
  * @param event H3Event
  */
 export async function isAllowedToUpdate(
-  documentType: "Task" | "Column" | "Board",
+  documentType: "Task" | "Column" | "Board" | "File",
   documentId: string,
   event: H3Event,
 ) {
@@ -40,11 +41,13 @@ export async function isAllowedToUpdate(
     document = await ColumnModel.findById(documentId).populate("user");
   } else if (documentType === "Board") {
     document = await BoardModel.findById(documentId).populate("user");
+  } else if (documentType === "File") {
+    document = await FileModel.findById(documentId).populate("user");
   } else {
     document = null;
   }
 
-  return document?.user._id?.toString() === userId?.toString();
+  return document && document.user && document.user._id!.toString() === userId?.toString();
 }
 
 /**
@@ -54,7 +57,7 @@ export async function isAllowedToUpdate(
  * @param event H3Event
  */
 export async function handleUpdatePermission(
-  documentType: "Task" | "Column" | "Board",
+  documentType: "Task" | "Column" | "Board" | "File",
   documentId: string,
   event: H3Event,
 ) {
@@ -77,7 +80,7 @@ export async function handleUpdatePermission(
  * @param event H3Event
  */
 export async function handleDeletePermission(
-  documentType: "Task" | "Column" | "Board",
+  documentType: "Task" | "Column" | "Board" | "File",
   documentId: string,
   event: H3Event,
 ) {

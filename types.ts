@@ -63,3 +63,14 @@ export interface ITask {
   updatedAt?: Date;
   completedAt?: Date | null;
 }
+
+export interface IFile {
+  _id?: ID;
+  user: IUser;
+  originalName: string;
+  mimeType: string;
+  fileName: string;
+  size: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
