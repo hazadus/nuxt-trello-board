@@ -1,5 +1,13 @@
 <script setup lang="ts">
 const fileStore = useFileStore();
+const authStore = useAuthStore();
+const router = useRouter();
+
+onBeforeMount(() => {
+  if (!authStore.isAuthenticated) {
+    router.push("/login/");
+  }
+});
 
 const fileInputRef: Ref<HTMLInputElement | null> = ref(null);
 const searchText = ref("");
@@ -28,7 +36,9 @@ const onFileInputChange = async (event: InputFileEvent) => {
   }
 };
 
-fileStore.getAll();
+onMounted(() => {
+  fileStore.getAll();
+});
 </script>
 
 <template>
