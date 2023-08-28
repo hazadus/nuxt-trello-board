@@ -1,16 +1,27 @@
 import multer from "multer";
 import { callNodeListener } from "h3";
+import { FileModel } from "@/server/models/File";
 
 export default defineEventHandler(async (event) => {
-  const { uploadDir } = useRuntimeConfig();
-  const fileNames: string[] = [];
+  if (!isAuthenticated(event)) {
+    throw createError({
+      message: "User must be authenticated to upload files.",
+      statusCode: 403,
+      fatal: false,
+    });
+  }
 
+  const { uploadDir } = useRuntimeConfig();
+  let uploadedFile: Express.Multer.File;
+
+  // 1. Save uploaded file to the file system
   try {
     const storage = multer.diskStorage({
       destination: function (req, file, cb) {
         cb(null, uploadDir);
       },
       filename: function (req, file, cb) {
+        // Generate unique suffix for the file name, preserving the extension
         const fileNameSplit = file.originalname.split(".");
         let extension = "";
 
@@ -25,36 +36,40 @@ export default defineEventHandler(async (event) => {
           "." +
           extension;
 
-        fileNames.push(newFileName);
         cb(null, newFileName);
       },
     });
 
     const upload = multer({ storage: storage });
 
+    // Actually upload and store the file
     // @ts-expect-error
     await callNodeListener(upload.single("file"), event.node.req, event.node.res);
     // @ts-ignore
-    console.log("req.file:", event.node.req.file);
-    /*
-    board-web  | req.file: {
-    board-web  |   fieldname: 'file',
-    board-web  |   originalname: 'Patrick Chapin - Next Level Deckbuilding.pdf',
-    board-web  |   encoding: '7bit',
-    board-web  |   mimetype: 'application/pdf',
-    board-web  |   destination: './public/uploads/',
-    board-web  |   filename: 'Patrick Chapin - Next Level Deckbuilding-646580296.pdf',
-    board-web  |   path: 'public/uploads/Patrick Chapin - Next Level Deckbuilding-646580296.pdf',
-    board-web  |   size: 98578290
-    board-web  | }
-    */
-
-    return {
-      message: "File successfully uploaded.",
-      files: fileNames,
-    };
+    uploadedFile = event.node.req.file;
+    console.log("📦 uploadedFile:", uploadedFile);
   } catch (e: any) {
     console.log("❌ Error uploading file:", e.message);
+    throw createError({
+      message: e.message,
+    });
+  }
+
+  // 2. Create File document in MongoDB for uploaded file
+  try {
+    const fileDocument = await FileModel.create({
+      user: getAuthenticatedUser(event)!,
+      originalName: uploadedFile.originalname,
+      mimeType: uploadedFile.mimetype,
+      fileName: uploadedFile.filename,
+      size: uploadedFile.size,
+    });
+
+    console.log("✅ File document created:", fileDocument);
+
+    return fileDocument;
+  } catch (e: any) {
+    console.log("❌ Error creating File document:", e.message);
     throw createError({
       message: e.message,
     });
