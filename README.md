@@ -5,10 +5,14 @@ Trello (kanban) board clone implemented in TypeScript with Nuxt 3.
 ## Features
 
 - Kanban board with columns, cards, and full drag-and-drop support.
+- Responsive UI.
 - Create as many boards as you wish.
 - Mark cards as "done" or "favorite".
+- Table view.
+- Search modal.
 - Data stored on backend in MongoDB.
 - User authentication.
+- File uploads.
 
 Check out current version of the app at http://boards.hazadus.ru
 
@@ -20,6 +24,7 @@ See [Issues](https://github.com/hazadus/nuxt-trello-board/issues) tab for all pl
 - `space`: mark card as completed.
 - `enter`: mark card as starred.
 - `backspace`: delete card.
+- `Ctrl (Cmd) + /`: search cards.
 
 ## Frameworks, modules and libraries used
 
@@ -29,6 +34,7 @@ See [Issues](https://github.com/hazadus/nuxt-trello-board/issues) tab for all pl
   - Mongoose: [site](https://mongoosejs.com) / [repo](https://github.com/Automattic/mongoose) - cool ORM for MongoDB.
   - [Joi](https://www.npmjs.com/package/joi): The most powerful schema description language and data validator for JavaScript.
   - [bcrypt](https://www.npmjs.com/package/bcrypt): A library to help you hash passwords.
+  - [multer](https://www.npmjs.com/package/multer): node.js middleware for handling `multipart/form-data`, which is primarily used for uploading files. It is written on top of `busboy` for maximum efficiency.
 - State Management:
   - [Pinia](https://pinia.vuejs.org/) | [Pinia Nuxt Module](https://nuxt.com/modules/pinia). If you encounter problems installing Pinia, try `npm i pinia -f` ([reference](https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev)).
 - UI:
@@ -109,3 +115,4 @@ Stuff I learned while working on this project.
 - [HeadlessUI - Transition](https://headlessui.com/vue/transition)
 - [Managing Z-Index In A Component-Based Web Application](https://www.smashingmagazine.com/2019/04/z-index-component-based-web-application/)
 - [A easy-to-use data table component made with Vue.js 3.x ](https://vuejsexamples.com/a-easy-to-use-data-table-component-made-with-vue-js-3-x/)
+- [File uploads in Nuxt 3 using Server API Routes](https://reffect.co.jp/en/nuxt/nuxt3-file-upload/)
