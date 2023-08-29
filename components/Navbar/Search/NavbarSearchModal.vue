@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Dialog, DialogOverlay, TransitionRoot, TransitionChild } from "@headlessui/vue";
+import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from "@headlessui/vue";
 import { formatTimeAgo } from "@vueuse/core";
 import { ITask } from "types";
 
@@ -128,6 +128,7 @@ onMounted(() => taskStore.getAll());
               <button
                 type="button"
                 class="flex items-center p-1.5 text-sm uppercase font-semibold tracking-wider text-gray-700 rounded-md border border-gray-200 focus:outline-none focus:border-gray-300"
+                @click="() => emit('closeModal', true)"
               >
                 Esc
               </button>
@@ -159,7 +160,17 @@ onMounted(() => taskStore.getAll());
                   >
                     {{ task.title }}
                   </div>
-                  <div class="text-xs text-gray-400">
+                  <div class="text-xs text-gray-400 flex items-center">
+                    <Icon
+                      v-if="task.isFavorite"
+                      name="material-symbols:star"
+                      class="text-yellow-400 mr-1"
+                    />
+                    <Icon
+                      v-if="task.attachedFiles?.length"
+                      name="material-symbols:attach-file"
+                      class="text-gray-400 mr-1"
+                    />
                     Создана {{ formatTimeAgo(new Date(task.createdAt!)) }}
                   </div>
                 </div>
