@@ -19,7 +19,9 @@ export const useFileStore = defineStore("files-store", {
       }
     },
     // Upload file to the server, and create corresponding MongoDB File document
+    // Return newly created File document on success or null otherwise.
     async uploadFile(file: File) {
+      let newFileDocument: IFile | null = null;
       const formData = new FormData();
       formData.append("file", file);
 
@@ -29,9 +31,12 @@ export const useFileStore = defineStore("files-store", {
         })
         .then(async (data) => {
           if (data) {
+            newFileDocument = data;
             useToast().success("Файл успешно загружен!");
           }
         });
+
+      return newFileDocument;
     },
     // Delete a file (document in MongoDB + corresponding file itself)
     async delete(id: ID) {

@@ -13,6 +13,7 @@ Trello (kanban) board clone implemented in TypeScript with Nuxt 3.
 - Data stored on backend in MongoDB.
 - User authentication.
 - File uploads.
+- Attach uploaded files to cards.
 
 Check out current version of the app at http://boards.hazadus.ru
 
@@ -69,6 +70,7 @@ All commands below are supposed to be executed from repo directory.
 ```
 # .env example
 MONGO_DB_ADDRESS=mongodb://localhost:27017/board
+UPLOAD_DIR="./public/uploads/"
 ```
 
 - Install Docker, or Docker Desktop, if you don't have it.
@@ -119,3 +121,4 @@ Stuff I learned while working on this project.
 - [Node.js - fs.unlink(path, callback)](https://nodejs.org/api/fs.html#fs_fs_unlink_path_callback)
 - [Issue with UTF-8 characters in filename](https://github.com/expressjs/multer/issues/1104)
 - [Nuxt3: Unable to serve static files after build](https://github.com/nuxt/nuxt/issues/15779)
+- [Populate nested array in Mongoose](https://stackoverflow.com/a/36659971/20197519)

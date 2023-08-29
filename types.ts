@@ -58,6 +58,7 @@ export interface ITask {
   details?: string | null;
   isCompleted: boolean;
   isFavorite: boolean;
+  attachedFiles?: IFile[];
   targetColumnId?: ID;
   createdAt?: Date;
   updatedAt?: Date;

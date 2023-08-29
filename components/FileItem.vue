@@ -16,6 +16,11 @@ const props = defineProps({
     type: Object as PropType<IFile>,
     required: true,
   },
+  size: {
+    type: String,
+    default: "large",
+    required: false,
+  },
 });
 
 const emit = defineEmits<{
@@ -31,8 +36,11 @@ const onClickDelete = async () => {
 </script>
 
 <template>
-  <div class="bg-gray-100 rounded-md p-5 flex flex-row gap-2 shadow-md items-center">
-    <div>
+  <div
+    class="bg-gray-100 rounded-md flex flex-row gap-2 items-center"
+    :class="[size === 'small' ? 'p-2' : 'p-5', size === 'small' ? 'shadow-sm' : 'shadow-md']"
+  >
+    <div class="hidden sm:block">
       <Icon
         v-if="fileTypeIcons.has(file.mimeType)"
         :name="fileTypeIcons.get(file.mimeType)"
@@ -55,7 +63,10 @@ const onClickDelete = async () => {
         </a>
       </div>
       <div class="text-sm text-gray-400">
-        {{ file.size.toLocaleString() }} байт &middot; {{ file.mimeType }} &middot;
+        {{ file.size.toLocaleString() }} байт &middot;
+        <span :class="size === 'small' ? 'hidden' : 'inline-block'">
+          {{ file.mimeType }} &middot;
+        </span>
         {{ formatTimeAgo(new Date(file.createdAt!)) }}
       </div>
     </div>
