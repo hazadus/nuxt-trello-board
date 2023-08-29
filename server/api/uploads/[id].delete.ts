@@ -1,4 +1,5 @@
 import { FileModel } from "@/server/models/File";
+import { TaskModel } from "@/server/models/Task";
 import { unlink } from "node:fs";
 import * as path from "path";
 
@@ -11,17 +12,17 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const id: string = event.context.params?.id || "";
+  const fileDocumentId: string = event.context.params?.id || "";
   const { uploadDir } = useRuntimeConfig();
 
   // Throw error if authenticated user has no permission to delete the file
-  await handleDeletePermission("File", id, event);
+  await handleDeletePermission("File", fileDocumentId, event);
 
   // 1. Find file document
-  const fileDocument = await FileModel.findById(id);
+  const fileDocument = await FileModel.findById(fileDocumentId);
   if (!fileDocument) {
     throw createError({
-      message: `File document with id=${id} not found.`,
+      message: `File document with id=${fileDocumentId} not found.`,
       statusCode: 500,
       fatal: false,
     });
@@ -39,10 +40,29 @@ export default defineEventHandler(async (event) => {
 
     console.log(`✅ ${filePath} was deleted`);
 
-    // 3. Delete File document from MongoDB
+    // 3. Remove File reference from task (if exists)
+    const taskDocument = await TaskModel.findOne({ attachedFiles: { $in: [fileDocument._id] } });
+    if (taskDocument) {
+      try {
+        const updatedAttachedFiles = taskDocument.attachedFiles?.filter(
+          (item) => item._id != fileDocumentId,
+        );
+        await TaskModel.findByIdAndUpdate(taskDocument._id, {
+          attachedFiles: updatedAttachedFiles,
+        });
+        console.log("✅ Updated referencing task:", taskDocument.title);
+      } catch (error: any) {
+        console.log("❌ Error while deleting File => updating referencing task:", error.message);
+        throw createError({
+          message: error.message,
+        });
+      }
+    }
+
+    // 4. Delete File document from MongoDB
     try {
-      await FileModel.findByIdAndDelete(id);
-      console.log(`✅ File document "${id}" deleted!`);
+      await FileModel.findByIdAndDelete(fileDocumentId);
+      console.log(`✅ File document "${fileDocumentId}" deleted!`);
     } catch (e: any) {
       console.log("❌ Error deleting file document:", e.message);
       throw createError({
@@ -51,5 +71,5 @@ export default defineEventHandler(async (event) => {
     }
   });
 
-  return { message: `File '${id}' (${fileDocument.fileName}) deleted.` };
+  return { message: `File '${fileDocumentId}' (${fileDocument.fileName}) deleted.` };
 });

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from "@headlessui/vue";
-import type { ITask } from "@/types";
+import type { IFile, ITask } from "@/types";
 
 const props = defineProps<{
   card: ITask | null;
@@ -9,9 +9,17 @@ const props = defineProps<{
 
 const taskStore = useTaskStore();
 const boardStore = useBoardStore();
+const fileStore = useFileStore();
+
+const fileInputRef: Ref<HTMLInputElement | null> = ref(null);
 
 const isFetching = ref(false);
+const isUploading = ref(false);
 const errorMessage = ref("");
+
+const isDisabled = computed(() => {
+  return isFetching.value || isUploading.value;
+});
 
 // Initialize auto-resizable text area for card title
 const { textarea: titleTextarea, input: newTitle } = useTextareaAutosize();
@@ -22,6 +30,7 @@ const editableCard: Ref<Partial<ITask> | null> = props.card
       _id: props.card._id,
       title: props.card.title,
       details: props.card.details,
+      attachedFiles: props.card.attachedFiles,
       isCompleted: props.card.isCompleted,
       isFavorite: props.card.isFavorite,
     })
@@ -54,6 +63,57 @@ const onClickSave = async () => {
     }
     isFetching.value = false;
   }
+};
+
+interface InputFileEvent extends Event {
+  target: HTMLInputElement;
+}
+
+/**
+ * Handle file upload when a file is selected using dialog window.
+ * @param event Even created by file input dialog
+ */
+const onFileInputChange = async (event: InputFileEvent) => {
+  const files = event.target.files;
+
+  if (files) {
+    // 1. Upload the file
+    isUploading.value = true;
+    const newFileDocument = await fileStore.uploadFile(files[0]);
+    isUploading.value = false;
+
+    // 2. Update task - add new file to `attachedFiles` array.
+    if (newFileDocument && editableCard.value) {
+      if (!editableCard.value.attachedFiles) {
+        editableCard.value.attachedFiles = [];
+      }
+
+      editableCard.value.attachedFiles.push(newFileDocument);
+
+      // Actually update task in MongoDB (only attached files list)
+      isFetching.value = true;
+      const isSuccess = await taskStore.update({
+        ...props.card,
+        attachedFiles: editableCard.value.attachedFiles,
+      });
+      if (isSuccess) {
+        // 3. Update global state
+        await boardStore.getAll();
+        await taskStore.getAll();
+      }
+      isFetching.value = false;
+    }
+  }
+};
+
+const onDeleteFile = async (file: IFile) => {
+  await boardStore.getAll();
+  await taskStore.getAll();
+  // NB: manually remove deleted file from the list, because it's not get updated by Vue,
+  // I can't imagine, why!!
+  editableCard.value!.attachedFiles = editableCard.value!.attachedFiles?.filter(
+    (item) => item._id !== file._id,
+  );
 };
 </script>
 
@@ -129,7 +189,7 @@ const onClickSave = async () => {
                     </label>
                     <textarea
                       v-model="editableCard.details as string"
-                      :disabled="isFetching"
+                      :disabled="isDisabled"
                       class="block w-full text-sm mb-2 rounded-md bg-gray-50 border-none focus:ring-gray-300 focus:bg-white"
                       name="description"
                       rows="10"
@@ -139,23 +199,43 @@ const onClickSave = async () => {
                     <span class="block mb-1 ml-1 text-md font-semibold text-gray-700">
                       Статус
                     </span>
-                    <input
-                      type="checkbox"
-                      id="checkboxFavorite"
-                      v-model="editableCard.isFavorite"
-                      :disabled="isFetching"
-                      class="mx-2 rounded-md"
-                    />
-                    <label for="checkboxFavorite">Избранная</label>
+                    <div class="flex">
+                      <div class="flex items-center mr-5">
+                        <input
+                          type="checkbox"
+                          id="checkboxFavorite"
+                          v-model="editableCard.isFavorite"
+                          :disabled="isDisabled"
+                          class="mx-2 rounded-md"
+                        />
+                        <label for="checkboxFavorite">Избранная</label>
+                      </div>
 
-                    <input
-                      type="checkbox"
-                      id="checkboxCompleted"
-                      v-model="editableCard.isCompleted"
-                      :disabled="isFetching"
-                      class="mx-2 rounded-md"
-                    />
-                    <label for="checkboxCompleted">Завершенная</label>
+                      <div class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="checkboxCompleted"
+                          v-model="editableCard.isCompleted"
+                          :disabled="isDisabled"
+                          class="mx-2 rounded-md"
+                        />
+                        <label for="checkboxCompleted">Завершенная</label>
+                      </div>
+                    </div>
+
+                    <template v-if="editableCard && editableCard.attachedFiles?.length">
+                      <span class="block mt-2 mb-1 ml-1 text-md font-semibold text-gray-700">
+                        Прикрепленные файлы ({{ editableCard.attachedFiles.length }})
+                      </span>
+                      <div class="flex flex-col gap-1">
+                        <FileItem
+                          v-for="file in editableCard.attachedFiles"
+                          :file="file"
+                          :key="`attached-file-id-${file._id}`"
+                          @delete="onDeleteFile($event)"
+                        />
+                      </div>
+                    </template>
                   </div>
 
                   <AlertBox
@@ -173,16 +253,33 @@ const onClickSave = async () => {
                     Действия
                   </h3>
                   <CustomButton
-                    :isDisabled="isFetching"
                     icon="material-symbols:check-circle-rounded"
+                    :isDisabled="isDisabled"
                     class="w-full mb-1"
                     @click="onClickSave"
                   >
                     Сохранить
                   </CustomButton>
                   <CustomButton
-                    :isDisabled="true"
+                    :icon="isUploading ? `svg-spinners:3-dots-scale` : `ic:round-cloud-upload`"
+                    :isDisabled="isDisabled"
+                    class="w-full mb-1"
+                    @click="() => fileInputRef!.click()"
+                  >
+                    Прикрепить
+                  </CustomButton>
+                  <form enctype="multipart/form-data">
+                    <input
+                      ref="fileInputRef"
+                      type="file"
+                      name="file"
+                      hidden
+                      @change="onFileInputChange($event as InputFileEvent)"
+                    />
+                  </form>
+                  <CustomButton
                     icon="material-symbols:delete"
+                    :isDisabled="true"
                     class="w-full"
                   >
                     Удалить

@@ -11,8 +11,20 @@ export default defineEventHandler(async (event) => {
 
   // Return all `Board` documents created by authenticated user.
   // Populate columns, and in each column populate `tasks` array with detailed task info:
-  return await BoardModel.find({ user: getAuthenticatedUser(event)!._id! }).populate({
-    path: "columns",
-    populate: { path: "tasks" },
-  });
+  return await BoardModel.find({ user: getAuthenticatedUser(event)!._id! }).populate([
+    {
+      path: "columns",
+      populate: { path: "tasks" },
+    },
+    // Populate deeply nested array with attached files
+    {
+      path: "columns",
+      populate: {
+        path: "tasks",
+        populate: {
+          path: "attachedFiles",
+        },
+      },
+    },
+  ]);
 });

@@ -13,6 +13,12 @@ const taskSchema = new Schema<ITask>(
     details: { type: String, required: false },
     isCompleted: { type: Boolean, required: true },
     isFavorite: { type: Boolean, required: true },
+    attachedFiles: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "File",
+      },
+    ],
     completedAt: { type: Date, required: false },
   },
   // This automatically adds `createdAt` and `updatedAt` fields in the schema:
