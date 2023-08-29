@@ -46,7 +46,9 @@ const navigateResults = (event: KeyboardEvent) => {
       break;
   }
 
-  resultsRefs.value[selectedIndex.value].scrollIntoView(false);
+  if (selectedIndex.value < resultsRefs.value.length && resultsRefs.value[selectedIndex.value]) {
+    resultsRefs.value[selectedIndex.value].scrollIntoView(false);
+  }
 };
 
 const onSearchInputKeyDown = (event: KeyboardEvent) => {
