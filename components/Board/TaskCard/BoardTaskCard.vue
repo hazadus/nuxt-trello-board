@@ -69,6 +69,11 @@ onKeyStroke(" ", (event) => {
       >
         <Icon name="material-symbols:star" />
       </button>
+      <Icon
+        v-if="task.attachedFiles?.length"
+        name="material-symbols:attach-file"
+        class="text-gray-400 ml-2"
+      />
     </div>
   </div>
 </template>
