@@ -232,6 +232,7 @@ const onDeleteFile = async (file: IFile) => {
                           v-for="file in editableCard.attachedFiles"
                           :file="file"
                           :key="`attached-file-id-${file._id}`"
+                          size="small"
                           @delete="onDeleteFile($event)"
                         />
                       </div>
