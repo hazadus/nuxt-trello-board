@@ -19,6 +19,13 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      script: [
+        {
+          src: "https://stats.hazadus.ru/script.js",
+          async: true,
+          "data-website-id": "7aee8419-43d8-4c1e-93a5-90a0d72901d4",
+        },
+      ],
       link: [
         {
           rel: "apple-touch-icon",
