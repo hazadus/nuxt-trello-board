@@ -122,3 +122,4 @@ Stuff I learned while working on this project.
 - [Issue with UTF-8 characters in filename](https://github.com/expressjs/multer/issues/1104)
 - [Nuxt3: Unable to serve static files after build](https://github.com/nuxt/nuxt/issues/15779)
 - [Populate nested array in Mongoose](https://stackoverflow.com/a/36659971/20197519)
+- [Nuxt 3 Sentry integration](https://localazy.com/blog/nuxt-3-tailwind-i18n-eslint-starter#sentry)
