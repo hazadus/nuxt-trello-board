@@ -71,10 +71,16 @@ async function onClickLogOut() {
             Настройки
           </CustomMenuItem>
           <CustomMenuItem
-            icon="material-symbols:help-outline"
-            :isDisabled="true"
+            icon="ph:chat-circle"
+            link="/contact/"
           >
-            Помощь
+            Контакты
+          </CustomMenuItem>
+          <CustomMenuItem
+            icon="material-symbols:help-outline"
+            link="/"
+          >
+            О проекте
           </CustomMenuItem>
         </div>
 

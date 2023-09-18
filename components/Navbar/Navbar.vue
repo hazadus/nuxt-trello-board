@@ -38,11 +38,6 @@ const menu = computed((): IMenuItem[] => [
     classes: useRoute().path == "/login/" ? activeMenuClasses : menuClasses,
   },
   {
-    title: "О сайте",
-    route: "/about/",
-    classes: useRoute().path == "/about/" ? activeMenuClasses : menuClasses,
-  },
-  {
     title: "Контакты",
     route: "/contact/",
     classes: useRoute().path == "/contact/" ? activeMenuClasses : menuClasses,
