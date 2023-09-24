@@ -2,6 +2,8 @@
 
 Trello (kanban) board clone implemented in TypeScript with Nuxt 3.
 
+![Screenshot](/public/images/screenshot1.png)
+
 ## Features
 
 - Kanban board with columns, cards, and full drag-and-drop support.
@@ -123,3 +125,7 @@ Stuff I learned while working on this project.
 - [Nuxt3: Unable to serve static files after build](https://github.com/nuxt/nuxt/issues/15779)
 - [Populate nested array in Mongoose](https://stackoverflow.com/a/36659971/20197519)
 - [Nuxt 3 Sentry integration](https://localazy.com/blog/nuxt-3-tailwind-i18n-eslint-starter#sentry)
+
+## Repo Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/173054fb789615b6ca7a9a1a8061d15195f96420.svg "Repobeats analytics image")
