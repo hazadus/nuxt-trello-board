@@ -6,5 +6,6 @@ down:
 	docker compose -f docker-compose.prod.yml down
 update:
 	make down
+	docker system prune -f -a --volumes
 	git pull
 	make up_prod
