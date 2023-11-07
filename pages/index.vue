@@ -4,11 +4,11 @@
   <Title> Трололо </Title>
 
   <!-- Hero section -->
-  <section class="hero bg-primary-50 dark:bg-gray-900 flex flex-col items-center justify-center">
+  <section class="hero bg-primary-50 flex flex-col items-center justify-center">
     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
       <a
         href="https://hazadus.ru/blog/nuxt-board-deploy"
-        class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+        class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200"
         role="alert"
       >
         <span class="text-2xl bg-primary-600 rounded-full text-white px-4 py-0 mr-3"> 🚀 </span>
@@ -29,13 +29,11 @@
         </svg>
       </a>
       <h1
-        class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+        class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl"
       >
         Самые лучшие доски в сети
       </h1>
-      <p
-        class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
-      >
+      <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
         Мы предлагаем вам удобный и современный инструмент для создания канбан-досок онлайн.
         Полностью бесплатно!
       </p>
@@ -44,7 +42,7 @@
       >
         <RouterLink
           to="/login/"
-          class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300"
         >
           Попробовать
           <svg
@@ -62,7 +60,7 @@
         </RouterLink>
         <a
           href="https://github.com/hazadus/nuxt-trello-board"
-          class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+          class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100"
         >
           <svg
             class="mr-2 -ml-1 w-5 h-5"
@@ -86,21 +84,21 @@
         >
           <a
             href="#"
-            class="mr-5 mb-5 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-400 text-4xl"
+            class="mr-5 mb-5 lg:mb-0 hover:text-gray-800 text-4xl"
           >
             <Icon name="logos:nuxt-icon" />
             Nuxt
           </a>
           <a
             href="#"
-            class="mr-5 mb-5 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-400 text-4xl"
+            class="mr-5 mb-5 lg:mb-0 hover:text-gray-800 text-4xl"
           >
             <Icon name="logos:typescript-icon" />
             TypeScript
           </a>
           <a
             href="#"
-            class="mr-5 mb-5 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-400 text-4xl"
+            class="mr-5 mb-5 lg:mb-0 hover:text-gray-800 text-4xl"
           >
             <Icon name="logos:mongodb-icon" />
             MongoDB
@@ -111,14 +109,12 @@
   </section>
 
   <!-- Content section -->
-  <section
-    class="content bg-primary-100 dark:bg-gray-700 flex flex-col items-center justify-center"
-  >
+  <section class="content bg-primary-100 flex flex-col items-center justify-center">
     <div
       class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
     >
-      <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+      <div class="font-light text-gray-500 sm:text-lg">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
           Мы не изобретали колесо заново
         </h2>
         <p class="mb-4">
@@ -153,13 +149,13 @@
   </section>
 
   <!-- Features section -->
-  <section class="features bg-white dark:bg-gray-900">
+  <section class="features bg-white">
     <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
       <div class="max-w-screen-md mb-8 lg:mb-16">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
           Все возможности канбан для вас
         </h2>
-        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
+        <p class="text-gray-500 sm:text-xl">
           Мы предлагаем самую передовую реализацию инструмента, применяемого в методологиях Scrum и
           Agile.
         </p>
@@ -167,10 +163,10 @@
       <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
         <div>
           <div
-            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12"
           >
             <svg
-              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -182,17 +178,17 @@
               ></path>
             </svg>
           </div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Планирование</h3>
-          <p class="text-gray-500 dark:text-gray-400">
+          <h3 class="mb-2 text-xl font-bold">Планирование</h3>
+          <p class="text-gray-500">
             Планируй, создавай, запускай. Организуйте свои дела и достигайте целей, каждый день.
           </p>
         </div>
         <div>
           <div
-            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12"
           >
             <svg
-              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -202,18 +198,18 @@
               ></path>
             </svg>
           </div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Открытый код</h3>
-          <p class="text-gray-500 dark:text-gray-400">
+          <h3 class="mb-2 text-xl font-bold">Открытый код</h3>
+          <p class="text-gray-500">
             Код проекта доступен для всех. Никаких подводных камней! Вы даже можете запустить его на
             своём сайте.
           </p>
         </div>
         <div>
           <div
-            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12"
           >
             <svg
-              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -228,17 +224,15 @@
               ></path>
             </svg>
           </div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Используйте в бизнесе</h3>
-          <p class="text-gray-500 dark:text-gray-400">
-            Презентуйте свои планы коллегам на канбан-доске!
-          </p>
+          <h3 class="mb-2 text-xl font-bold">Используйте в бизнесе</h3>
+          <p class="text-gray-500">Презентуйте свои планы коллегам на канбан-доске!</p>
         </div>
         <div>
           <div
-            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12"
           >
             <svg
-              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -253,17 +247,17 @@
               ></path>
             </svg>
           </div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Бесплатно</h3>
-          <p class="text-gray-500 dark:text-gray-400">
+          <h3 class="mb-2 text-xl font-bold">Бесплатно</h3>
+          <p class="text-gray-500">
             Использование сервиса не стоит для вас не копейки, и всегда останется бесплатным.
           </p>
         </div>
         <div>
           <div
-            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12"
           >
             <svg
-              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -273,18 +267,18 @@
               ></path>
             </svg>
           </div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Современный UI</h3>
-          <p class="text-gray-500 dark:text-gray-400">
+          <h3 class="mb-2 text-xl font-bold">Современный UI</h3>
+          <p class="text-gray-500">
             Отзывчивый и современный интерфейс позволит вам с комфортом планировать работу как на
             десктопе, так и на смартфоне.
           </p>
         </div>
         <div>
           <div
-            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12"
           >
             <svg
-              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+              class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -296,8 +290,8 @@
               ></path>
             </svg>
           </div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Настройки</h3>
-          <p class="text-gray-500 dark:text-gray-400">
+          <h3 class="mb-2 text-xl font-bold">Настройки</h3>
+          <p class="text-gray-500">
             Выбирайте такой внешний вид досок, какой удобен лично вам (опция пока на стадии
             проектирования).
           </p>
@@ -307,27 +301,27 @@
   </section>
 
   <!-- Stats section -->
-  <section class="bg-white dark:bg-gray-900">
+  <section class="bg-white">
     <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
-      <dl class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">
+      <dl class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3">
         <div class="flex flex-col items-center justify-center">
           <dt class="mb-2 text-3xl md:text-4xl font-extrabold">2+</dt>
-          <dd class="font-light text-gray-500 dark:text-gray-400">пользователей</dd>
+          <dd class="font-light text-gray-500">пользователей</dd>
         </div>
         <div class="flex flex-col items-center justify-center">
           <dt class="mb-2 text-3xl md:text-4xl font-extrabold">10+</dt>
-          <dd class="font-light text-gray-500 dark:text-gray-400">досок</dd>
+          <dd class="font-light text-gray-500">досок</dd>
         </div>
         <div class="flex flex-col items-center justify-center">
           <dt class="mb-2 text-3xl md:text-4xl font-extrabold">44+</dt>
-          <dd class="font-light text-gray-500 dark:text-gray-400">карточек</dd>
+          <dd class="font-light text-gray-500">карточек</dd>
         </div>
       </dl>
     </div>
   </section>
 
   <!-- CTA section -->
-  <section class="cta bg-primary-100 dark:bg-gray-700">
+  <section class="cta bg-primary-100">
     <div
       class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6"
     >
@@ -337,16 +331,16 @@
         alt="Kanban board"
       />
       <div class="mt-4 md:mt-0">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
           Создавайте новое и приводите свои идеи в жизнь при помощи современного инструмента.
         </h2>
-        <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+        <p class="mb-6 font-light text-gray-500 md:text-lg">
           Трололо поможет вам качественно спланировать выполнение любых задач, и с удовольсвием
           довести свои идеи до реализации.
         </p>
         <RouterLink
           to="/login/"
-          class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900"
+          class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
         >
           Приступим
           <svg
@@ -367,11 +361,11 @@
   </section>
 
   <!-- Testimonials section -->
-  <section class="testimonial bg-white dark:bg-gray-900">
+  <section class="testimonial bg-white">
     <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
       <figure class="max-w-screen-md mx-auto">
         <svg
-          class="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600"
+          class="h-12 mx-auto mb-3 text-gray-400"
           viewBox="0 0 24 27"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -382,7 +376,7 @@
           />
         </svg>
         <blockquote>
-          <p class="text-2xl font-medium text-gray-900 dark:text-white">
+          <p class="text-2xl font-medium text-gray-900">
             "Трололо очень крут. Я не знаю, для чего это нужно, и сам не пользуюсь, но парни
             говорят, что штука рабочая. И я придумал название!"
           </p>
@@ -393,9 +387,9 @@
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png"
             alt="profile picture"
           />
-          <div class="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-            <div class="pr-3 font-medium text-gray-900 dark:text-white">Александр Флоренцев</div>
-            <div class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">
+          <div class="flex items-center divide-x-2 divide-gray-500">
+            <div class="pr-3 font-medium text-gray-900">Александр Флоренцев</div>
+            <div class="pl-3 text-sm font-light text-gray-500">
               Руководитель в крупнейшей транспортной компании
             </div>
           </div>

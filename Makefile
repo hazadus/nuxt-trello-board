@@ -4,6 +4,8 @@ up_prod:
 	docker compose -f docker-compose.prod.yml up -d --build
 down:
 	docker compose -f docker-compose.prod.yml down
+logs:
+	docker compose -f docker-compose.prod.yml logs --follow
 update:
 	make down
 	docker system prune -f -a --volumes
