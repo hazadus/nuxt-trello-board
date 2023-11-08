@@ -1,6 +1,7 @@
+import type { IColumn, ID } from "@/types";
+import { createUmamiEvent } from "@/utils/helpers.client";
 import { defineStore } from "pinia";
 import useToast from "./useToast";
-import type { IColumn, ID } from "@/types";
 
 export const useColumnStore = defineStore("column-store", {
   state: () => ({
@@ -25,7 +26,10 @@ export const useColumnStore = defineStore("column-store", {
           useToast().error(`Ошибка при создании колонки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) useToast().success(`Колонка "${column.title}" создана!`);
+          if (data) {
+            useToast().success(`Колонка "${column.title}" создана!`);
+            createUmamiEvent("Create column");
+          }
         });
     },
     // Update a column
@@ -36,7 +40,10 @@ export const useColumnStore = defineStore("column-store", {
           useToast().error(`Ошибка при сохранении колонки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) useToast().success("Колонка сохранена!");
+          if (data) {
+            useToast().success("Колонка сохранена!");
+            createUmamiEvent("Update column");
+          }
         });
     },
     // Delete a Column
@@ -46,7 +53,10 @@ export const useColumnStore = defineStore("column-store", {
           useToast().error(`Ошибка при удалении колонки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) useToast().success("Колонка удалена.");
+          if (data) {
+            useToast().success("Колонка удалена.");
+            createUmamiEvent("Delete column");
+          }
         });
     },
   },

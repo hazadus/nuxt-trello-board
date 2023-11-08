@@ -1,4 +1,5 @@
 import type { ID, IFile } from "@/types";
+import { createUmamiEvent } from "@/utils/helpers.client";
 import { defineStore } from "pinia";
 import useToast from "./useToast";
 
@@ -33,6 +34,7 @@ export const useFileStore = defineStore("files-store", {
           if (data) {
             newFileDocument = data;
             useToast().success("Файл успешно загружен!");
+            createUmamiEvent("File upload");
           }
         });
 
@@ -45,7 +47,10 @@ export const useFileStore = defineStore("files-store", {
           useToast().error(`Ошибка при удалении файла! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) useToast().success("Файл удалён.");
+          if (data) {
+            useToast().success("Файл удалён.");
+            createUmamiEvent("File deleted");
+          }
         });
     },
   },

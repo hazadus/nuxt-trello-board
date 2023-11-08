@@ -1,6 +1,7 @@
+import type { ID, ITask } from "@/types";
 import { defineStore } from "pinia";
+import { createUmamiEvent } from "@/utils/helpers.client";
 import useToast from "./useToast";
-import type { ITask, ID } from "@/types";
 
 export const useTaskStore = defineStore("task-store", {
   state: () => ({
@@ -26,7 +27,10 @@ export const useTaskStore = defineStore("task-store", {
         })
         .then(async (data) => {
           // In case of error, we get `data=undefined`, so we check `data` here:
-          if (data) useToast().success(`Карточка "${task.title}" создана!`);
+          if (data) {
+            useToast().success(`Карточка "${task.title}" создана!`);
+            createUmamiEvent("Create card");
+          }
         });
     },
     // Update a task
@@ -42,6 +46,7 @@ export const useTaskStore = defineStore("task-store", {
         .then(async (data) => {
           if (data) {
             useToast().success("Карточка сохранена!");
+            createUmamiEvent("Update card");
             isSuccess = true;
           }
         });
@@ -55,7 +60,10 @@ export const useTaskStore = defineStore("task-store", {
           useToast().error(`Ошибка при удалении карточки! ${e.data.message}`);
         })
         .then(async (data) => {
-          if (data) useToast().success("Карточка удалена.");
+          if (data) {
+            useToast().success("Карточка удалена.");
+            createUmamiEvent("Delete card");
+          }
         });
     },
   },

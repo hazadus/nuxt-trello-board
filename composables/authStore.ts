@@ -1,5 +1,6 @@
-import { defineStore } from "pinia";
 import type { IAuthToken, ILoginCredentials, IUser } from "@/types";
+import { createUmamiEvent } from "@/utils/helpers.client";
+import { defineStore } from "pinia";
 import useToast from "./useToast";
 
 interface StateShape {
@@ -39,6 +40,7 @@ export const useAuthStore = defineStore("auth-store", {
         });
         useToast().success(`Учётная запись "${data.email}" успешно создана!`);
         await this.logIn(loginCredentials);
+        createUmamiEvent("User signed up");
       } catch (e: any) {
         useToast().error(`Ошибка при создании учётной записи: ${e.data.message}`);
       }
@@ -55,12 +57,14 @@ export const useAuthStore = defineStore("auth-store", {
         localStorage.setItem("nuxt-trello-board-token", this.token);
         localStorage.setItem("nuxt-trello-board-user", JSON.stringify(this.user));
         useToast().success(`Вы вошли с учётной записью "${this.user.email}"!`);
+        createUmamiEvent("User logged in");
       } catch (e: any) {
         useToast().error(`Ошибка при входе в учётную запись: ${e.data.message}`);
       }
     },
     async logOut() {
       try {
+        createUmamiEvent("User logging out");
         await fetchApi("/users/logout");
         this.token = "";
         this.user = null;

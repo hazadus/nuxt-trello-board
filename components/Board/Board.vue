@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { IColumn, ID, ITask } from "@/types";
+import { createUmamiEvent } from "@/utils/helpers.client";
 import draggable from "vuedraggable";
-import type { IColumn, ITask, ID } from "@/types";
 
 const props = defineProps<{
   boardId: ID;
@@ -81,6 +82,7 @@ async function onToggleCompleted(task: ITask, isCompleted: boolean) {
     ...task,
     isCompleted, // Overwrite value already in `task`
   });
+  createUmamiEvent("Complete task toggled");
   boardStore.getAll();
 }
 
@@ -89,6 +91,7 @@ async function onToggleFavorite(task: ITask, isFavorite: boolean) {
     ...task,
     isFavorite, // Overwrite value already in `task`
   });
+  createUmamiEvent("Favorite task toggled");
   boardStore.getAll();
 }
 

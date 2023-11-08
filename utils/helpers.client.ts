@@ -1,4 +1,5 @@
 import { HttpMethod, ID } from "types";
+import { useAuthStore } from "../composables/authStore";
 
 /**
  * Fetch data from API. Adds `Authorization` header with user token to all requests.
@@ -23,3 +24,14 @@ export async function fetchApi<T>(
 export function buildBoardUrl(boardId: ID) {
   return `/boards/${boardId}`;
 }
+
+/**
+ * Send an event to my Umami stats app.
+ * Reference: https://umami.is/docs/track-events
+ *
+ * @param event event name will be displayed on the dashboard
+ */
+export const createUmamiEvent = (event: string) => {
+  // @ts-ignore
+  umami.track(event, { username: useAuthStore().user?.email || "Unknown" });
+};

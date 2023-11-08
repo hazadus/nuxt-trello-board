@@ -1,6 +1,7 @@
+import type { IBoard } from "@/types";
+import { createUmamiEvent } from "@/utils/helpers.client";
 import { defineStore } from "pinia";
 import useToast from "./useToast";
-import type { IBoard } from "@/types";
 
 export const useBoardStore = defineStore("board-store", {
   state: () => ({
@@ -27,6 +28,7 @@ export const useBoardStore = defineStore("board-store", {
           if (data) {
             await this.getAll();
             useToast().success(`Доска "${board.title}" создана!`);
+            createUmamiEvent("Create board");
           }
         });
     },
@@ -39,6 +41,7 @@ export const useBoardStore = defineStore("board-store", {
           if (data) {
             await this.getAll();
             useToast().success("Доска сохранена!");
+            createUmamiEvent("Update board");
           }
         });
     },
