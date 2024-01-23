@@ -4,11 +4,13 @@ services:
   db:
     container_name: "board-db"
     image: mongo:6-jammy
+    restart: unless-stopped
     volumes:
       - ./docker/mongodb:/data/db
   web:
     container_name: "board-web"
     build: .
+    restart: unless-stopped
     command: node .output/server/index.mjs
     ports:
       - "80:3000"
